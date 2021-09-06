@@ -26,6 +26,12 @@
 購入履歴を確認したいとき
 捨てている服の傾向が知りたい方
 
+##設計
+ER図　：
+UIflow図：https://drive.google.com/file/d/18xzQLs_24_bOgloQOgd88HdEnisPUKw2/view?usp=sharing
+アプリケーション詳細設計：
+テーブル定義書：
+
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/16KIZUU0Obm4Hcp7GI9WP4_nhBXJKlH2hCMwC64ua2w8/edit?usp=sharing
 
