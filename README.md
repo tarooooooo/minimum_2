@@ -27,10 +27,10 @@
 捨てている服の傾向が知りたい方
 
 ## 設計
-ER図　：https://drive.google.com/file/d/1Qsgk4gDvy_zIwHW_ovvRhD8Gf5bMJDP9/view?usp=sharing
-UIflow図：https://drive.google.com/file/d/18xzQLs_24_bOgloQOgd88HdEnisPUKw2/view?usp=sharing
-アプリケーション詳細設計：
-テーブル定義書：
+- ER図　：https://drive.google.com/file/d/1Qsgk4gDvy_zIwHW_ovvRhD8Gf5bMJDP9/view?usp=sharing
+- UIflow図：https://drive.google.com/file/d/18xzQLs_24_bOgloQOgd88HdEnisPUKw2/view?usp=sharing
+- アプリケーション詳細設計：
+- テーブル定義書：
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/16KIZUU0Obm4Hcp7GI9WP4_nhBXJKlH2hCMwC64ua2w8/edit?usp=sharing
