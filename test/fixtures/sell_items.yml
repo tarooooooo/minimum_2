@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  buyer_id: 1
+  seller_id: 1
+  item_image_id: MyString
+  name: MyString
+  order_price: MyString
+  delivery_price: MyString
+  brand: one
+  color: one
+  order_status: 1
+  payment_method: 1
+  purchase_date: 2021-09-07 08:53:56
+  size: 1
+
+two:
+  buyer_id: 1
+  seller_id: 1
+  item_image_id: MyString
+  name: MyString
+  order_price: MyString
+  delivery_price: MyString
+  brand: two
+  color: two
+  order_status: 1
+  payment_method: 1
+  purchase_date: 2021-09-07 08:53:56
+  size: 1

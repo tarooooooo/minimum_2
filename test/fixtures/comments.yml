@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sell_item: one
+  user: one
+  text: MyText
+
+two:
+  sell_item: two
+  user: two
+  text: MyText

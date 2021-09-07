@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  color: one
+  brand: one
+  category: one
+  price: MyString
+  item_image_id: MyString
+  discard_date: 2021-09-07 08:44:45
+  item_status: 1
+  purchase_date: 2021-09-07 08:44:45
+  size: 1
+  name: MyString
+
+two:
+  user: two
+  color: two
+  brand: two
+  category: two
+  price: MyString
+  item_image_id: MyString
+  discard_date: 2021-09-07 08:44:45
+  item_status: 1
+  purchase_date: 2021-09-07 08:44:45
+  size: 1
+  name: MyString
