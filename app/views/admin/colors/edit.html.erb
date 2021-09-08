@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-8 offset-md-1">
+    <div class="col">
       <h2>カラー編集</h2>
-      <div class="edit_genres">
+      <div class="edit_colors">
         <%= form_with model: [:admin, @color], local:true do |f| %>
           <div class="form-group">
-            <label for="genre_name">カラー名</label>
+            <label for="color_name">カラー名</label>
             <%= f.text_field :name %>
             <%= f.submit "保存", class:"btn btn-success"%>
           </div>

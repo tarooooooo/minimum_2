@@ -1,2 +1,31 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      
+      <h2><%= @item.name %>の詳細</h2>
+      <table class="table table-hover table-borderless">
+        <tr><th>アイテム画像</th><th><%= attachment_image_tag @item, :item_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></th></tr>
+        <tr><th>アイテムID</th><th><%= @item.id %></th></tr>
+        <tr><th>アイテム名</th><th><%= @item.name %></th></tr>
+        <tr><th>登録ユーザー名</th><th><%= @item.user.last_name %><%= @item.user.first_name %></th></tr>
+        <tr><th>カテゴリー</th><th><%= @item.category.name %></th></tr>
+        <tr><th>カラー</th><th><%= @item.color.name %>歳</th></tr>
+        <tr><th>購入価格</th></th><th><%= @item.price %>円</th></tr>
+        <tr><th>サイズ</th><th><%= @item.size %></th></tr>
+        <tr><th>購入日</th><th><%= @item.purchase_date %></th></tr>
+        <tr><th>削除日</th><th><%= @item.discard_date %></th></tr>
+        <tr><th>アイテムステータス</th>
+        <div>
+        <% if @item.item_status_before_type_cast == 0 %>
+          <th class="text-success"><%= @item.item_status %></th>
+        <% else %>
+          <th class="text-muted"><%= @item.item_status %></th>
+        <% end %>
+        </div>
+        </tr>
+      </table>
+      <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-sm btn-success" %>
+
+    </div>
+  </div>
+</div>

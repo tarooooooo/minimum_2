@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-8 offset-md-1">
+    <div class="col">
       <h2>カラー一覧・追加</h2>
-      <div class="create_genres">
+      <div class="create_cplor">
         <%= form_with model: [:admin, @color], local:true do |f| %>
           <div class="form-group">
             <label for="color_name">カラー名</label>
@@ -15,6 +15,7 @@
         <thread>
           <tr>
             <th>カラー</th>
+            <th></th>
             <th></th>
           </tr>
           <tbody>

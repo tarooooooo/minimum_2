@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :sell_items, only: [:index, :show, :update]
-    resources :colors, only: [:index, :show, :destroy, :edit, :create]
-    resources :categories, only: [:index, :show, :destroy, :edit, :create]
+    resources :colors, only: [:index, :update, :destroy, :edit, :create]
+    resources :categories, only: [:index, :update, :destroy, :edit, :create]
     resources :users, only: [:index, :show, :edit, :update]
     resources :items, only: [:index, :show, :destroy, :edit, :update]
   end

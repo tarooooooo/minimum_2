@@ -1,2 +1,31 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      
+      <h2><%= @user.last_name %><%= @user.first_name %>さんの会員詳細</h2>
+      <table class="table table-hover table-borderless">
+        <tr><th>ユーザー画像</th><th><%= attachment_image_tag @user, :icon_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></th></tr>
+        <tr><th>ユーザーID</th><th><%= @user.id %></th></tr>
+        <tr><th>ニックネーム</th><th><%= @user.nickname %></th></tr>
+        <tr><th>氏名</th><th><%= @user.last_name %><%= @user.first_name %></th></tr>
+        <tr><th>フリガナ</th><th><%= @user.last_name_kana %><%= @user.first_name_kana %></th></tr>
+        <tr><th>年齢</th><th><%= @user.age %>歳</th></tr>
+        <tr><th>郵便番号</th><th><%= @user.postal_code %></th></tr>
+        <tr><th>住所</th><th><%= @user.address %></th></tr>
+        <tr><th>電話番号</th><th><%= @user.phone_number %></th></tr>
+        <tr><th>メールアドレス</th><th><%= @user.email %></th></tr>
+        <tr><th>会員ステータス</th>
+        <div>
+        <% if @user.is_deleted_before_type_cast == 0 %>
+          <th class="text-success"><%= @user.is_deleted %></th>
+        <% else %>
+          <th class="text-muted"><%= @user.is_deleted %></th>
+        <% end %>
+        </div>
+        </tr>
+      </table>
+      <%= link_to "編集する", edit_admin_user_path(@user), class: "btn btn-sm btn-success" %>
+
+    </div>
+  </div>
+</div>
