@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table  class="table table-borderless">
+        <%= form_with model: @category_management, local:true do |f| %>
+          <tbody>
+            <tr><td><%= f.collection_select :category_id, Category.all, :id, :name,{:prompt => true}, {:class => "form-control"} %></td></tr>
+            <tr><td><%= f.number_field :limit, class:"form-control-file" %></td></tr>
+            <tr><td><%= f.submit "limit" %></td></tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+

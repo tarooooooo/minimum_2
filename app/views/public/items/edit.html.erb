@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8 offset-md-1">
+      <h2>アイテム編集</h2>
+      <%= form_with model: @item, local:true do |f| %>
+
+        <table  class="table table-borderless">
+          <tbody>
+            <tr>
+              <td>アイテム画像</td>
+              <td><%= f.attachment_field :item_image, class:"form-control-file" %></td>
+            </tr>
+            <tr>
+              <td>アイテム名</td>
+              <td><%= f.text_field :name, placeholder: "アイテム名", class:"form-control"%></td>
+            </tr>
+            <tr>
+              <td>カテゴリー</td>
+              <td><%= f.collection_select :category_id, Category.all, :id, :name,{:prompt => true}, {:class => "form-control"} %></td>
+            </tr>
+            <tr>
+              <td>カラー</td>
+              <td><%= f.collection_select :color_id, Color.all, :id, :name,{:prompt => true}, {:class => "form-control"} %></td>
+            </tr>
+            <tr>
+              <td>ブランド</td>
+              <td><%= f.collection_select :brand_id, Brand.all, :id, :name,{:prompt => true}, {:class => "form-control"} %></td>
+            </tr>
+            <tr>
+              <td>購入価格</td>
+              <td class ="text-nowrap"><%= f.text_field :price, placeholder: "1000", class:"form-control mr-1",style:"display: inline" %>円</td>
+            </tr>
+            <tr>
+              <td>購入日</td>
+              <td><%= f.date_field :purchase_date %></td>
+            </tr>
+            <tr>
+              <td>サイズ</td>
+              <td><%= f.text_field :size %></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>
+                <%= f.submit '保存', class: "btn btn-success"  %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      <% end %>
+    </div>
+  </div>
+</div>

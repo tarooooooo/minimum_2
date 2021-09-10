@@ -1,0 +1,46 @@
+<div class="container">
+<h2>アイテム</h2>
+  <div class="row">
+    <div class="col">
+      <table class ="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>アイテム名</th>
+            <th>ブランド名</th>
+            <th>購入日</th>
+          </tr>
+        </thead>
+        
+        <% @items.each do|item| %>
+        <tbody>
+          <tr>
+      
+           <td>
+             <%=link_to item_path(item.id) do %>
+             <%= attachment_image_tag item, :item_image, format: 'jpeg', fallback: "no_image.jpg" ,size: "40x40"%>
+             <% end %>
+           </td>
+      
+           <td>
+             <%=link_to item_path(item.id) do %>
+             <%= item.name %>
+             <% end %>
+           </td>
+           
+           <td>
+             <%= item.brand.name %>  
+           </td>
+      
+           <td>
+             <%= item.purchase_date.strftime("%Y年 %m月 %d日") %>
+           </td>
+          
+           </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+      
+    </div>
+  </div>

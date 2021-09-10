@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col">
+      <h2><%= @user.last_name %><%= @user.first_name %>さんの編集画面</h2>
+      <%= form_with model: @user, local: true do |f| %>
+        <table class="table">
+          
+            <div class="field">
+              <%= f.label :icon_image %><br />
+              <%= f.attachment_field :icon_image, class:"form-control-file" %>
+            </div>
+
+            <div class="form-group">
+              <tr>
+                <th>ニックネーム</th>
+                <th><%= f.text_field :nickname, class: "form-control" %></th>
+              </tr>
+            </div>
+
+            <div class="form-group">
+              <tr>
+                <th>氏名</th>
+                <th><%= f.text_field :last_name, class: "form-control" %></th>
+                <th><%= f.text_field :first_name, class: "form-control" %></th>
+              </tr>
+            </div>
+
+            <div class="form-group">
+              <tr>
+                <th>フリガナ</th>
+                <th><%= f.text_field :last_name_kana, class: "form-control" %></th>
+                <th><%= f.text_field :first_name_kana, class: "form-control" %></th>
+              </tr>
+            </div>
+
+            <div class="form-group">
+              <tr>
+                <th>年齢</th>
+                <th><%= f.text_field :age, class: "form-control" %></th>
+              </tr>
+            </div>
+
+            <div class="form-group">
+              <tr>
+                <th>郵便番号</th>
+                <th><%= f.text_field :postal_code, class: "form-control" %></th>
+              </tr>
+            </div>
+
+            <div class="form-group">
+              <tr>
+                <th>住所</th>
+                <th><%= f.text_field :address, class: "form-control" %></th>
+              </tr>
+            </div>
+
+            <div class="form-group">
+              <tr>
+                <th>電話番号</th>
+                <th><%= f.text_field :phone_number, class: "form-control" %></th>
+              </tr>
+            </div>
+
+            <div class="form-group">
+              <tr>
+                <th>メールアドレス</th>
+                <th><%= f.text_field :email, class: "form-control" %></th>
+              </tr>
+            </div>
+
+        </table>
+        <div class="form-group">
+          <%= f.submit "変更を保存", class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

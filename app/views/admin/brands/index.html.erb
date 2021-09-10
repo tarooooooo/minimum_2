@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col">
+      <h2>ブランド一覧・追加</h2>
+      <div class="create_brand">
+        <%= form_with model: [:admin, @brand], local:true do |f| %>
+          <div class="form-group">
+            <label for="brand_name">ブランド名</label>
+            <%= f.text_field :name %>
+            <%= f.submit "新規登録" %>
+          </div>
+        <% end %>
+      </div>
+      <table class="table table-hover table-inverse">
+        <thread>
+          <tr>
+            <th>ブランド</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <tbody>
+            <% @brands.each do |brand| %>
+            <tr>
+              <td>
+                <%= brand.name %>
+              </td>
+              <td>
+                <%= link_to '編集', edit_admin_brand_path(brand.id), class: "btn btn-success" %>
+              </td>
+              <td>
+                <%= link_to '削除', admin_brand_path(brand.id), method: :delete, class: "btn btn-danger" %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </thread>
+      </table>
+    </div>
+  </div>
+</div>

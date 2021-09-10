@@ -1,0 +1,87 @@
+<h4>月間購入数</h4>
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      <table class='table table-bordered'>
+        <thead>
+          <tr>
+            <th><%= month_ago(11) %>月</th>
+            <th><%= month_ago(10) %>月</th>
+            <th><%= month_ago(9) %>月</th>
+            <th><%= month_ago(8) %>月</th>
+            <th><%= month_ago(7) %>月</th>
+            <th><%= month_ago(6) %>月</th>
+            <th><%= month_ago(5) %>月</th>
+            <th><%= month_ago(4) %>月</th>
+            <th><%= month_ago(3) %>月</th>
+            <th><%= month_ago(2) %>月</th>
+            <th><%= month_ago(1) %>月</th>
+            <th><%= Time.current.month %>月</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @items.purchase_date_11month_ago.count %></td>
+            <td><%= @items.purchase_date_10month_ago.count %></td>
+            <td><%= @items.purchase_date_9month_ago.count %></td>
+            <td><%= @items.purchase_date_8month_ago.count %></td>
+            <td><%= @items.purchase_date_7month_ago.count %></td>
+            <td><%= @items.purchase_date_6month_ago.count %></td>
+            <td><%= @items.purchase_date_5month_ago.count %></td>
+            <td><%= @items.purchase_date_4month_ago.count %></td>
+            <td><%= @items.purchase_date_3month_ago.count %></td>
+            <td><%= @items.purchase_date_2month_ago.count %></td>
+            <td><%= @items.purchase_date_1month_ago.count %></td>
+            <td><%= @items.purchase_date_thismonth.count %></td>
+          </tr>
+        </tbody>
+      </table>
+      <canvas id="myLineChart"></canvas>
+      <script>
+        $(document).on('turbolinks:load', function() {
+          var ctx = document.getElementById("myLineChart");
+          var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: [
+                '6月前', 
+                '5月前', 
+                '4月前', 
+                '3月前', 
+                '2月前', 
+                '1月前', 
+                '今月'],
+              datasets: [
+                {
+                  label: '投稿した本の数',
+                  data: [<%= @items.purchase_date_6month_ago.count %>, <%= @items.purchase_date_5month_ago.count %>, <%= @items.purchase_date_4month_ago.count %>, <%= @items.purchase_date_3month_ago.count %>, <%= @items.purchase_date_2month_ago.count %>, <%= @items.purchase_date_1month_ago.count %>, <%= @items.purchase_date_thismonth.count %>],
+                  borderColor: "rgba(0,0,255,1)",
+                  backgroundColor: "rgba(0,0,0,0)"
+                }
+              ],
+            },
+            options: {
+              title: {
+                display: true,
+                text: '7月間の投稿数の比較'
+              },
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    suggestedMax: 10,
+                    suggestedMin: 0,
+                    stepSize: 1,
+                    callback: function(value, index, values){
+                      return  value
+                    }
+                  }
+                }]
+              },
+            }
+          });
+        });
+      </script>
+    </div>
+  </div>
+</div>

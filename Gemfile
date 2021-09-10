@@ -73,3 +73,4 @@ gem "font_awesome5_rails"
 gem 'rubocop-airbnb'
 gem 'miyabi'
 gem 'dotenv-rails'
+gem 'ancestry'
