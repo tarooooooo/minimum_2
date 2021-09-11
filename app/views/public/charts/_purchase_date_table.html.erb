@@ -1,0 +1,34 @@
+<table class='table table-bordered'>
+  <thead>
+    <tr>
+      <th><%= month_ago(11) %>月</th>
+      <th><%= month_ago(10) %>月</th>
+      <th><%= month_ago(9) %>月</th>
+      <th><%= month_ago(8) %>月</th>
+      <th><%= month_ago(7) %>月</th>
+      <th><%= month_ago(6) %>月</th>
+      <th><%= month_ago(5) %>月</th>
+      <th><%= month_ago(4) %>月</th>
+      <th><%= month_ago(3) %>月</th>
+      <th><%= month_ago(2) %>月</th>
+      <th><%= month_ago(1) %>月（先月）</th>
+      <th><%= Time.current.month %>月（今月）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= items.purchase_date_11month_ago.count %></td>
+      <td><%= items.purchase_date_10month_ago.count %></td>
+      <td><%= items.purchase_date_9month_ago.count %></td>
+      <td><%= items.purchase_date_8month_ago.count %></td>
+      <td><%= items.purchase_date_7month_ago.count %></td>
+      <td><%= items.purchase_date_6month_ago.count %></td>
+      <td><%= items.purchase_date_5month_ago.count %></td>
+      <td><%= items.purchase_date_4month_ago.count %></td>
+      <td><%= items.purchase_date_3month_ago.count %></td>
+      <td><%= items.purchase_date_2month_ago.count %></td>
+      <td><%= items.purchase_date_1month_ago.count %></td>
+      <td><%= items.purchase_date_thismonth.count %></td>
+    </tr>
+  </tbody>
+</table>

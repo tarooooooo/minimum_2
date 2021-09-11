@@ -12,12 +12,12 @@
             </tr>
             <tr>
               <td>アイテム名</td>
-              <td><%= f.text_field :name, placeholder: "アイテム名", class:"form-control"%></td>
+              <td><%= f.text_field :name, placeholder: "アイテム名", class:"form-control" %></td>
             </tr>
             <tr>
               <td>カテゴリー</td>
               <td><%= f.collection_select :category_id, Category.all, :id, :name,{:prompt => true}, {:class => "form-control"} %></td>
-              
+
             　<!--多階層カテゴリー-->
               <!--<td>-->
                 <%#= f.collection_select :category_id, Category.all, :id, :name,{prompt: "---"}, class: "select-default", id: "parent-form"%>
@@ -54,11 +54,11 @@
             <tr>
               <td>サイズ</td>
               <td>
-                <%= f.radio_button :size, :s_size %>
+                <%= f.radio_button :size, :S %>
                 <%= f.label :S, class: "job_type_label" %>
-                <%= f.radio_button :size, :m_size %>
+                <%= f.radio_button :size, :M %>
                 <%= f.label :M, class: "job_type_label" %>
-                <%= f.radio_button :size, :l_size %>
+                <%= f.radio_button :size, :L %>
                 <%= f.label :L, class: "job_type_label" %>
               </td>
             </tr>

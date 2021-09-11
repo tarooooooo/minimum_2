@@ -39,6 +39,17 @@
               <td><%= f.text_field :size %></td>
             </tr>
             <tr>
+              <td>アイテムステータス</td>
+              <td>
+                <%= f.radio_button :item_status, :on_keep %>
+                <%= f.label :所持, class: "job_type_label" %>
+                <%= f.radio_button :item_status, :discarded %>
+                <%= f.label :廃棄, class: "job_type_label" %>
+                <%= f.radio_button :item_status, :on_sell %>
+                <%= f.label :出品中, class: "job_type_label" %>
+              </td>
+            </tr>
+            <tr>
               <td>&nbsp;</td>
               <td>
                 <%= f.submit '保存', class: "btn btn-success"  %>

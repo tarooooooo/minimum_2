@@ -19,14 +19,15 @@ class Item < ApplicationRecord
   belongs_to :color
   belongs_to :brand
   belongs_to :category
+
   enum item_status: {
     on_keep:   0,
     discarded: 1,
     on_sell:   2
   }
   enum size: {
-    s_size: 0,
-    m_size: 1,
-    l_size: 2
+    S: 0,
+    M: 1,
+    L: 2
   }
 end

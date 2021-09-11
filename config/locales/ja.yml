@@ -1,0 +1,7 @@
+ja:
+  enums:
+    item:
+      item_status:
+        on_keep: 所持中
+        discarded: 廃棄済
+        on_sell: 出品中

@@ -12,11 +12,11 @@ Category.create!(name: "アウター（冬用）")
 Category.create!(name: "ボトムス（夏）")
 Category.create!(name: "ボトムス（冬）")
 
-Color.create!(name: "黒")
-Color.create!(name: "白")
-Color.create!(name: "緑")
-Color.create!(name: "青")
-Color.create!(name: "赤")
+Color.create!(name: "黒",color_code: "#000000")
+Color.create!(name: "白",color_code: "#f5f5f5")
+Color.create!(name: "緑",color_code: "#3cd371")
+Color.create!(name: "青",color_code: "#6295ed")
+Color.create!(name: "赤",color_code: "#ff6347")
 
 Brand.create!(name: "BEAMS")
 Brand.create!(name: "UNITED ARROWS")
@@ -24,79 +24,3 @@ Brand.create!(name: "SHIPS")
 Brand.create!(name: "UNIQLO")
 Brand.create!(name: "GU")
 
-Item.create!(user_id: 1,
-             color_id: 2,
-             brand_id: 1,
-             category_id: 1,
-             price: "1000",
-             purchase_date: Date.today - rand(1).months,
-             size: 1,
-             name: "テスト",
-             item_image_id: "a"
-             )
-
-Item.create!(user_id: 1,
-             color_id: 2,
-             brand_id: 1,
-             category_id: 1,
-             price: "1000",
-             purchase_date: Date.today - rand(2).months,
-             size: 1,
-             name: "テスト",
-             item_image_id: "a"
-             )
-
-Item.create!(user_id: 1,
-             color_id: 2,
-             brand_id: 1,
-             category_id: 1,
-             price: "1000",
-             purchase_date: Date.today - rand(3).months,
-             size: 1,
-             name: "テスト",
-             item_image_id: "a"
-             )
-
-Item.create!(user_id: 1,
-             color_id: 2,
-             brand_id: 1,
-             category_id: 1,
-             price: "1000",
-             purchase_date: Date.today - rand(4).months,
-             size: 1,
-             name: "テスト",
-             item_image_id: "a"
-             )
-
-Item.create!(user_id: 1,
-             color_id: 2,
-             brand_id: 1,
-             category_id: 1,
-             price: "1000",
-             purchase_date: Date.today - rand(5).months,
-             size: 1,
-             name: "テスト",
-             item_image_id: "a"
-             )
-
-Item.create!(user_id: 1,
-             color_id: 2,
-             brand_id: 1,
-             category_id: 1,
-             price: "1000",
-             purchase_date: Date.today - rand(6).months,
-             size: 1,
-             name: "テスト",
-             item_image_id: "a"
-             )
-
-Item.create!(user_id: 1,
-             color_id: 2,
-             brand_id: 1,
-             category_id: 1,
-             price: "1000",
-             purchase_date: Date.today - rand(7).months,
-             size: 1,
-             name: "テスト",
-             item_image_id: "a"
-             )

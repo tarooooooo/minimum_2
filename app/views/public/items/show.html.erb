@@ -16,7 +16,9 @@
           <tr><td>ブランド</td><td><%= @item.brand.name %></td></tr>
           <tr><td>購入価格</td><td><%= @item.price %>円</td></tr>
           <tr><td>購入日</td><td><%= @item.purchase_date.strftime("%Y年 %m月 %d日") %></td></tr>
+          <tr><td>廃棄日</td><td><%= @item.discard_date %></td></tr>
           <tr><td>サイズ</td><td><%= @item.size %></td></tr>
+          <tr><td>アイテムステータス</td><td><%= @item.item_status_i18n %></td></tr>
           <tr>
             <td><%= link_to '編集', edit_item_path(@item.id), class: "btn btn-success" %></td>
             <td><%= link_to '削除', item_path(@item.id), method: :delete, class: "btn btn-danger" %></td>

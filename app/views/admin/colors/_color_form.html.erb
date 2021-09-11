@@ -1,0 +1,17 @@
+<div class="create_color">
+  <%= form_with model: [:admin, color], local:true do |f| %>
+    <table  class="table table-borderless">
+      <tbody>
+        <tr>
+          <td>カラー名</td>
+          <td><%= f.text_field :name, class:"form-control"%></td>
+          <td><%= f.submit "登録", class:"btn btn-success" %></td>
+        </tr>
+        <tr>
+          <td>カラーサンプル</td>
+          <td><%= f.color_field :color_code, class:"form-control" %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>

@@ -37,6 +37,10 @@ class Public::ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
+
+    if item_params[:item_status] == "discarded"
+      item.discard_date = Date.today.to_time
+    end
     if item.update(item_params)
       redirect_to item_path(item)
     end

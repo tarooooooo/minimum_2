@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_09_09_084524) do
 
   create_table "colors", force: :cascade do |t|
     t.string "name", null: false
+    t.string "color_code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,20 +1,14 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col">
-      <h2>カラー一覧・追加</h2>
-      <div class="create_cplor">
-        <%= form_with model: [:admin, @color], local:true do |f| %>
-          <div class="form-group">
-            <label for="color_name">カラー名</label>
-            <%= f.text_field :name %>
-            <%= f.submit "新規登録" %>
-          </div>
-        <% end %>
-      </div>
+    <div class="col-md-5">
+      <h2>カラー追加</h2>
+      <%= render "color_form", color: @color %>
+      <h2>カラー一覧</h2>
       <table class="table table-hover table-inverse">
         <thread>
           <tr>
-            <th>カラー</th>
+            <th>カラー名</th>
+            <th>カラーサンプル</th>
             <th></th>
             <th></th>
           </tr>
@@ -23,6 +17,9 @@
             <tr>
               <td>
                 <%= color.name %>
+              </td>
+              <td>
+                <div class = "balloon1" style="background-color:<%= color.color_code %>">　</div>
               </td>
               <td>
                 <%= link_to '編集', edit_admin_color_path(color.id), class: "btn btn-success" %>

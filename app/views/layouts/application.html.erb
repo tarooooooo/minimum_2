@@ -11,29 +11,117 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
+    <header class="shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <%= link_to "ロゴ", "/", class:"navbar-brand p-3" %>
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <% if user_signed_in? %>
+          <div class="text-center">
+            ようこそ
+            <%= current_user.last_name %>
+            さん
+          </div>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <div class="social">
+                <%= link_to 'マイページ', user_path(current_user), class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'アイテム一覧', items_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to '制限', new_category_management_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'アイテム新規登録', new_item_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to '購入アイテム分析',  charts_purchase_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'アイテム分析',  charts_disposal_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+              </div>
+            </li>
 
-     <% if admin_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-      </li>
-    <% else %>
+          </ul>
+        <% elsif admin_signed_in? %>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <div class="social">
+                <%= link_to 'アイテム一覧', admin_items_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'ユーザー一覧', admin_users_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to '注文履歴一覧', admin_root_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'カラー一覧', admin_colors_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+              </div>
+            </li>
+          </ul>
+        </div>
 
-      <li>
-        <%= link_to "管理者ログイン", new_admin_session_path %>
-      </li>
-    <% end %>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'About', about_path, class: 'nav-link text-dark' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to '商品一覧', products_path, class: 'nav-link text-dark' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to '新規登録', new_user_registration_path, class: 'nav-link text-dark' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
+                <%= link_to 'ログイン', user_session_path, class: 'nav-link text-dark' %>
+              </div>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </nav>
+</header>
+
     <%= yield %>
   </body>
 </html>
