@@ -1,8 +1,25 @@
-<h1>購入アイテム傾向分析</h1>
+<h1 class="text-center">廃棄アイテム傾向分析</h1>
 <div class="container">
+      <h2 class="text-center">アイテム全体</h2>
   <div class="row">
-    <div class="col">
-      <%= pie_chart @chartkick_items, colors: @color_codes %>
+    <div class="col-6">
+      <%= render "disposal_graph", chartkick_items: @chartkick_items, color_codes: @color_codes ,class:"flex"%>
+    </div>
+    <div class="col-6">
+
+      <%= render "disposal_graph", chartkick_items: @chartkick_brands_items, color_codes: "" %>
     </div>
   </div>
+  <% @categories.each do |category| %>
+      <h2 class="text-center"><%= category.name %></h2>
+    <div class="row">
+      <div class="col-6">
+        <%= render "disposal_graph", chartkick_items: @chartkick_category_items[category.id], color_codes: @category_color_codes[category.id] %>
+      </div>
+      <div class="col-6">
+
+        <%= render "disposal_graph", chartkick_items: @chartkick_brand_items[category.id], color_codes: "" %>
+      </div>
+    </div>
+  <% end %>
 </div>

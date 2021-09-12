@@ -1,7 +1,7 @@
 class Public::CategoryManagementsController < ApplicationController
   def new
     @category_management = CategoryManagement.new
-    @category_managements = CategoryManagement.all
+    @category_managements = CategoryManagement.where(user_id: current_user.id)
   end
 
   def edit
@@ -22,7 +22,7 @@ class Public::CategoryManagementsController < ApplicationController
       redirect_to new_category_management_path
     end
   end
-  
+
   def destroy
     category_management = CategoryManagement.find(params[:id])
     if category_management.destroy

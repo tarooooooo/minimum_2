@@ -24,3 +24,27 @@ Brand.create!(name: "SHIPS")
 Brand.create!(name: "UNIQLO")
 Brand.create!(name: "GU")
 
+Item.create!(user_id: 1,
+             color_id: 4,
+             brand_id: 1,
+             category_id: 1,
+             price: "1000",
+             purchase_date: Date.today - 3.months,
+             size: 1,
+             name: "テスト",
+             item_image_id: "a",
+             item__status: "discarded"
+             )
+
+Item.create!(user_id: 1,
+             color_id: 1,
+             brand_id: 1,
+             category_id: 2,
+             price: "1000",
+             purchase_date: Date.today - 2.months,
+             size: 1,
+             name: "テスト",
+             item_image_id: "a",
+             item_status: "discarde"
+             )
+
