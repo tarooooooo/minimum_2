@@ -75,3 +75,7 @@ gem 'miyabi'
 gem 'dotenv-rails'
 gem 'ancestry'
 gem 'chartkick'
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
