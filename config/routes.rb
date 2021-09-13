@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # 管理者routes
   namespace :admin do
     resources :sell_items, only: [:index, :show, :update]
@@ -29,7 +28,16 @@ Rails.application.routes.draw do
   get 'charts/disposal',  to: 'public/charts#disposal'
   get 'charts/disposal',  to: 'public/charts#index'
 
+  namespace :public do
+    get 'sell_items/order_new'
+    get 'sell_items/confirm'
+    get 'sell_items/thanks'
+  end
+
+
+  resources :sell_items, module: :public
   resources :items, module: :public do
+    get 'sell_item/new', to: 'sell_items#new'
     #Ajaxで動くアクションのルートを作成
     collection do
       get 'get_category_children', defaults: { format: 'json' }

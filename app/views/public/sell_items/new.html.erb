@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8 offset-md-1">
+      <h2>出品登録</h2>
+      <%= form_with model: @sell_item, local:true do |f| %>
+
+        <table  class="table table-borderless">
+          <tbody>
+            <tr>
+              <td>アイテム画像</td>
+              <td><%= f.attachment_field :sell_item_image, class:"form-control-file" ,value: @item.item_image_id %></td>
+            </tr>
+            <tr>
+              <td>アイテム名</td>
+              <td><%= f.text_field :name, placeholder: "アイテムの名前", class:"form-control", value: @item.name %></td>
+            </tr>
+             <tr>
+              <td>説明文</td>
+              <td><%= f.text_area :introduction, placeholder: "アイテムの説明", class:"form-control" %></td>
+            </tr>
+             <tr>
+              <td>出品価格</td>
+              <td><%= f.text_field :order_price, placeholder: "金額を入力", class:"form-control" %></td>
+            </tr>
+            <tr>
+              <td>送料</td>
+              <td><%= f.text_field :delivery_price, placeholder: "金額を入力", class:"form-control" %></td>
+            </tr>
+             <tr>
+              <td><%= f.hidden_field :item_id, value: @item.id %></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>
+                <%= f.submit '登録', class: "btn btn-success" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      <% end %>
+    </div>
+  </div>
+</div>

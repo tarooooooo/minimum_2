@@ -1,0 +1,14 @@
+<div class="container">
+<div class="row pr-1 pl-1">
+   <% @sell_items.each do |sell_item| %>
+    <div class="col-sm-6 col-md-3 col-lg-2 px-0 mx-auto justify-content-center">
+      <%= link_to sell_item_path(sell_item), class:"test ustify-content-center" do %>
+        <%= attachment_image_tag sell_item, :sell_item_image, :fill, 200, 200, format: 'jpeg' %>
+        <p class="name pb-2">
+          <%= sell_item.name %>(<%= sell_item.order_price %>円)
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+</div>

@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 2021_09_09_084524) do
   end
 
   create_table "category_managements", force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "user_id"
+    t.bigint "category_id"
+    t.bigint "user_id"
     t.string "limit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 2021_09_09_084524) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "sell_item_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "sell_item_id", null: false
+    t.bigint "user_id", null: false
     t.text "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -66,10 +66,10 @@ ActiveRecord::Schema.define(version: 2021_09_09_084524) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "color_id", null: false
-    t.integer "brand_id", null: false
-    t.integer "category_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "color_id", null: false
+    t.bigint "brand_id", null: false
+    t.bigint "category_id", null: false
     t.string "price", null: false
     t.string "item_image_id", null: false
     t.datetime "discard_date"
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 2021_09_09_084524) do
   create_table "notifications", force: :cascade do |t|
     t.integer "visitor_id", null: false
     t.integer "visited_id", null: false
-    t.integer "sell_item_id"
-    t.integer "comment_id"
+    t.bigint "sell_item_id"
+    t.bigint "comment_id"
     t.string "action", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
@@ -99,22 +99,20 @@ ActiveRecord::Schema.define(version: 2021_09_09_084524) do
   end
 
   create_table "sell_items", force: :cascade do |t|
-    t.integer "buyer_id", null: false
+    t.string "name"
+    t.string "sell_item_image_id"
+    t.integer "buyer_id"
     t.integer "seller_id", null: false
-    t.string "item_image_id", null: false
-    t.string "name", null: false
+    t.bigint "item_id", null: false
     t.string "order_price", null: false
     t.string "delivery_price", null: false
-    t.integer "brand_id", null: false
-    t.integer "color_id", null: false
-    t.integer "order_status", null: false
-    t.integer "payment_method", null: false
-    t.datetime "purchase_date", null: false
-    t.integer "size", null: false
+    t.integer "payment_method", default: 0, null: false
+    t.integer "order_status", default: 0, null: false
+    t.datetime "buy_date"
+    t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["brand_id"], name: "index_sell_items_on_brand_id"
-    t.index ["color_id"], name: "index_sell_items_on_color_id"
+    t.index ["item_id"], name: "index_sell_items_on_item_id"
   end
 
   create_table "users", force: :cascade do |t|

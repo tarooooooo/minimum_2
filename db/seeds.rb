@@ -33,7 +33,7 @@ Item.create!(user_id: 1,
              size: 1,
              name: "テスト",
              item_image_id: "a",
-             item__status: "discarded"
+             item_status: "discarded"
              )
 
 Item.create!(user_id: 1,
@@ -45,6 +45,6 @@ Item.create!(user_id: 1,
              size: 1,
              name: "テスト",
              item_image_id: "a",
-             item_status: "discarde"
+             item_status: "discarded"
              )
 

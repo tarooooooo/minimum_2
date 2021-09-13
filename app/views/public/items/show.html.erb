@@ -22,6 +22,7 @@
           <tr>
             <td><%= link_to '編集', edit_item_path(@item.id), class: "btn btn-success" %></td>
             <td><%= link_to '削除', item_path(@item.id), method: :delete, class: "btn btn-danger" %></td>
+            <td><%= link_to '出品', item_sell_item_new_path(@item.id) %></td>
           </tr>
         </tbody>
       </table>
