@@ -1,10 +1,10 @@
 class CreateItems < ActiveRecord::Migration[5.2]
   def change
     create_table :items do |t|
-      t.references :user, foreign_key: true, null: false
-      t.references :color, foreign_key: true, null: false
-      t.references :brand, foreign_key: true, null: false
-      t.references :category, foreign_key: true, null: false
+      t.references :user, type: :bigint, foreign_key: true, null: false
+      t.references :color, type: :bigint, foreign_key: true, null: false
+      t.references :brand, type: :bigint, foreign_key: true, null: false
+      t.references :category, type: :bigint, foreign_key: true, null: false
       t.string :price, null: false
       t.string :item_image_id, null: false
       t.datetime :discard_date
