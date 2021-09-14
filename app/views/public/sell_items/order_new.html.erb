@@ -1,2 +1,34 @@
-<h1>Public::SellItems#order_new</h1>
-<p>Find me in app/views/public/sell_items/order_new.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8 offset-md-1">
+      <h5>注文情報入力</h5>
+      <%= form_with model: @sell_item, url: sell_items_order_confirm_path, local: true do |f| %>
+        <div class="col-lg-6 col-md-10 col-sm-10 zoomInText">
+          <%= attachment_image_tag @sell_item, :sell_item_image, :fill, 550, 400, format: 'jpeg' %>
+        </div>
+        <table class="table table-hover table-inverse">
+          <tbody>
+            <tr><td>アイテム名</td><td><%= @sell_item.name%></td></tr>
+            <tr><td>価格</td><td><%= @sell_item.order_price.to_i %>円</td></tr>
+            <tr><td>お届け先</td><td>〒<%= current_user.postal_code %><br><%= current_user.address %></td></tr>
+            <tr><td>支払い方法</td>
+            <td>
+            <div>
+              <%= f.radio_button :payment_method, :credit_card %>
+              <%= f.label 'クレジットカード' %>
+            </div>
+            <div>
+              <%= f.radio_button :payment_method, :bank_transfer %>
+              <%= f.label '銀行振り込み' %>
+            </div>
+            </td>
+            </tr>
+            <tr>
+              <td><%= f.submit "確認へ" %></td>
+            </tr>
+          </tbody>
+      </table>
+    <% end %>
+    </div>
+  </div>
+</div>

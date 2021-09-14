@@ -28,14 +28,14 @@ Rails.application.routes.draw do
   get 'charts/disposal',  to: 'public/charts#disposal'
   get 'charts/disposal',  to: 'public/charts#index'
 
-  namespace :public do
-    get 'sell_items/order_new'
-    get 'sell_items/confirm'
-    get 'sell_items/thanks'
+  # get 'sell_items/order_new/:id', to: 'public/sell_item'
+  get 'sell_items/order_confirm', to: 'public/sell_items#order_confirm'
+  resources :sell_items, module: :public do
+    get :order_new, on: :member
+    collection do
+      get 'order_complete'
+    end
   end
-
-
-  resources :sell_items, module: :public
   resources :items, module: :public do
     get 'sell_item/new', to: 'sell_items#new'
     #Ajaxで動くアクションのルートを作成

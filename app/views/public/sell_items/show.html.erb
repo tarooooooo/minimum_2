@@ -12,7 +12,6 @@
         <tbody>
           <tr><td>アイテム名</td><td><%= @sell_item.name%></td></tr>
           <tr><td>価格</td><td><%= @sell_item.order_price %></td></tr>
-          <tr><td>送料</td><td><%= @sell_item.delivery_price %></td></tr>
           <tr><td>アイテム説明</td><td><%= @sell_item.introduction %></td></tr>
           <tr><td>カテゴリー</td><td><%= @sell_item.item.category.name%></td></tr>
           <tr><td>カラー</td><td><%= @sell_item.item.color.name%></td></tr>
@@ -20,9 +19,13 @@
           <tr><td>購入時価格</td><td><%= @sell_item.item.price %>円</td></tr>
           <tr><td>購入日</td><td><%= @sell_item.item.purchase_date.strftime("%Y年 %m月 %d日") %></td></tr>
           <tr><td>サイズ</td><td><%= @sell_item.item.size %></td></tr>
+          <tr><td>配送料の負担</td><td><%= @sell_item.delivery_charged_i18n %></td></tr>
+          <tr><td>配送の方法</td><td><%= @sell_item.delivery_way_i18n %></td></tr>
+          <tr><td>発送までの日数</td><td><%= @sell_item.delivery_days_i18n %></td></tr>
           <tr>
             <td><%= link_to '編集', edit_sell_item_path(@sell_item.id), class: "btn btn-success" %></td>
             <td><%= link_to '削除', sell_item_path(@sell_item.id), method: :delete, class: "btn btn-danger" %></td>
+            <td><%= link_to '購入', order_new_sell_item_path(@sell_item), class:"btn btn-secondary" %></td>
           </tr>
         </tbody>
       </table>

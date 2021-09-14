@@ -40,12 +40,13 @@ class Public::SellItemsController < ApplicationController
   end
   
   def order_new
+    @sell_item = SellItem.find(params[:id])
   end
 
-  def confirm
+  def order_confirm
   end
 
-  def thanks
+  def order_complete
   end
   
   private
@@ -57,7 +58,10 @@ class Public::SellItemsController < ApplicationController
       :item_id,
       :order_price,
       :delivery_price,
-      :introduction
+      :introduction,
+      :delivery_charged,
+      :delivery_way,
+      :delivery_days
       )
   end
 end

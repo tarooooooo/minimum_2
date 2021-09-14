@@ -23,10 +23,69 @@
               <td><%= f.text_field :order_price, placeholder: "金額を入力", class:"form-control" %></td>
             </tr>
             <tr>
-              <td>送料</td>
-              <td><%= f.text_field :delivery_price, placeholder: "金額を入力", class:"form-control" %></td>
+              <td>配送料の負担</td>
+              <td>
+                <div>
+                  <%= f.radio_button :delivery_charged, :shipping_fee_on_shipper %>
+                  <%= f.label '送料込み（出品者負担）' %>
+                </div>
+                <div>
+                  <%= f.radio_button :delivery_charged, :shipping_fee_on_receiver %>
+                  <%= f.label '着払い（購入者負担）' %>
+                </div>
+              </td>
             </tr>
-             <tr>
+            <tr>
+              <td>配送方法の選択</td>
+              <td>
+                <div>
+                  <%= f.radio_button :delivery_way, :kuroneko_yamato %>
+                  <%= f.label 'クロネコヤマト' %>
+                </div>
+                <div>
+                  <%= f.radio_button :delivery_way, :yu_pack %>
+                  <%= f.label 'ゆうパック' %>
+                </div>
+                <div>
+                  <%= f.radio_button :delivery_way, :yu_mail %>
+                  <%= f.label 'ゆうメール' %>
+                </div>
+                <div>
+                  <%= f.radio_button :delivery_way, :letter_pack %>
+                  <%= f.label 'レターパック' %>
+                </div>
+                <div>
+                  <%= f.radio_button :delivery_way, :nomal %>
+                  <%= f.label '普通郵便' %>
+                </div>
+                <div>
+                  <%= f.radio_button :delivery_way, :clickpost %>
+                  <%= f.label 'クリックポスト' %>
+                </div>
+                <div>
+                  <%= f.radio_button :delivery_way, :yu_pack %>
+                  <%= f.label '着払い（購入者負担）' %>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>発送までの日数</td>
+              <td>
+                <div>
+                  <%= f.radio_button :delivery_days, :days1_2 %>
+                  <%= f.label '1日~2日で発送' %>
+                </div>
+                <div>
+                  <%= f.radio_button :delivery_days, :days2_3 %>
+                  <%= f.label '2日~3日で発送' %>
+                </div>
+                <div>
+                  <%= f.radio_button :delivery_days, :days4_7 %>
+                  <%= f.label '4日~7日で発送' %>
+                </div>
+              </td>
+            </tr>
+            <tr>
               <td><%= f.hidden_field :item_id, value: @item.id %></td>
             </tr>
             <tr>

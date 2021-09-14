@@ -5,3 +5,26 @@ ja:
         on_keep: 所持中
         discarded: 廃棄済
         on_sell: 出品中
+    sell_item:
+      order_status:
+        on_sell: 出品中
+        wait_shipping: 発送待ち
+        shipped: 発送済み
+        wait_rating: 評価待ち
+      payment_method:
+        credit_card: クレジットカード
+        bank_transfer: 銀行振り込み
+      delivery_charged:
+        shipping_fee_on_shipper: 送料込み（出品者負担）
+        shipping_fee_on_receiver: 着払い（購入者負担）
+      delivery_way:
+        kuroneko_yamato: クロネコヤマト
+        yu_pack: ゆうパック
+        yu_mail: ゆうメール
+        letter_pack: レターパック
+        normal: 普通郵便
+        clickpost: クリックポスト
+      delivery_days:
+        days1_2: １日〜２日で発送
+        days2_3: ２日〜３日で発送
+        days4_7: ４日〜７日で発送

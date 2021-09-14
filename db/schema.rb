@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_09_084524) do
+ActiveRecord::Schema.define(version: 2021_09_14_072651) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -103,15 +103,17 @@ ActiveRecord::Schema.define(version: 2021_09_09_084524) do
     t.string "sell_item_image_id"
     t.integer "buyer_id"
     t.integer "seller_id", null: false
-    t.bigint "item_id", null: false
-    t.string "order_price", null: false
-    t.string "delivery_price", null: false
+    t.integer "item_id", null: false
     t.integer "payment_method", default: 0, null: false
     t.integer "order_status", default: 0, null: false
     t.datetime "buy_date"
     t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "delivery_charged"
+    t.integer "delivery_days"
+    t.integer "delivery_way"
+    t.string "order_price"
     t.index ["item_id"], name: "index_sell_items_on_item_id"
   end
 
