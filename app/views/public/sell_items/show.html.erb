@@ -5,8 +5,17 @@
   <div class="row mt-5">
     <div class="col-lg-6 col-md-10 col-sm-10 zoomInText">
       <%= attachment_image_tag @sell_item, :sell_item_image, :fill, 550, 400, format: 'jpeg' %>
+      <p>いいね件数: <%= @sell_item.likes.count %></p>
+      <% if current_user.already_liked?(@sell_item) %>
+        <%= link_to sell_item_like_path(@sell_item), method: :delete do %>
+          <i class="fas fa-heart"><%= @sell_item.likes.count %></i>
+        <% end %>
+      <% else %>
+        <%= link_to sell_item_likes_path(@sell_item), method: :post do %>
+          <i class="far fa-heart"><%= @sell_item.likes.count %></i>
+        <% end %>
+      <% end %>
     </div>
-
     <div class="col-lg-6 col-md-10 col-sm-10 pr-4 pl-4">
       <table class="table table-hover table-inverse">
         <tbody>

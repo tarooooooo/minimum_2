@@ -15,4 +15,11 @@ class User < ApplicationRecord
 
   has_many :sell_sell_items, class_name: 'SellItem', foreign_key: 'seller_id', dependent: :destroy
   has_many :buy_sell_items, class_name: 'SellItem', foreign_key: 'buyer_id', dependent: :destroy
+  
+  has_many :likes, dependent: :destroy
+  has_many :liked_sell_items, through: :likes, source: :sell_item
+  
+  def already_liked?(sell_item)
+    self.likes.exists?(sell_item_id: sell_item.id)
+  end
 end

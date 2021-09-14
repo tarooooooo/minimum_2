@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   # get 'sell_items/order_new/:id', to: 'public/sell_item'
   get 'sell_items/order_confirm', to: 'public/sell_items#order_confirm'
   resources :sell_items, module: :public do
+    resources :likes, only: [:create, :destroy]
     get :order_new, on: :member
     collection do
       get 'order_complete'
