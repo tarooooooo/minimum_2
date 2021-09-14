@@ -5,7 +5,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :comments, dependent: :destroy
   has_many :category_managements, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :categories, through: :items
@@ -19,6 +18,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_sell_items, through: :likes, source: :sell_item
   
+  has_many :comments, dependent: :destroy
   def already_liked?(sell_item)
     self.likes.exists?(sell_item_id: sell_item.id)
   end

@@ -4,6 +4,8 @@ class SellItem < ApplicationRecord
   has_many :likes
   has_many :liked_users, through: :likes, source: :user
   
+  has_many :comments, dependent: :destroy
+  
   enum payment_method: {
     credit_card: 0,
     bank_transfer: 1

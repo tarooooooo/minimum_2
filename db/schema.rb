@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_14_083610) do
+ActiveRecord::Schema.define(version: 2021_09_14_091254) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -105,6 +105,14 @@ ActiveRecord::Schema.define(version: 2021_09_14_083610) do
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_notifications_on_comment_id"
     t.index ["sell_item_id"], name: "index_notifications_on_sell_item_id"
+  end
+
+  create_table "sell_item_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "sell_item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sell_items", force: :cascade do |t|

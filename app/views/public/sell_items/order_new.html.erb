@@ -2,7 +2,7 @@
   <div class="row mt-5">
     <div class="col-md-8 offset-md-1">
       <h5>注文情報入力</h5>
-      <%= form_with model: @sell_item, url: sell_items_order_confirm_path, local: true do |f| %>
+      <%= form_with model: @sell_item, url: sell_items_order_confirm_path, method: 'get', local: true do |f| %>
         <div class="col-lg-6 col-md-10 col-sm-10 zoomInText">
           <%= attachment_image_tag @sell_item, :sell_item_image, :fill, 550, 400, format: 'jpeg' %>
         </div>
@@ -23,6 +23,7 @@
             </div>
             </td>
             </tr>
+            <%= f.hidden_field :order_status, :value => :wait_shipping %>
             <tr>
               <td><%= f.submit "確認へ" %></td>
             </tr>

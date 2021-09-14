@@ -1,2 +1,25 @@
-<h1>Public::SellItems#confirm</h1>
-<p>Find me in app/views/public/sell_items/confirm.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>注文確認</h3>
+      <table class="table ">
+       <tbody>
+         <tr>
+           <td>商品代金</td>
+           <td><%= @sell_item.order_price %>円</td>
+         </tr>
+         <tr>
+           <td>支払い方法</td>
+           <td><%= @payment_method %></td>
+         </tr>
+         <tr>
+           <td>&nbsp;</td>
+           <td>
+             <%= link_to '注文確定', sell_items_order_complete_path, class:"btn btn-warning" %>
+           </td>
+         </tr>
+       </tbody>
+      </table>
+    </div>
+  </div>
+</div>

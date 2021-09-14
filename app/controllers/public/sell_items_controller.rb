@@ -7,6 +7,7 @@ class Public::SellItemsController < ApplicationController
   def show
     @sell_item = SellItem.find(params[:id])
     @like = Like.new
+    @comment = Comment.new
   end
 
   def new
@@ -45,9 +46,23 @@ class Public::SellItemsController < ApplicationController
   end
 
   def order_confirm
+    @sell_item = SellItem.find(params[:id])
+    cookies[:payment_method] = params[:sell_item][:payment_method]
+    @payment_method = I18n.t('enums.sell_item.payment_method')[params[:sell_item][:payment_method].to_sym]
   end
 
+  # def order_confirm_error;end
+
   def order_complete
+    @sell_item = SellItem.find(params[:id])
+    if cookies[:payment_method].present?
+      if @sell_item.update(payment_method: cookies[:payment_method])
+        @sell_item.buyer_id = current_user.id
+        @sell_item.buy_date = Date.today
+        @sell_item.save
+        cookies.delete :payment_method
+      end
+    end
   end
 
   private
@@ -58,11 +73,12 @@ class Public::SellItemsController < ApplicationController
       :name,
       :item_id,
       :order_price,
-      :delivery_price,
+      :payment_method,
       :introduction,
       :delivery_charged,
       :delivery_way,
-      :delivery_days
+      :delivery_days,
+      :order_status
       )
   end
 end
