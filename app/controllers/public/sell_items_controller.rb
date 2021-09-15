@@ -59,13 +59,25 @@ class Public::SellItemsController < ApplicationController
       if @sell_item.update(payment_method: cookies[:payment_method])
         @sell_item.buyer_id = current_user.id
         @sell_item.buy_date = Date.today
+        @sell_item.order_status = :wait_shipping
         @sell_item.save
         cookies.delete :payment_method
       end
     end
   end
 
+  def order_status_update
+    @sell_item = SellItem.find(params[:id])
+    @sell_item.order_status = params[:order_status]
+    @sell_item.save
+    redirect_back(fallback_location: root_path)
+  end
+
   private
+
+  def order_status_params
+    params.require(:sell_item).permit(:order_status)
+  end
 
   def sell_item_params
     params.require(:sell_item).permit(

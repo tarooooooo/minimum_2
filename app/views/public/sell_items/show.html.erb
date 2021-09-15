@@ -6,7 +6,7 @@
     <div class="col-lg-6 col-md-10 col-sm-10 zoomInText">
       <%= attachment_image_tag @sell_item, :sell_item_image, :fill, 550, 400, format: 'jpeg' %>
       <p>いいね件数: <%= @sell_item.likes.count %>　コメント件数：<%= @sell_item.comments.count %></p>
-      <% if current_user.already_liked?(@sell_item) %>
+       <% if current_user.already_liked?(@sell_item) %>
         <%= link_to sell_item_like_path(@sell_item), method: :delete do %>
           <i class="fas fa-heart"><%= @sell_item.likes.count %></i>
         <% end %>
@@ -15,27 +15,6 @@
           <i class="far fa-heart"><%= @sell_item.likes.count %></i>
         <% end %>
       <% end %>
-      <div>
-      <% @sell_item.comments.each do |comment| %>
-        <p><%= attachment_image_tag comment.user, :icon_image, :fill, 100, 100, format: 'jpeg' %></p>
-        <p><%= comment.user.nickname %></p>
-        <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
-        <p><%= comment.text %></p>
-        <% if comment.user == current_user %>
-        <div>
-          <%= link_to "削除", sell_item_comment_path(comment.sell_item.id, comment), method: :delete %>
-        </div>
-      <% end %>
-      <% end %>
-      </div>
-      <div>
-      <%= form_with(model:[@sell_item, @comment], local: true) do |f| %>
-        <%= f.text_area :text, rows:'5',placeholder: "コメントをここに" %>
-        <%= f.submit "送信する" %>
-      <% end %>
-      </div>
-    </div>
-    <div class="col-lg-6 col-md-10 col-sm-10 pr-4 pl-4">
       <table class="table table-hover table-inverse">
         <tbody>
           <tr><td>アイテム名</td><td><%= @sell_item.name%></td></tr>
@@ -50,13 +29,37 @@
           <tr><td>配送料の負担</td><td><%= @sell_item.delivery_charged_i18n %></td></tr>
           <tr><td>配送の方法</td><td><%= @sell_item.delivery_way_i18n %></td></tr>
           <tr><td>発送までの日数</td><td><%= @sell_item.delivery_days_i18n %></td></tr>
+          <tr><td><%= @sell_item.order_status_i18n %></td></tr>
           <tr>
             <td><%= link_to '編集', edit_sell_item_path(@sell_item.id), class: "btn btn-success" %></td>
             <td><%= link_to '削除', sell_item_path(@sell_item.id), method: :delete, class: "btn btn-danger" %></td>
             <td><%= link_to '購入', sell_items_order_new_path(@sell_item), class:"btn btn-secondary" %></td>
+            <td><%= link_to '発送', order_status_update_path(@sell_item, order_status: "shipped"), class:"btn" %></td>
+            <td><%= link_to ''></td>
           </tr>
         </tbody>
       </table>
+
+      <div class="comment_box border">
+        <% @sell_item.comments.each do |comment| %>
+          <p><%= attachment_image_tag comment.user, :icon_image, :fill, 100, 100, format: 'jpeg' %></p>
+          <p><%= comment.user.nickname %></p>
+          <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+          <p><%= comment.text %></p>
+          <% if comment.user == current_user %>
+            <div>
+              <%= link_to "削除", sell_item_comment_path(comment.sell_item.id, comment), method: :delete %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div>
+      <%= form_with(model:[@sell_item, @comment], local: true) do |f| %>
+        <%= f.text_area :text, placeholder: "コメント入力",class:"form-control"  %>
+        <%= f.submit "送信する", class:"btn btn-secondary"%>
+      <% end %>
+      </div>
     </div>
   </div>
 </div>

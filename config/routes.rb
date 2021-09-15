@@ -28,11 +28,11 @@ Rails.application.routes.draw do
   get 'charts/disposal',  to: 'public/charts#disposal'
   get 'charts/disposal',  to: 'public/charts#index'
 
-  # get 'sell_items/order_new/:id', to: 'public/sell_item'
+
   get 'sell_items/:id/order_new', to: 'public/sell_items#order_new', as: 'sell_items_order_new'
   get 'sell_items/:id/order_confirm', to: 'public/sell_items#order_confirm', as: 'sell_items_order_confirm'
-  # get 'sell_items/:id/order_confirm', to: 'public/sell_items#order_confirm_error', as: 'sell_items_order_confirm_error'
   get 'sell_items/:id/order_complete', to: 'public/sell_items#order_complete', as: 'sell_items_order_complete'
+  get 'sell_items/:id/order_status_update', to: 'public/sell_items#order_status_update', as: 'order_status_update'
   resources :sell_items, module: :public do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]

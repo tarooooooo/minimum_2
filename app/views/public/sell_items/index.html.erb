@@ -6,6 +6,9 @@
         <%= attachment_image_tag sell_item, :sell_item_image, :fill, 200, 200, format: 'jpeg' %>
         <p class="name pb-2">
           <%= sell_item.name %>(<%= sell_item.order_price %>円)
+          <% unless sell_item.order_status == "on_sell" %>
+            <p>売却済み</p>
+          <% end %>
         </p>
       <% end %>
     </div>

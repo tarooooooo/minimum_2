@@ -10,7 +10,7 @@ ja:
         on_sell: 出品中
         wait_shipping: 発送待ち
         shipped: 発送済み
-        wait_rating: 評価待ち
+        close_of_trading: 取引終了
       payment_method:
         credit_card: クレジットカード
         bank_transfer: 銀行振り込み

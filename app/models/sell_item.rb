@@ -15,7 +15,7 @@ class SellItem < ApplicationRecord
     on_sell:   0,
     wait_shipping: 1,
     shipped:   2,
-    wait_rating: 3
+    close_of_trading: 3
   }
   
    enum delivery_charged:{
