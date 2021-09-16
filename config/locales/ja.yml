@@ -8,6 +8,7 @@ ja:
     sell_item:
       order_status:
         on_sell: 出品中
+        payment_waiting: 入金待ち
         wait_shipping: 発送待ち
         shipped: 発送済み
         close_of_trading: 取引終了

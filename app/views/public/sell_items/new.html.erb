@@ -8,7 +8,7 @@
           <tbody>
             <tr>
               <td>アイテム画像</td>
-              <td><%= f.attachment_field :sell_item_image, class:"form-control-file" ,value: @item.item_image_id %></td>
+              <td><%= attachment_image_tag @item, :item_image, :fill, 400, 300, format: 'jpeg' %></td>
             </tr>
             <tr>
               <td>アイテム名</td>

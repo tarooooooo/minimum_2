@@ -26,6 +26,12 @@ class Public::ItemsController < ApplicationController
     item = Item.new(item_params)
     item.user_id = current_user.id
     category = item.category
+
+    # 登録しようとしているitemのlimit
+    limit = category.category_managements.find_by(user_id: current_user.id).limit.to_i
+    # 登録しようとしているitemのカテゴリにすでに登録されている件数
+    items_count = category.items.where.find_by(user_id: current_user.id).count
+
     if category.items.count < category.category_management.limit.to_i
       if item.save
         redirect_to item_path(item)
@@ -51,6 +57,17 @@ class Public::ItemsController < ApplicationController
     if item.destroy
       redirect_to items_path
     end
+  end
+
+  def item_status_change
+    @items = if params[:item_status] == "on_keep"
+               current_user.items.on_keep
+             elsif params[:item_status] == "discarded"
+               current_user.items.discarded
+             elsif params[:item_status] == "on_sell"
+               current_user.items.on_sell
+             end
+    render 'public/items/index'
   end
 
   def get_category_children

@@ -6,6 +6,17 @@ class SellItem < ApplicationRecord
   
   has_many :comments, dependent: :destroy
   
+  belongs_to :seller, class_name: "User"
+  belongs_to :buyer, class_name: "User"
+  
+  validates :rate, presence: true
+  validates :rate, numericality: {
+    # only_integer: true,
+    less_than_or_equal_to: 5,
+    greater_than_or_equal_to: 0,
+  }
+
+  
   enum payment_method: {
     credit_card: 0,
     bank_transfer: 1
@@ -13,9 +24,10 @@ class SellItem < ApplicationRecord
   
   enum order_status: {
     on_sell:   0,
-    wait_shipping: 1,
-    shipped:   2,
-    close_of_trading: 3
+    payment_waiting: 1,
+    wait_shipping: 2,
+    shipped:   3,
+    close_of_trading: 4
   }
   
    enum delivery_charged:{
@@ -37,5 +49,27 @@ class SellItem < ApplicationRecord
     days2_3:    1,  #2日~3日で発送
     days4_7:    2,  #4日~7日で発送
   },_prefix: true
+  
+  def self.search(keyword)
+    where(["name like? OR brand_id like?", "%#{keyword}%", "%#{keyword}%"])
+  end
 
+  def create_notification_like!(current_user)
+    # すでに「いいね」されているか検索
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and sell_item_id = ? and action = ? ", current_user.id, seller_id, id, 'like'])
+    # いいねされていない場合のみ、通知レコードを作成
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        sell_item_id: id,
+        visited_id: seller_id,
+        action: 'like'
+      )
+      # 自分の投稿に対するいいねの場合は、通知済みとする
+      if notification.visitor_id == notification.visited_id
+        notification.checked = true
+      end
+      notification.save if notification.valid?
+    end
+  end
+  
 end

@@ -1,0 +1,40 @@
+<h3><%= @user.nickname %>さんの評価</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+    <th>購入者</th>
+    <th>評価</th>
+    <th>評価コメント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sell_items.each do |sell_item| %>
+    <tr>
+      <td>
+        <%= User.find_by(id: sell_item.buyer_id).nickname %>
+      </td>
+      <td>
+        <div id="star-rate-<%= sell_item.id %>"></div>
+        <script>
+          // 繰り返し処理でもidをidを一意にできるようにnote_idを入れる
+        $('#star-rate-<%= sell_item.id %>').raty({
+          size: 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          half: true,
+          // 読み込みだけで入力できない
+          readOnly: true,
+          score: <%= sell_item.rate %>,
+         });
+        </script>
+      </td>
+      <td>
+        <%= sell_item.rating_comment %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+

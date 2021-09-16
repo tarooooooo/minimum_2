@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= link_to "取引中", myitems_by_order_status_path(order_status: "now_trading_by_order") %>
+    </div>
+    <div class="col">
+      <%= link_to "購入済", myitems_by_order_status_path(order_status: "close_of_trading_by_order") %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <table class ="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>アイテム名</th>
+            <th>ブランド名</th>
+            <th>取引ステータス</th>
+          </tr>
+        </thead>
+  
+        
+        <% @sell_items.each do |sell_item| %>
+        <tbody>
+          <tr>
+  
+           <td>
+             <%=link_to sell_item_path(sell_item.id) do %>
+             <%= attachment_image_tag sell_item, :sell_item_image, format: 'jpeg', fallback: "no_image.jpg" ,size: "40x40"%>
+             <% end %>
+           </td>
+  
+           <td>
+             <%=link_to sell_item_path(sell_item.id) do %>
+             <%= sell_item.name %>
+             <% end %>
+           </td>
+  
+           <td>
+             <%= sell_item.item.brand.name %>
+           </td>
+  
+           <td>
+             <%= sell_item.order_status_i18n %>
+           </td>
+  
+           </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+

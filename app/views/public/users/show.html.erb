@@ -15,8 +15,9 @@
         <tr><th>メールアドレス</th><th><%= @user.email %></th></tr>
 
       </table>
-      <%= link_to "編集する", edit_user_path(@user), class: "btn btn-sm btn-success" %>
-
+      <%= link_to "出品した商品", myitems_by_sell_path %>
+      <%= link_to "購入した商品", myitems_by_order_path %>
+      <%= link_to "評価", rate_user_path(@user) %>
     </div>
   </div>
 </div>

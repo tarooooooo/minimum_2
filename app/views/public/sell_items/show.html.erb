@@ -4,7 +4,7 @@
 <div class="container pb-5">
   <div class="row mt-5">
     <div class="col-lg-6 col-md-10 col-sm-10 zoomInText">
-      <%= attachment_image_tag @sell_item, :sell_item_image, :fill, 550, 400, format: 'jpeg' %>
+      <%= attachment_image_tag @sell_item.item, :item_image, :fill, 550, 400, format: 'jpeg' %>
       <p>いいね件数: <%= @sell_item.likes.count %>　コメント件数：<%= @sell_item.comments.count %></p>
        <% if current_user.already_liked?(@sell_item) %>
         <%= link_to sell_item_like_path(@sell_item), method: :delete do %>
@@ -30,16 +30,20 @@
           <tr><td>配送の方法</td><td><%= @sell_item.delivery_way_i18n %></td></tr>
           <tr><td>発送までの日数</td><td><%= @sell_item.delivery_days_i18n %></td></tr>
           <tr><td><%= @sell_item.order_status_i18n %></td></tr>
-          <tr>
-            <td><%= link_to '編集', edit_sell_item_path(@sell_item.id), class: "btn btn-success" %></td>
-            <td><%= link_to '削除', sell_item_path(@sell_item.id), method: :delete, class: "btn btn-danger" %></td>
-            <td><%= link_to '購入', sell_items_order_new_path(@sell_item), class:"btn btn-secondary" %></td>
-            <td><%= link_to '発送', order_status_update_path(@sell_item, order_status: "shipped"), class:"btn" %></td>
-            <td><%= link_to ''></td>
-          </tr>
+          
         </tbody>
       </table>
-
+      <div class="btn_box">
+        <%= link_to '編集', edit_sell_item_path(@sell_item.id), class: "btn btn-success" if @sell_item.seller_id == current_user.id %>
+        <%= link_to '削除', sell_item_path(@sell_item.id), method: :delete, class: "btn btn-danger" if @sell_item.seller_id == current_user.id %>
+        <%= link_to '購入', sell_items_order_new_path(@sell_item), class:"btn btn-secondary" unless @sell_item.seller_id == current_user.id %>
+        <%# if @sell_item.order_status == "wait_shipping" && @sell_item.seller_id == current_user.id %>
+          <%= link_to '発送', order_status_update_path(@sell_item, order_status: "shipped"), class:"btn" ,data: {confirm: "発送しますか？"}  %>
+        <%# end %>
+        <%# if @sell_item.order_status == "shipped" && @sell_item.buyer_id == current_user.id %>
+          <%= link_to '受け取り完了', sell_items_order_rate_path(@sell_item), class:"btn btn-success" %>
+        <%# end %>
+      </div>
       <div class="comment_box border">
         <% @sell_item.comments.each do |comment| %>
           <p><%= attachment_image_tag comment.user, :icon_image, :fill, 100, 100, format: 'jpeg' %></p>
@@ -63,3 +67,19 @@
     </div>
   </div>
 </div>
+
+
+<div id="star-rate-<%= @sell_item.id %>"></div>
+<script>
+  // 繰り返し処理でもidをidを一意にできるようにnote_idを入れる
+$('#star-rate-<%= @sell_item.id %>').raty({
+  size: 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  half: true,
+  // 読み込みだけで入力できない
+  readOnly: true,
+  score: <%= @sell_item.rate %>,
+ });
+</script>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_14_091254) do
+ActiveRecord::Schema.define(version: 2021_09_15_020912) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -131,6 +131,8 @@ ActiveRecord::Schema.define(version: 2021_09_14_091254) do
     t.integer "delivery_days"
     t.integer "delivery_way"
     t.string "order_price"
+    t.float "rate", default: 0.0
+    t.string "rating_comment"
     t.index ["item_id"], name: "index_sell_items_on_item_id"
   end
 
