@@ -30,9 +30,9 @@ class Public::ItemsController < ApplicationController
     # 登録しようとしているitemのlimit
     limit = category.category_managements.find_by(user_id: current_user.id).limit.to_i
     # 登録しようとしているitemのカテゴリにすでに登録されている件数
-    items_count = category.items.where.find_by(user_id: current_user.id).count
+    items_count = category.items.where(user_id: current_user.id).count
 
-    if category.items.count < category.category_management.limit.to_i
+    if items_count < limit
       if item.save
         redirect_to item_path(item)
       end

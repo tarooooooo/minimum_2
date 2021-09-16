@@ -60,35 +60,46 @@ class Public::ChartsController < ApplicationController
     # @chartkick_items = [['black', 12],['white',0],['yellow', 5]]
     # @categories = @items.joins(:category).group('categories.id').pluck("categories.id","categories.name")
     @categories = @items.joins(:category).group('categories.id').select("categories.id","categories.name")
+    @category_index = []
+    @items.each do |item|
+      @category_index << item.category
+    end
+    @category_index.uniq!
 
-    from_0_to_1000 = []
-    from_1001_to_3000 = []
-    
-    @categories.each do |category|
-      from_0_to_1000[category.id] = []
+    from_0_to_1000      = []
+    from_1001_to_3000   = []
+    from_3001_to_5000   = []
+    from_5001_to_10000  = []
+    from_10001_to_20000 = []
+    from_20001_to_30000 = []
+    over_30001          = []
+
+    @category_index.each do |category|
+      from_0_to_1000[category.id]      = []
       from_1001_to_3000[category.id]   = []
-      from_3001_to_5000"#{category.id}"   = []
-      from_5001_to_10000"#{category.id}"  = []
-      from_10001_to_20000"#{category.id}" = []
-      from_20001_to_30000"#{category.id}" = []
-      over_30001"#{category.id}"          = []
-      category.items.each do |items|
+      from_3001_to_5000[category.id]   = []
+      from_5001_to_10000[category.id]  = []
+      from_10001_to_20000[category.id] = []
+      from_20001_to_30000[category.id] = []
+      over_30001[category.id]          = []
+      category.items.each do |item|
         from_0_to_1000[category.id]      << item if (0..1_000).cover?(item.price.to_i)
-        from_1001_to_3000"#{category.id}"   << item if (1_001..3_000).cover?(item.price.to_i)
-        from_3001_to_5000"#{category.id}"   << item if (3_001..5_000).cover?(item.price.to_i)
-        from_5001_to_10000"#{category.id}"  << item if (5_001..10_000).cover?(item.price.to_i)
-        from_10001_to_20000"#{category.id}" << item if (10_001..20_000).cover?(item.price.to_i)
-        from_20001_to_30000"#{category.id}" << item if (20_001..30_000).cover?(item.price.to_i)
-        over_30001"#{category.id}"          << item if (30_001..).cover?(item.price.to_i)
+        from_1001_to_3000[category.id]   << item if (1_001..3_000).cover?(item.price.to_i)
+        from_3001_to_5000[category.id]   << item if (3_001..5_000).cover?(item.price.to_i)
+        from_5001_to_10000[category.id]  << item if (5_001..10_000).cover?(item.price.to_i)
+        from_10001_to_20000[category.id] << item if (10_001..20_000).cover?(item.price.to_i)
+        from_20001_to_30000[category.id] << item if (20_001..30_000).cover?(item.price.to_i)
+        over_30001[category.id]          << item if (30_001..).cover?(item.price.to_i)
       end
-      @chartkick_category_items_by_price[category.id] = {  '0~1000円': from_0_to_1000[category.id].size,
-                                                  '1001~3000円': from_1001_to_3000"#{category.id}".size,
-                                                  '3001~5000円': from_3001_to_5000"#{category.id}".size,
-                                                  '5001~10000円': from_5001_to_10000"#{category.id}".size,
-                                                  '10001~20000円': from_10001_to_20000"#{category.id}".size,
-                                                  '20001~30000円': from_20001_to_30000"#{category.id}".size,
-                                                  '30000円~': over_30001"#{category.id}".size
-                                                  }
+      eval "@chartkick_category_items_by_price#{category.id} = {'0~1000円': from_0_to_1000[category.id].size,
+                                                  '1001~3000円': from_1001_to_3000[category.id].size,
+                                                  '3001~5000円': from_3001_to_5000[category.id].size,
+                                                  '5001~10000円': from_5001_to_10000[category.id].size,
+                                                  '10001~20000円': from_10001_to_20000[category.id].size,
+                                                  '20001~30000円': from_20001_to_30000[category.id].size,
+                                                  '30000円~': over_30001[category.id].size
+                                                  }"
+                                                
       @chartkick_category_items[category.id] = @items.joins(:color).where(category_id: category.id).group('colors.name').count
       @chartkick_brand_items[category.id] = @items.joins(:brand).where(category_id: category.id).group('brands.name').count
 
