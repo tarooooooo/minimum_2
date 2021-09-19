@@ -43,5 +43,7 @@ class Public::UsersController < ApplicationController
       :is_deleted
       )
   end
+  
+ 
 
 end

@@ -97,6 +97,8 @@ class Public::SellItemsController < ApplicationController
     if cookies[:payment_method].present?
       @sell_item.update(buy_item_params)
       cookies.delete :payment_method
+      # 通知機能の記述
+      @sell_item.create_notification_buy!(current_user)
       redirect_to sell_items_order_complete_path(params[:id])
     else
        不正な遷移

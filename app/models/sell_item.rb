@@ -11,7 +11,7 @@ class SellItem < ApplicationRecord
   belongs_to :buyer, class_name: "User", optional: true
 
   # Item.first.id == item_id
-  validates :item_id, uniqueness: true
+
   validates :rate, presence: true
   validates :rate, numericality: {
     # only_integer: true,
@@ -98,4 +98,12 @@ class SellItem < ApplicationRecord
       notification.save if notification.valid?
   end
 
+   def create_notification_buy!(current_user)
+      notification = current_user.active_notifications.new(
+        sell_item_id: id,
+        visited_id: seller_id,
+        action: 'buy'
+      )
+      notification.save if notification.valid?
+  end
 end
