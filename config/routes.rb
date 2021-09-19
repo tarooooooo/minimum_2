@@ -30,10 +30,11 @@ Rails.application.routes.draw do
 
   get 'sell_items/:id/order_new', to: 'public/sell_items#order_new', as: 'sell_items_order_new'
   get 'sell_items/:id/order_confirm', to: 'public/sell_items#order_confirm', as: 'sell_items_order_confirm'
+  patch 'sell_items/:id/order_finish', to: 'public/sell_items#order_finish', as: 'sell_items_order_finish'
   get 'sell_items/:id/order_complete', to: 'public/sell_items#order_complete', as: 'sell_items_order_complete'
   get 'sell_items/:id/order_rate', to: 'public/sell_items#order_rate', as: 'sell_items_order_rate'
   patch 'sell_items/:id/order_rate_update', to: 'public/sell_items#order_rate_update', as: 'order_rate_update'
-  get 'sell_items/:id/order_status_update', to: 'public/sell_items#order_status_update', as: 'order_status_update'
+  patch 'sell_items/:id/order_status_update', to: 'public/sell_items#order_status_update', as: 'order_status_update'
   get 'sell_items/myitems_by_sell', to: 'public/sell_items#myitems_by_sell', as: 'myitems_by_sell'
   get 'sell_items/myitems_by_order', to: 'public/sell_items#myitems_by_order', as: 'myitems_by_order'
   get 'sell_items/myitems_by_order_status', to: 'public/sell_items#myitems_by_order_status', as: 'myitems_by_order_status'

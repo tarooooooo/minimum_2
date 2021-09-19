@@ -23,21 +23,22 @@ class Public::ItemsController < ApplicationController
   end
 
   def create
-    item = Item.new(item_params)
-    item.user_id = current_user.id
-    category = item.category
+    @item = Item.new(item_params)
+    @item.user_id = current_user.id
+    category = @item.category
 
     # 登録しようとしているitemのlimit
     limit = category.category_managements.find_by(user_id: current_user.id).limit.to_i
     # 登録しようとしているitemのカテゴリにすでに登録されている件数
     items_count = category.items.where(user_id: current_user.id).count
 
-    if items_count < limit
-      if item.save
-        redirect_to item_path(item)
+    if items_count <= limit
+      if @item.save
+        redirect_to item_path(@item)
       end
     else
-      redirect_to items_path
+      flash.now[:danger] = "#{@item.category.name}が制限に達しました。（#{@item.category.name}の設定数：#{limit}個）"
+      render 'public/items/new'
     end
   end
 

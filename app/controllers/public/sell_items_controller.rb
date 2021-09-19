@@ -9,24 +9,22 @@ class Public::SellItemsController < ApplicationController
   end
 
   def myitems_by_order_status
-    if params[:order_status] == "now_trading_by_order"
-      @sell_items = SellItem.where(buyer_id: current_user.id, order_status: "wait_shipping" || "shipped" )
-      render 'public/sell_items/myitems_by_order'
-    elsif params[:order_status] == "close_of_trading_by_order"
+   if params[:order_status] == "now_trading_by_order"
+     @sell_items =  SellItem.where(buyer_id: current_user.id).where( order_status: ['payment_waiting','wait_shipping','shipped'])
+     render 'public/sell_items/myitems_by_order'
+   elsif params[:order_status] == "close_of_trading_by_order"
       @sell_items = SellItem.where(buyer_id: current_user.id, order_status: "close_of_trading" )
-      render 'public/sell_items/myitems_by_order'
-    end
-
-    if params[:order_status] == "on_sell"
+     render 'public/sell_items/myitems_by_order'
+   elsif params[:order_status] == "on_sell"
       @sell_items = SellItem.where(seller_id: current_user.id, order_status: "on_sell" )
       render 'public/sell_items/myitems_by_sell'
-    elsif params[:order_status] == "now_trading_by_sell"
-      @sell_items = SellItem.where(seller_id: current_user.id, order_status: "wait_shipping" || "shipped" )
+   elsif params[:order_status] == "now_trading_by_sell"
+      @sell_items = SellItem.where(seller_id: current_user.id).where( order_status: ['payment_waiting','wait_shipping','shipped'])
       render 'public/sell_items/myitems_by_sell'
-    elsif params[:order_status] == "close_of_trading_by_sell"
+   elsif params[:order_status] == "close_of_trading_by_sell"
       @sell_items = SellItem.where(seller_id: current_user.id, order_status: "close_of_trading")
       render 'public/sell_items/myitems_by_sell'
-    end
+   end
   end
 
   def index
@@ -86,17 +84,20 @@ class Public::SellItemsController < ApplicationController
 
   # def order_confirm_error;end
 
-  def order_complete
+  def order_finish
     @sell_item = SellItem.find(params[:id])
     if cookies[:payment_method].present?
-      if @sell_item.update(payment_method: cookies[:payment_method])
-        @sell_item.buyer_id = current_user.id
-        @sell_item.buy_date = Date.today
-        @sell_item.order_status = :payment_waiting
-        @sell_item.save
-        cookies.delete :payment_method
-      end
+      @sell_item.update(buy_item_params)
+      cookies.delete :payment_method
+      redirect_to sell_items_order_complete_path(params[:id])
+    else
+       不正な遷移
+       redirect_to root_path, notice: '不正な遷移は許可されていません'
     end
+  end
+
+  def order_complete
+    @sell_item = SellItem.find(params[:id])
   end
 
   def order_rate
@@ -104,13 +105,21 @@ class Public::SellItemsController < ApplicationController
   end
 
   def order_rate_update
+    @sell_item = SellItem.find(params[:id])
+    if @sell_item.update(rate_item_params)
+      flash[:seccess] = "取引が完了しました。"
+      redirect_to sell_item_path(@sell_item)
+    else
+      flash[:danger] = "評価してください。"
+      render 'public/sell_items/order_rate'
+    end
   end
 
   def order_status_update
     @sell_item = SellItem.find(params[:id])
-    @sell_item.order_status = params[:order_status]
-    @sell_item.save
+    if @sell_item.update!(order_status: params[:order_status])
     redirect_back(fallback_location: root_path)
+    end
   end
 
   def search
@@ -131,15 +140,6 @@ class Public::SellItemsController < ApplicationController
     @sell_items += SellItem.where('name LIKE(?) and order_status LIKE(?)', "%#{keyword}%", 0)
     end
 
-    brand_items = []
-    brand_sell_items = []
-    if brands.present?
-      brands.each do |brand|
-        brand_items += SellItem.joins(:items).where(brand_id: brand.id)
-        @sell_item.push(brand_items)
-      end
-    end
-    @sell_items.flatten!
   end
 
   private
@@ -162,5 +162,22 @@ class Public::SellItemsController < ApplicationController
       :rate,
       :rating_comment
       )
+  end
+
+  def buy_item_params
+    {
+      buyer_id: current_user.id,
+      buy_date: Date.today,
+      order_status: :payment_waiting,
+      payment_method: cookies[:payment_method]
+    }
+  end
+
+  def rate_item_params
+     params.require(:sell_item).permit(
+      :rate,
+      :rating_comment,
+      :order_status
+       )
   end
 end

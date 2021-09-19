@@ -12,7 +12,7 @@
     <% @sell_items.each do |sell_item| %>
     <tr>
       <td>
-        <%= User.find_by(id: sell_item.buyer_id).nickname %>
+        <%= sell_item.buyer.nickname %>
       </td>
       <td>
         <div id="star-rate-<%= sell_item.id %>"></div>

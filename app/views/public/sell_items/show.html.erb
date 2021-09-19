@@ -6,15 +6,11 @@
     <div class="col-lg-6 col-md-10 col-sm-10 zoomInText">
       <%= attachment_image_tag @sell_item.item, :item_image, :fill, 550, 400, format: 'jpeg' %>
       <p>いいね件数: <%= @sell_item.likes.count %>　コメント件数：<%= @sell_item.comments.count %></p>
-       <% if current_user.already_liked?(@sell_item) %>
-        <%= link_to sell_item_like_path(@sell_item), method: :delete do %>
-          <i class="fas fa-heart"><%= @sell_item.likes.count %></i>
-        <% end %>
-      <% else %>
-        <%= link_to sell_item_likes_path(@sell_item), method: :post do %>
-          <i class="far fa-heart"><%= @sell_item.likes.count %></i>
-        <% end %>
-      <% end %>
+      
+      <div id="likes_buttons_<%= @sell_item.id %>">
+        <%= render 'public/likes/like', sell_item: @sell_item %>
+      </div>
+      
       <table class="table table-hover table-inverse">
         <tbody>
           <tr><td>アイテム名</td><td><%= @sell_item.name%></td></tr>
@@ -29,20 +25,30 @@
           <tr><td>配送料の負担</td><td><%= @sell_item.delivery_charged_i18n %></td></tr>
           <tr><td>配送の方法</td><td><%= @sell_item.delivery_way_i18n %></td></tr>
           <tr><td>発送までの日数</td><td><%= @sell_item.delivery_days_i18n %></td></tr>
-          <tr><td><%= @sell_item.order_status_i18n %></td></tr>
-          
+          <tr>
+            <td>
+              <%= @sell_item.order_status_i18n %>
+            </td>
+            <td>
+              <% if @sell_item.order_status == "payment_waiting" && @sell_item.buyer_id == current_user.id %>
+               <p>入金してください。</p>
+              <% end %>
+            </td>
+          </tr>
+
         </tbody>
       </table>
       <div class="btn_box">
         <%= link_to '編集', edit_sell_item_path(@sell_item.id), class: "btn btn-success" if @sell_item.seller_id == current_user.id %>
         <%= link_to '削除', sell_item_path(@sell_item.id), method: :delete, class: "btn btn-danger" if @sell_item.seller_id == current_user.id %>
-        <%= link_to '購入', sell_items_order_new_path(@sell_item), class:"btn btn-secondary" unless @sell_item.seller_id == current_user.id %>
-        <%# if @sell_item.order_status == "wait_shipping" && @sell_item.seller_id == current_user.id %>
-          <%= link_to '発送', order_status_update_path(@sell_item, order_status: "shipped"), class:"btn" ,data: {confirm: "発送しますか？"}  %>
-        <%# end %>
-        <%# if @sell_item.order_status == "shipped" && @sell_item.buyer_id == current_user.id %>
+        <%= link_to '購入', sell_items_order_new_path(@sell_item), class:"btn btn-secondary" if @sell_item.order_status == "on_sell" && @sell_item.seller_id != current_user.id %>
+        <% if @sell_item.order_status == "wait_shipping" && @sell_item.seller_id == current_user.id %>
+          <%= link_to '発送', order_status_update_path(@sell_item, order_status: "shipped"), method: :patch, class:"btn" ,data: {confirm: "発送しましたか？"}  %>
+        <% end %>
+        <% if @sell_item.order_status == "shipped" && @sell_item.buyer_id == current_user.id %>
           <%= link_to '受け取り完了', sell_items_order_rate_path(@sell_item), class:"btn btn-success" %>
-        <%# end %>
+        <% end %>
+
       </div>
       <div class="comment_box border">
         <% @sell_item.comments.each do |comment| %>

@@ -9,6 +9,7 @@ class SellItem < ApplicationRecord
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User"
   
+  validates :item_id, uniqueness: true
   validates :rate, presence: true
   validates :rate, numericality: {
     # only_integer: true,

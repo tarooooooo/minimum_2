@@ -55,16 +55,12 @@
                   <%= f.label 'レターパック' %>
                 </div>
                 <div>
-                  <%= f.radio_button :delivery_way, :nomal %>
+                  <%= f.radio_button :delivery_way, :normal %>
                   <%= f.label '普通郵便' %>
                 </div>
                 <div>
                   <%= f.radio_button :delivery_way, :clickpost %>
                   <%= f.label 'クリックポスト' %>
-                </div>
-                <div>
-                  <%= f.radio_button :delivery_way, :yu_pack %>
-                  <%= f.label '着払い（購入者負担）' %>
                 </div>
               </td>
             </tr>

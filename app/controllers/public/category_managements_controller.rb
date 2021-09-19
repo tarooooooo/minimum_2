@@ -11,8 +11,17 @@ class Public::CategoryManagementsController < ApplicationController
   def create
     category_management = CategoryManagement.new(category_management_params)
     category_management.user_id = current_user.id
+    @category_managements  = CategoryManagement.where(user_id: current_user.id)
+    @category_management = CategoryManagement.new
+
     if category_management.save
       redirect_back(fallback_location: root_path)
+    elsif category_management.blank?
+      flash.now[:danger] = "値を入力してください。"
+      render 'public/category_managements/new'
+    elsif category_management.present?
+      flash.now[:danger] = "#{category_management.category.name}はすでに登録済みです。"
+      render 'public/category_managements/new'
     end
   end
 

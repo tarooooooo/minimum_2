@@ -17,10 +17,10 @@ class Public::UsersController < ApplicationController
       redirect_to(user_path(current_user))
     end
   end
-  
+
   def rate
     @user = User.find(params[:id])
-    @sell_items = @user.sell_items
+    @sell_items = SellItem.where(seller_id: @user.id, order_status: "close_of_trading")
   end
 
   def withdraw
