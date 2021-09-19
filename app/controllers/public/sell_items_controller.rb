@@ -65,6 +65,13 @@ class Public::SellItemsController < ApplicationController
       redirect_to sell_item_path(sell_item.id)
     end
   end
+  
+  def force_to_update
+    sell_item = SellItem.find(params[:id])
+    if sell_item.update!(sell_item_params)
+      redirect_to sell_item_path(sell_item.id)
+    end
+  end
 
   def destroy
     sell_item = SellItem.find(params[:id])

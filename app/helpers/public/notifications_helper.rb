@@ -15,9 +15,10 @@ module Public::NotificationsHelper
     when 'comment' then
       #コメントの内容と投稿のタイトルを取得
       @comment = Comment.find_by(id: @visitor_comment)
-      @comment_text =@comment.text
-      @sell_item_name =@comment.sell_item.name
-      "#{User.find_by(id: notification.visitor_id).nickname}が,#{@sell_item_name}にコメントしました"
+      @comment_text = @comment.text
+      @sell_item_name = @comment.sell_item.name
+       "#{User.find_by(id: notification.visitor_id).nickname}が,"+ tag.a(@sell_item_name, href: sell_item_path(@comment.sell_item)) +"にコメントしました"
+      # "#{User.find_by(id: notification.visitor_id).nickname}が,"+ "#{link_to @sell_item_name, sell_item_path(@comment.sell_item)}" + "にコメントしました"
     end
   end
 end

@@ -26,7 +26,8 @@ class Public::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.user_id = current_user.id
     category = @item.category
-
+    
+    # render 'public/items/new' if category.category_managements.where(user_id: current_user.id) == nil
     # 登録しようとしているitemのlimit
     limit = category.category_managements.find_by(user_id: current_user.id).limit.to_i
     # 登録しようとしているitemのカテゴリにすでに登録されている件数

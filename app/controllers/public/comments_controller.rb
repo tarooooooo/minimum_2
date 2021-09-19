@@ -3,6 +3,8 @@ class Public::CommentsController < ApplicationController
     @sell_item = SellItem.find(params[:sell_item_id])
     if @comment = Comment.create(comment_params)
       @comments = @sell_item.comments.order(created_at: :desc)
+      @sell_item = @comment.sell_item
+      @sell_item.create_notification_comment!(current_user, @comment.id)
       render :index
     else
       flash.now[:danger] = "値を入力してください。"

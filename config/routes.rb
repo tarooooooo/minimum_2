@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get 'sell_items/myitems_by_sell', to: 'public/sell_items#myitems_by_sell', as: 'myitems_by_sell'
   get 'sell_items/myitems_by_order', to: 'public/sell_items#myitems_by_order', as: 'myitems_by_order'
   get 'sell_items/myitems_by_order_status', to: 'public/sell_items#myitems_by_order_status', as: 'myitems_by_order_status'
+  post 'sell_items/:id/force_to_update', to: 'public/sell_items#force_to_update',as: 'force_to_update'
   resources :sell_items, module: :public do
     resource :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
