@@ -1,0 +1,19 @@
+<% comments.each do |comment| %>
+ <table>
+   <tbody>
+     <tr>
+       <td>
+         <%= attachment_image_tag comment.user, :icon_image, :fill, 60, 60, format: 'jpeg' %><br>
+       </td>
+       <td>
+         <p class ="small"><%= comment.user.nickname %>さん</p>
+         <%= comment.text %>
+         <% if comment.user == current_user %>
+           <%= link_to "削除", sell_item_comment_path(comment.sell_item.id, comment.id), method: :delete, remote: true %>
+         <% end %>
+       </td>
+     </tr>
+   </tbody>
+ </table>
+<% end %>
+  

@@ -5,12 +5,12 @@
   <div class="row mt-5">
     <div class="col-lg-6 col-md-10 col-sm-10 zoomInText">
       <%= attachment_image_tag @sell_item.item, :item_image, :fill, 550, 400, format: 'jpeg' %>
-      <p>いいね件数: <%= @sell_item.likes.count %>　コメント件数：<%= @sell_item.comments.count %></p>
-      
+      <p>コメント件数：<%= @sell_item.comments.count %></p>
+
       <div id="likes_buttons_<%= @sell_item.id %>">
         <%= render 'public/likes/like', sell_item: @sell_item %>
       </div>
-      
+
       <table class="table table-hover table-inverse">
         <tbody>
           <tr><td>アイテム名</td><td><%= @sell_item.name%></td></tr>
@@ -50,26 +50,18 @@
         <% end %>
 
       </div>
-      <div class="comment_box border">
-        <% @sell_item.comments.each do |comment| %>
-          <p><%= attachment_image_tag comment.user, :icon_image, :fill, 100, 100, format: 'jpeg' %></p>
-          <p><%= comment.user.nickname %></p>
-          <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
-          <p><%= comment.text %></p>
-          <% if comment.user == current_user %>
-            <div>
-              <%= link_to "削除", sell_item_comment_path(comment.sell_item.id, comment), method: :delete %>
-            </div>
-          <% end %>
-        <% end %>
+      
+      
+      <h2>コメント一覧</h2>
+      <div class="comments_index">
+        <div id='comments_area'>
+          <%= render partial: 'public/comments/index', locals: { comments: @comments, sell_item: @sell_item } %>
+        </div>
       </div>
-
-      <div>
-      <%= form_with(model:[@sell_item, @comment], local: true) do |f| %>
-        <%= f.text_area :text, placeholder: "コメント入力",class:"form-control"  %>
-        <%= f.submit "送信する", class:"btn btn-secondary"%>
+      <% if user_signed_in? %>
+        <%= render partial: 'public/comments/form', locals: { comment: @comment, sell_item: @sell_item } %>
       <% end %>
-      </div>
+      
     </div>
   </div>
 </div>

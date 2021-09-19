@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   get 'sell_items/myitems_by_order', to: 'public/sell_items#myitems_by_order', as: 'myitems_by_order'
   get 'sell_items/myitems_by_order_status', to: 'public/sell_items#myitems_by_order_status', as: 'myitems_by_order_status'
   resources :sell_items, module: :public do
-    resources :likes, only: [:create, :destroy]
+    resource :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     collection do
       get 'search'
@@ -65,7 +65,7 @@ Rails.application.routes.draw do
     end
   end
   resources :category_managements, module: :public, only: [:new, :edit, :create, :update, :destroy]
-  resources :notifications, module: :public, only: :index
+  resources :notifications, module: :public, only: [:index, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end

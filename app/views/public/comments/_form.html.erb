@@ -1,0 +1,14 @@
+<%= form_with(model:[sell_item, comment], remote: true) do |f| %>
+   <div class="field">
+    <div class="control">
+      <%= f.text_area :text, placeholder: "コメント入力",class:"form-control"  %>
+      <%= f.hidden_field :sell_item_id, value: sell_item.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+     </div>
+  </div>
+  <div class="field is-grouped">
+    <div class="control">
+      <%= f.submit "送信する", class:"btn btn-secondary"%>
+    </div>
+  </div>
+<% end %>

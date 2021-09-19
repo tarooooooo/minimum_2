@@ -35,6 +35,7 @@ class Public::SellItemsController < ApplicationController
     @sell_item = SellItem.find(params[:id])
     @like = Like.new
     @comment = Comment.new
+    @comments = @sell_item.comments.order(created_at: :desc)
   end
 
   def new
