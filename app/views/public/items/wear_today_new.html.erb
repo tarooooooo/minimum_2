@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8 offset-md-1">
+      <h2>今日の着用アイテム</h2>
+      <% @categories.each do |category| %>
+        <h4 class="mb-3"><%= category.name %></h4>
+        <div class="row mb-4">
+          <% category.items.where(user_id: current_user.id, item_status: "on_keep" ).each do |item| %>
+            <%= form_with model: item, url: wear_today_update_item_path(item), method: :patch, local:true do |f| %>
+              <table>
+                <tbody>
+                  <tr>
+                    <td><%= attachment_image_tag item, :item_image, :fill, 100, 100, format: 'jpeg' %></td>
+                  </tr>
+                  <tr>
+                    <td><%= item.name %></td>
+                  </tr>
+                  <tr>
+                    <td>着用回数：<%=item.wear_count %>回</td>
+                  </tr>
+                  <tr>
+                    <td><%= f.submit "登録" %></td>
+                  </tr>
+                </tbody>
+              </table>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <table>
+        <tbody>
+          <tr>
+            <td>着用数トップ3</td>
+          </tr>
+          <% @top_items.each do |top_item| %>
+          <tr>
+            <td><%= link_to top_item.name,item_path(top_item) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>着用数ワースト3</td>
+          </tr>
+          <% @worst_items.each do |worst_item| %>
+          <tr>
+            <td><%= link_to worst_item.name,item_path(worst_item) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

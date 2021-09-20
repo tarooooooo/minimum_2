@@ -45,24 +45,22 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
-    # get :order_new, on: :member
-    # collection do
-    #   put 'order_confirm'
-    #   get 'order_complete'
-    # end
+
   end
   get 'items/item_status_change', to: 'public/items#item_status_change', as: 'item_status_change'
   resources :items, module: :public do
     get 'sell_item/new', to: 'sell_items#new'
-    #Ajaxで動くアクションのルートを作成
+    member do
+      patch 'wear_today_update'
+    end
     collection do
-      get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'wear_today_new'
     end
   end
   resources :users, module: :public, only: [:edit,:show,:index,:update,:unsubscribe,:withdraw] do
     member do
       get :rate
+      get :likes
     end
   end
   resources :category_managements, module: :public, only: [:new, :edit, :create, :update, :destroy]

@@ -103,7 +103,6 @@ class Public::SellItemsController < ApplicationController
       NotificationMailer.seller_send_mail(@sell_item.seller, @sell_item).deliver_now
       redirect_to sell_items_order_complete_path(params[:id])
     else
-       不正な遷移
        redirect_to root_path, notice: '不正な遷移は許可されていません'
     end
   end

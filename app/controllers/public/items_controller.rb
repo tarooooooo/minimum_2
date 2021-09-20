@@ -26,20 +26,24 @@ class Public::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.user_id = current_user.id
     category = @item.category
-    
-    # render 'public/items/new' if category.category_managements.where(user_id: current_user.id) == nil
-    # 登録しようとしているitemのlimit
-    limit = category.category_managements.find_by(user_id: current_user.id).limit.to_i
-    # 登録しようとしているitemのカテゴリにすでに登録されている件数
-    items_count = category.items.where(user_id: current_user.id).count
 
-    if items_count <= limit
-      if @item.save
-        redirect_to item_path(@item)
-      end
-    else
-      flash.now[:danger] = "#{@item.category.name}が制限に達しました。（#{@item.category.name}の設定数：#{limit}個）"
+    if category.category_managements.find_by(user_id: current_user.id) == nil
+       flash.now[:danger] = "#{@item.category.name}の、制限が設定されていません"
       render 'public/items/new'
+    else
+      # 登録しようとしているitemのlimit
+      limit = category.category_managements.find_by(user_id: current_user.id).limit.to_i
+      # 登録しようとしているitemのカテゴリにすでに登録されている件数
+      items_count = category.items.where(user_id: current_user.id).count
+
+      if items_count < limit
+        if @item.save
+          redirect_to item_path(@item)
+        end
+      else
+        flash.now[:danger] = "#{@item.category.name}が制限に達しました。（#{@item.category.name}の設定数：#{limit}個）"
+        render 'public/items/new'
+      end
     end
   end
 
@@ -72,6 +76,24 @@ class Public::ItemsController < ApplicationController
     render 'public/items/index'
   end
 
+  def wear_today_new
+    @items = current_user.items.where(item_status: "on_keep")
+    @top_items = @items.order('wear_count desc').limit(3)
+    @worst_items = @items.order('wear_count asc').limit(3)
+    @categories = []
+    @items.each do |item|
+      @categories << item.category
+    end
+    @categories.uniq!
+  end
+
+  def wear_today_update
+    item = Item.find(params[:id])
+    item.wear_count += 1
+    item.save
+    redirect_back(fallback_location: root_path)
+  end
+
   def get_category_children
     #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
     @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
@@ -94,7 +116,8 @@ class Public::ItemsController < ApplicationController
       :purchase_date,
       :size,
       :name,
-      :item_status
+      :item_status,
+      :wear_count
       )
   end
 end

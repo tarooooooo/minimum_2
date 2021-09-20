@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_15_020912) do
+ActiveRecord::Schema.define(version: 2021_09_20_065307) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -66,10 +66,10 @@ ActiveRecord::Schema.define(version: 2021_09_15_020912) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "color_id", null: false
-    t.bigint "brand_id", null: false
-    t.bigint "category_id", null: false
+    t.integer "user_id", null: false
+    t.integer "color_id", null: false
+    t.integer "brand_id", null: false
+    t.integer "category_id", null: false
     t.string "price", null: false
     t.string "item_image_id", null: false
     t.datetime "discard_date"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2021_09_15_020912) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "wear_count", default: 0, null: false
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["color_id"], name: "index_items_on_color_id"

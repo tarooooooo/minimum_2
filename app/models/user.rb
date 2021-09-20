@@ -37,4 +37,6 @@ class User < ApplicationRecord
   def already_liked?(sell_item)
     self.likes.exists?(sell_item_id: sell_item.id)
   end
+
+ 
 end

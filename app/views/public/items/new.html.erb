@@ -16,32 +16,15 @@
             </tr>
             <tr>
               <td>カテゴリー</td>
-              <td><%= f.collection_select :category_id, Category.all, :id, :name,{:prompt => true}, {:class => "form-control"} %></td>
-
-            　<!--多階層カテゴリー-->
-              <!--<td>-->
-                <%#= f.collection_select :category_id, Category.all, :id, :name,{prompt: "---"}, class: "select-default", id: "parent-form"%>
-              <!--  <div class="listing-form-box">-->
-              <!--    <div class="listing-product-detail__category">-->
-              <!--      <%#= f.label 'カテゴリー', class: 'listing-default__label'%>-->
-              <!--      <span class="listing-default--require">必須</span>-->
-              <!--      <div class="listing-select-wrapper">-->
-              <!--        <div class="listing-select-wrapper__box">-->
-              <!--          <%#= f.select :category, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'} %>-->
-              <!--          <i class ="fas.fa-chevron-down listing-select-wrapper__box--arrow-down"></i>-->
-              <!--        </div>-->
-              <!--      </div>-->
-              <!--    </div>-->
-              <!--  </div>-->
-              <!--</td>-->
+              <td><%= f.collection_select :category_id, Category.all, :id, :name, { include_blank: '選択してください'}, { class: 'form-control' , required: true }  %></td>
             </tr>
             <tr>
               <td>カラー</td>
-              <td><%= f.collection_select :color_id, Color.all, :id, :name,{:prompt => true}, {:class => "form-control"} %></td>
+              <td><%= f.collection_select :color_id, Color.all, :id, :name, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %></td>
             </tr>
             <tr>
               <td>ブランド</td>
-              <td><%= f.collection_select :brand_id, Brand.all, :id, :name,{:prompt => true}, {:class => "form-control"} %></td>
+              <td><%= f.collection_select :brand_id, Brand.all, :id, :name, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %></td>
             </tr>
             <tr>
               <td>購入価格</td>

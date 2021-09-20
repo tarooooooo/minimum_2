@@ -18,9 +18,17 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  def likes
+    @user = User.find(params[:id])
+    @likes = Like.where(user_id: @user.id)
+  end
+
   def rate
     @user = User.find(params[:id])
     @sell_items = SellItem.where(seller_id: @user.id, order_status: "close_of_trading")
+    @user_rate = SellItem.where(seller_id: @user.id).pluck(:rate)
+    @user_rate_avg = @user_rate.sum.fdiv(@user_rate.length)
+
   end
 
   def withdraw
@@ -43,7 +51,7 @@ class Public::UsersController < ApplicationController
       :is_deleted
       )
   end
-  
- 
+
+
 
 end

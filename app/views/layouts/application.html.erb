@@ -77,6 +77,11 @@
             </li>
             <li class="nav-item">
               <div class="social">
+                <%= link_to '今日の服を登録', wear_today_new_items_path, class: 'nav-link' %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
                 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %>
               </div>
             </li>
