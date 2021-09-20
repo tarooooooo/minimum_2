@@ -29,3 +29,7 @@ ja:
         days1_2: １日〜２日で発送
         days2_3: ２日〜３日で発送
         days4_7: ４日〜７日で発送
+    user:
+      is_deleted:
+        consent: 有効
+        nonconsent: 退会

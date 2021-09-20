@@ -97,6 +97,9 @@ class Public::SellItemsController < ApplicationController
     if cookies[:payment_method].present?
       @sell_item.update(buy_item_params)
       cookies.delete :payment_method
+      item = @sell_item.item
+      item.item_status = "discarded"
+      item.save
       # 通知機能の記述
       @sell_item.create_notification_buy!(current_user)
       NotificationMailer.send_mail(@sell_item.buyer, @sell_item).deliver_now

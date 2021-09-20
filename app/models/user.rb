@@ -34,6 +34,9 @@ class User < ApplicationRecord
   has_many :liked_sell_items, through: :likes, source: :sell_item
 
   has_many :comments, dependent: :destroy
+  
+  enum is_deleted: { consent: false, nonconsent: true }
+  
   def already_liked?(sell_item)
     self.likes.exists?(sell_item_id: sell_item.id)
   end
