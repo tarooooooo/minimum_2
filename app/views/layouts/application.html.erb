@@ -63,6 +63,20 @@
             </li>
             <li class="nav-item">
               <div class="social">
+                <%= link_to notifications_path, class: "nav-link" do %>
+                  <% if current_user.passive_notifications.where(checked: false).any? %>
+                    <span class = "fa-stack">
+                      <i class = "far fa-bell fa-lg fa-stack-2x", style="font-size: 1.5em;" ></i>
+                      <i class = "fas fa-circle n-circle fa-stack-1x" ></i>
+                    </span>
+                  <% else %>
+                    <i class = "far fa-bell fa-lg", style="font-size: 1.5em;" ></i>
+                  <% end %>
+                <% end %>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="social">
                 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %>
               </div>
             </li>

@@ -65,7 +65,7 @@ class Public::SellItemsController < ApplicationController
       redirect_to sell_item_path(sell_item.id)
     end
   end
-  
+
   def force_to_update
     sell_item = SellItem.find(params[:id])
     if sell_item.update!(sell_item_params)
@@ -99,6 +99,7 @@ class Public::SellItemsController < ApplicationController
       cookies.delete :payment_method
       # 通知機能の記述
       @sell_item.create_notification_buy!(current_user)
+      NotificationMailer.send_mail(@sell_item.buyer, @sell_item).deliver_now
       redirect_to sell_items_order_complete_path(params[:id])
     else
        不正な遷移

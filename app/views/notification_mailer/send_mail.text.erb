@@ -1,0 +1,17 @@
+<%= @user.nickname %>様
+
+ご購入いただいた内容は以下の通りです。
+
+====================
+商品名：<%= @sell_item.name %>
+ブランド名:<%= @sell_item.item.brand.name %>
+価格：<%= @sell_item.order_price %>円
+====================
+
+_________________________________
+入金方法：<%= @sell_item.payment_method_i18n %>
+ご請求額：<%= @sell_item.order_price %>円
+ご確認の上、ご入金お願いいたします。
+_________________________________
+
+minimum より
