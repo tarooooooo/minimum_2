@@ -100,6 +100,7 @@ class Public::SellItemsController < ApplicationController
       # 通知機能の記述
       @sell_item.create_notification_buy!(current_user)
       NotificationMailer.send_mail(@sell_item.buyer, @sell_item).deliver_now
+      NotificationMailer.seller_send_mail(@sell_item.seller, @sell_item).deliver_now
       redirect_to sell_items_order_complete_path(params[:id])
     else
        不正な遷移

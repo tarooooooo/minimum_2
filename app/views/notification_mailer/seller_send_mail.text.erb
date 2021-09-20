@@ -1,0 +1,18 @@
+<%= @seller.nickname %>様
+
+<%= @sell_item.name %>が、<%= @sell_item.buyer.nickname %>さんに購入されました。
+
+====================
+商品名：<%= @sell_item.name %>
+ブランド名:<%= @sell_item.item.brand.name %>
+価格：<%= @sell_item.order_price %>円
+====================
+
+====================
+配送先：〒<%= @sell_item.buyer.postal_code %>
+        <%= @sell_item.buyer.address %>
+====================
+
+入金確認後、発送お願いいたします。
+
+minimum より
