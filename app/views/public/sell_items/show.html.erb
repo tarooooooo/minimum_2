@@ -13,7 +13,14 @@
 
       <table class="table table-hover table-inverse">
         <tbody>
-          <tr><td>出品者</td><td><%= @sell_item.seller.nickname %></td></tr>
+          <tr>
+            <td>出品者</td>
+            <td>
+              <%= link_to user_path(@sell_item.seller_id) do %>
+                <%= @sell_item.seller.nickname %>
+              <% end %>
+            </td>
+          </tr>
           <tr><td>アイテム名</td><td><%= @sell_item.name%></td></tr>
           <tr><td>価格</td><td><%= @sell_item.order_price %></td></tr>
           <tr><td>アイテム説明</td><td><%= @sell_item.introduction %></td></tr>

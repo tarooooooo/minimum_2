@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_20_065307) do
+ActiveRecord::Schema.define(version: 2021_09_21_031141) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -65,6 +65,15 @@ ActiveRecord::Schema.define(version: 2021_09_20_065307) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "entries", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_entries_on_room_id"
+    t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "color_id", null: false
@@ -95,6 +104,16 @@ ActiveRecord::Schema.define(version: 2021_09_20_065307) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.integer "visitor_id", null: false
     t.integer "visited_id", null: false
@@ -106,6 +125,11 @@ ActiveRecord::Schema.define(version: 2021_09_20_065307) do
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_notifications_on_comment_id"
     t.index ["sell_item_id"], name: "index_notifications_on_sell_item_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sell_item_comments", force: :cascade do |t|

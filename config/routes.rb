@@ -65,6 +65,9 @@ Rails.application.routes.draw do
   end
   resources :category_managements, module: :public, only: [:new, :edit, :create, :update, :destroy]
   resources :notifications, module: :public, only: [:index, :destroy]
+
+  resources :messages, only: [:create, :destroy], module: :public
+  resources :rooms, only: [:create, :index, :show], module: :public
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end

@@ -1,7 +1,31 @@
 class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @items = Item.where(user_id: current_user.id, item_status: "on_keep")
+    @sell_items = SellItem.where(seller_id: @user.id, order_status: "on_sell")
+    @current_sell_now = SellItem.where(seller_id: @user.id, buyer_id: current_user.id ).where( order_status: ['payment_waiting','wait_shipping','shipped'])
+    @user_sell_now = SellItem.where(seller_id: current_user.id, buyer_id: @user.id ).where( order_status: ['payment_waiting','wait_shipping','shipped'])
+    # byebug
+    # チャット機能
+    # Entryモデルからログインユーザーのレコードを抽出
+    @current_entry = Entry.where(user_id: current_user.id)
+    # Entryモデルからメッセージ相手のレコードを抽出
+    @another_entry = Entry.where(user_id: @user.id)
+    unless @user.id == current_user.id
+      @current_entry.each do |current_entry|
+        @another_entry.each do |another_entry|
+          # ルームが存在する場合
+          if current_entry.room_id == another_entry.room_id
+            @is_room = true
+            @room_id = current_entry.room_id
+          end
+        end
+      end
+      # ルームが存在しない場合は新規作成
+      unless @is_room
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
 
   def edit
@@ -26,8 +50,8 @@ class Public::UsersController < ApplicationController
   def rate
     @user = User.find(params[:id])
     @sell_items = SellItem.where(seller_id: @user.id, order_status: "close_of_trading")
-    @user_rate = SellItem.where(seller_id: @user.id).pluck(:rate)
-    @user_rate_avg = @user_rate.sum.fdiv(@user_rate.length)
+    @user_rate = SellItem.where(seller_id: @user.id, order_status: "close_of_trading" ).pluck(:rate)
+    @user_rate_avg = @user_rate.sum.fdiv(@user_rate.length).round(1)
 
   end
 
