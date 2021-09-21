@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'card/new'
+    get 'card/show'
+  end
   # 管理者routes
   namespace :admin do
     resources :sell_items, only: [:index, :show, :update]
@@ -44,6 +48,9 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     collection do
       get 'search'
+      get  'purchase/:id'=>  'items#purchase', as: 'purchase'
+      post 'pay/:id'=>   'sell_items#pay', as: 'pay'#httpメソッドはpostなので注意
+      get  'done'=>      'items#done', as: 'done'
     end
 
   end
@@ -68,6 +75,7 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:create, :destroy], module: :public
   resources :rooms, only: [:create, :index, :show], module: :public
+  resources :cards, only: [:new, :create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 end

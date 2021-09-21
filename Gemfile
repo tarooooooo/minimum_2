@@ -76,6 +76,7 @@ gem 'dotenv-rails'
 gem 'ancestry'
 gem 'chartkick'
 gem 'dotenv-rails'
+gem 'payjp'
 group :production do
   gem 'mysql2'
 end

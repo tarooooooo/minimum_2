@@ -104,6 +104,9 @@ class Public::SellItemsController < ApplicationController
       @sell_item.create_notification_buy!(current_user)
       NotificationMailer.send_mail(@sell_item.buyer, @sell_item).deliver_now
       NotificationMailer.seller_send_mail(@sell_item.seller, @sell_item).deliver_now
+      if params["payjp-token"]
+        pay
+      end
       redirect_to sell_items_order_complete_path(params[:id])
     else
        redirect_to root_path, notice: '不正な遷移は許可されていません'
@@ -154,6 +157,18 @@ class Public::SellItemsController < ApplicationController
     @sell_items += SellItem.where('name LIKE(?) and order_status LIKE(?)', "%#{keyword}%", 0)
     end
 
+  end
+
+  def pay
+    # binding.irb
+    @sell_item = SellItem.find(params[:id])
+    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    charge = Payjp::Charge.create(
+    amount: @sell_item.order_price,
+    card: params['payjp-token'],
+    currency: 'jpy',
+    metadata:{ sell_item: @sell_item.id }
+    )
   end
 
   private

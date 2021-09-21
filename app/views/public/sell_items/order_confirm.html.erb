@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col">
       <h3>注文確認</h3>
+      <%= form_with model: @sell_item, url: sell_items_order_finish_path, local: true do |f| %>
       <table class="table ">
        <tbody>
          <tr>
@@ -12,14 +13,29 @@
            <td>支払い方法</td>
            <td><%= @payment_method %></td>
          </tr>
+         <% if @payment_method == "クレジットカード" %>
+           <tr>
+             <td>クレジット登録</td>
+             <td>
+               <script
+                  type="text/javascript"
+                  src="https://checkout.pay.jp/"
+                  class="payjp-button"
+                  data-key="<%= ENV['PAYJP_PUBLIC_KEY'] %>"
+                  data-partial="true"
+                ></script>
+             </td>
+           </tr>
+         <% end %>
          <tr>
            <td>&nbsp;</td>
            <td>
-             <%= link_to '注文確定', sell_items_order_finish_path, method: :patch, class:"btn btn-warning" %>
+             <%= f.submit '注文確定', class:"btn btn-warning" %>
            </td>
          </tr>
        </tbody>
       </table>
+      <% end %>
     </div>
   </div>
 </div>
