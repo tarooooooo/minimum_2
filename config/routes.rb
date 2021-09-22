@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     member do
       get :rate
       get :likes
+      get :detail
     end
   end
   resources :category_managements, module: :public, only: [:new, :edit, :create, :update, :destroy]

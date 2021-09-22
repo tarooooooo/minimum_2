@@ -17,12 +17,22 @@ class Public::ChartsController < ApplicationController
     # カテゴリー別のアイテムの空の配列
     @category_color_codes = []
     # 廃棄アイテムのカラーコードの配列を作成
+    # @items.each do |item|
+    #   @color_codes.push(item.color.color_code)
+    #   byebug
+    # end
+
     @items.each do |item|
-      @color_codes.push(item.color.color_code)
+      color = Color.find_by(name: item.color.name)
+      # 色の名前からカラーコードを取るため
+      @color_codes.push(color.color_code)
     end
+    @color_codes.uniq!
 
     # group の引数がストリングの場合(Sqlite / MySQL)のそのままのtablenameを指定する
     @chartkick_items = @items.joins(:color).group('colors.name').count
+    @chartkick_items = @chartkick_items.sort.to_h
+
     @chartkick_brands_items = @items.joins(:brand).group('brands.name').count
 
     from_0_to_1000      = []
@@ -56,7 +66,6 @@ class Public::ChartsController < ApplicationController
       # 後置if/unless
       # @chartkick_items.store(color_name, 0) unless @chartkick_items.include?(color_name)
     # end
-    @chartkick_items = @chartkick_items.sort
     # @chartkick_items = [['black', 12],['white',0],['yellow', 5]]
     # @categories = @items.joins(:category).group('categories.id').pluck("categories.id","categories.name")
     @categories = @items.joins(:category).group('categories.id').select("categories.id","categories.name")

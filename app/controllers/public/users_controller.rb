@@ -26,6 +26,11 @@ class Public::UsersController < ApplicationController
         @entry = Entry.new
       end
     end
+
+    # 評価の表示
+    @sell_items = SellItem.where(seller_id: @user.id, order_status: "close_of_trading")
+    @user_rate = SellItem.where(seller_id: @user.id, order_status: "close_of_trading" ).pluck(:rate)
+    @user_rate_avg = @user_rate.sum.fdiv(@user_rate.length).round(1)
   end
 
   def edit
@@ -38,7 +43,7 @@ class Public::UsersController < ApplicationController
   def update
     user = current_user
     if user.update(user_params)
-      redirect_to(user_path(current_user))
+      redirect_to(detail_user_path(current_user))
     end
   end
 
@@ -49,10 +54,13 @@ class Public::UsersController < ApplicationController
 
   def rate
     @user = User.find(params[:id])
-    @sell_items = SellItem.where(seller_id: @user.id, order_status: "close_of_trading")
+    @sell_items = SellItem.where(seller_id: @user.id, order_status: "close_of_trading").sort.reverse
     @user_rate = SellItem.where(seller_id: @user.id, order_status: "close_of_trading" ).pluck(:rate)
     @user_rate_avg = @user_rate.sum.fdiv(@user_rate.length).round(1)
 
+  end
+
+  def detail
   end
 
   def withdraw
