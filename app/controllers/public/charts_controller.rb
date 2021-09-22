@@ -16,24 +16,19 @@ class Public::ChartsController < ApplicationController
     @chartkick_category_items = []
     # カテゴリー別のアイテムの空の配列
     @category_color_codes = []
-    # 廃棄アイテムのカラーコードの配列を作成
-    # @items.each do |item|
-    #   @color_codes.push(item.color.color_code)
-    #   byebug
-    # end
-
-    @items.each do |item|
-      color = Color.find_by(name: item.color.name)
-      # 色の名前からカラーコードを取るため
-      @color_codes.push(color.color_code)
-    end
-    @color_codes.uniq!
 
     # group の引数がストリングの場合(Sqlite / MySQL)のそのままのtablenameを指定する
-    @chartkick_items = @items.joins(:color).group('colors.name').count
-    @chartkick_items = @chartkick_items.sort.to_h
+    @chartkick_items = @items.joins(:color).order('count_all desc').group('colors.name').count
 
-    @chartkick_brands_items = @items.joins(:brand).group('brands.name').count
+    @chartkick_items.each_key { |key|
+      color = Color.find_by(name: key)
+      # 色の名前からカラーコードを取るため
+      @color_codes.push(color.color_code)
+    }
+
+    # @chartkick_items = @chartkick_items.sort.to_h
+    # byebug
+    @chartkick_brands_items = @items.joins(:brand).order('count_all desc').group('brands.name').count
 
     from_0_to_1000      = []
     from_1001_to_3000   = []
@@ -60,7 +55,7 @@ class Public::ChartsController < ApplicationController
                                   '20001~30000円': from_20001_to_30000.size,
                                   '30000円~': over_30001.size
                                   }
-
+   @chartkick_items_by_price = @chartkick_items_by_price.sort_by{|key,val| -val}
     # color code をDBに入れられれば以下の処理は不要
     # Color.all.map(&:name).each do |color_name|
       # 後置if/unless
@@ -124,6 +119,11 @@ class Public::ChartsController < ApplicationController
       # 色の名前からカラーコードを取るため
        @category_color_codes[category.id].push(color.color_code)
        end
+
+      # valueの降順にする
+      @chartkick_category_items_by_price[category.id] =  @chartkick_category_items_by_price[category.id].sort_by{|key,val| -val}
+      @chartkick_category_items[category.id] =  @chartkick_category_items[category.id].sort_by{|key,val| -val}
+      @chartkick_brand_items[category.id] = @chartkick_brand_items[category.id].sort_by{|key,val| -val}
     end
 
   end
