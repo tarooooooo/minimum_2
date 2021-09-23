@@ -47,7 +47,8 @@ Rails.application.routes.draw do
     resource :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     collection do
-      get 'search'
+      get  'shop_top'
+      get  'search'
       get  'purchase/:id'=>  'items#purchase', as: 'purchase'
       post 'pay/:id'=>   'sell_items#pay', as: 'pay'#httpメソッドはpostなので注意
       get  'done'=>      'items#done', as: 'done'
@@ -59,9 +60,14 @@ Rails.application.routes.draw do
     get 'sell_item/new', to: 'sell_items#new'
     member do
       patch 'wear_today_update'
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
     end
     collection do
       get 'wear_today_new'
+
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
     end
   end
   resources :users, module: :public, only: [:edit,:show,:index,:update,:unsubscribe,:withdraw] do

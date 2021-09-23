@@ -1,5 +1,9 @@
 class Public::SellItemsController < ApplicationController
 
+  def shop_top
+     @sell_items = SellItem.where(order_status: "on_sell").order(created_at: :desc)
+  end
+
   def myitems_by_sell
     @sell_items = SellItem.where(seller_id: current_user.id)
   end

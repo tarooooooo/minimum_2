@@ -18,8 +18,12 @@ class Item < ApplicationRecord
   belongs_to :user
   belongs_to :color
   belongs_to :brand
-  belongs_to :category
   has_one :sell_item
+
+  belongs_to :category
+
+  # has_many :item_categories, dependent: :destroy
+  # has_many :categories, through: :item_categories
 
   enum item_status: {
     on_keep:   0,

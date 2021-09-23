@@ -17,6 +17,20 @@
             <tr>
               <td>カテゴリー</td>
               <td><%= f.collection_select :category_id, Category.all, :id, :name, { include_blank: '選択してください'}, { class: 'form-control' , required: true }  %></td>
+              <!--<td>-->
+              <!--  <div class="listing-form-box">-->
+              <!--    <div class="listing-product-detail__category">-->
+              <!--      <%#= f.label 'カテゴリー', class: 'listing-default__label' %>-->
+              <!--      <span class ="listing-default--require"></span>-->
+              <!--      <div class="listing-select-wrapper">-->
+              <!--        <div class="listing-select-wrapper__box">-->
+              <!--          <%#= f.select :category, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'} %>-->
+              <!--          <i class="fas fa-chevron-down listing-select-wrapper__box--arrow-down"></i>-->
+              <!--        </div>-->
+              <!--      </div>-->
+              <!--    </div>-->
+              <!--  </div>-->
+              <!--</td>-->
             </tr>
             <tr>
               <td>カラー</td>

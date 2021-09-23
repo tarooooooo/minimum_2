@@ -5,46 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Category.create!(name: "Tシャツ（半袖）")
-Category.create!(name: "Tシャツ（長袖）")
-Category.create!(name: "アウター（春秋用）")
-Category.create!(name: "アウター（冬用）")
-Category.create!(name: "ボトムス（夏）")
-Category.create!(name: "ボトムス（冬）")
+#親カテゴリ
+lady = Category.create(name: "レディース")
 
-Color.create!(name: "黒",color_code: "#000000")
-Color.create!(name: "白",color_code: "#f5f5f5")
-Color.create!(name: "緑",color_code: "#3cd371")
-Color.create!(name: "青",color_code: "#6295ed")
-Color.create!(name: "赤",color_code: "#ff6347")
+#子カテゴリー
+lady_1 = lady.children.create(name: "トップス")
 
-Brand.create!(name: "BEAMS")
-Brand.create!(name: "UNITED ARROWS")
-Brand.create!(name: "SHIPS")
-Brand.create!(name: "UNIQLO")
-Brand.create!(name: "GU")
+#孫カテゴリー
+lady_1.children.create([{name: "Tシャツ/カットソー(半袖/袖なし)"},{name: "Tシャツ/カットソー(七分/長袖)"},{name: "シャツ/ブラウス(半袖/袖なし)"},{name: "シャツ/ブラウス(七分/長袖)"},{name: "ポロシャツ"},{name: "キャミソール"},{name: "タンクトップ"},{name: "ホルターネック"},{name: "ニット/セーター"},{name: "チュニック"},{name: "カーディガン/ボレロ"},{name: "アンサンブル"},{name: "ベスト/ジレ"},{name: "パーカー"},{name: "トレーナー/スウェット"},{name: "ベアトップ/チューブトップ"},{name: "ジャージ"},{name: "その他"}])
 
-Item.create!(user_id: 1,
-             color_id: 4,
-             brand_id: 1,
-             category_id: 1,
-             price: "1000",
-             purchase_date: Date.today - 3.months,
-             size: 1,
-             name: "テスト",
-             item_image_id: "a",
-             item_status: "discarded"
-             )
 
-Item.create!(user_id: 1,
-             color_id: 1,
-             brand_id: 1,
-             category_id: 2,
-             price: "1000",
-             purchase_date: Date.today - 2.months,
-             size: 1,
-             name: "テスト",
-             item_image_id: "a",
-             item_status: "discarded"
-             )
 

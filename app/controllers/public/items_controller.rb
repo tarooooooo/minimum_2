@@ -95,15 +95,22 @@ class Public::ItemsController < ApplicationController
   end
 
   def get_category_children
-    #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
-    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+    respond_to do |format| 
+      format.html
+      format.json do
+        @children = Category.find(params[:parent_id], ancestry: nil).children
+      end
+    end
   end
-
-   # 子カテゴリーが選択された後に動くアクション
   def get_category_grandchildren
-    @category_grandchildren = Category.find("#{params[:child_id]}").children
+    respond_to do |format| 
+      format.html
+      format.json do
+        @grandchildren = Category.find("#{params[:child_id]}").children
+      end
+    end
   end
-
+  
   private
 
   def item_params

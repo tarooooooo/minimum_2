@@ -1,0 +1,61 @@
+<div class="container-fulid">
+  <div class="row">
+    <div class="col px-0">
+      <div class="sell_item_top_box">
+        <div class="search-text input-group justify-content-center">
+          <h4>新しい出会いを探しましょう！</h4>
+        </div>
+        <div class="search input-group justify-content-center align-items-center">
+          <%= form_with url: search_sell_items_path,class:"d-flex", method: :get, local: true do |f| %>
+            <%= f.text_field :keyword, value: @keyword, class:"form form-control", placeholder:"アイテム名で検索できます。" %>
+            <span class="input-group-btn">
+              <%= button_tag type: 'submit', class: 'btn btn-default' do %>
+              <i class="fas fa-search"></i>
+              <% end %>
+            </span>
+          <% end %>
+        </div>
+        <div class="sell_item_index_image"></div>
+      </div>
+    </div>
+  </div>
+  <div class="box">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-md-12 col-sm-12">
+        <div class="sell_items_title py-3">
+          <h4 class="text-center">
+            <span class ="user-thin">
+              New Items
+            </span>
+          </h4>
+          <div class="sell_items_path text-right">
+            <%= link_to "> すべての商品", sell_items_path, class:"small justify-content-right"  %>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+           <% @sell_items.each do |sell_item| %>
+            <div class="col px-1 flex-grow-0">
+              <div class="card mx-1 my-1 border-0", style="width: 15rem">
+                <%= link_to sell_item_path(sell_item) do %>
+                  <%= attachment_image_tag sell_item.item, :item_image, :fill, 400, 400, format: 'jpeg', style: "width: 15rem;" %>
+                  <div class="card-body p-1">
+
+                    <p class="card-text m-0">
+                      <%= sell_item.name %>
+                    </p>
+                    <p class ="card-text m-0">
+                      <%= sell_item.order_price %> yen
+                    </p>
+                    <% unless sell_item.order_status == "on_sell" %>
+                      <p>売却済み</p>
+                    <% end %>
+                 </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

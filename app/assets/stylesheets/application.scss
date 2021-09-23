@@ -17,6 +17,14 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+body{
+  color: #2b2b2b;
+  font-weight: 200;
+}
+
+a {color: #2f5864;}
+a:hover {color: #2f5864;}
+// skipprの記述
 #box{
   height: 800px;
 }
@@ -179,4 +187,39 @@
   width: 24px;
   height: 24px;
   transform: rotate(45deg);
+}
+
+// ショップトップ
+.sell_item_index_image{
+  background-image: image-url('tshats-head.png');
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // background-attachment: fixed;
+  height: 400px;
+  width: 100%;
+  max-width: 100%;
+
+}
+
+
+
+
+
+
+.search{
+  position: absolute;
+  top: 60%;
+  z-index: 9999;
+}
+
+.search-text{
+  position: absolute;
+  top: 50%;
+  color: #778899;
+  z-index: 9999;
+}
+
+.user-thin{
+  color: #778899;
 }
