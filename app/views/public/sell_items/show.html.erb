@@ -1,45 +1,69 @@
-<div class="product-title">
-  <h2 class ="mb-5">商品詳細</h2>
-</div>
 <div class="container pb-5">
-  <div class="row mt-5">
-    <div class="col-lg-6 col-md-10 col-sm-10 zoomInText">
-      <%= attachment_image_tag @sell_item.item, :item_image, :fill, 550, 400, format: 'jpeg' %>
-      <p>コメント件数：<%= @sell_item.comments.count %></p>
-
-      <div id="likes_buttons_<%= @sell_item.id %>">
-        <%= render 'public/likes/like', sell_item: @sell_item %>
+  <div class="row mt-5 justify-content-center">
+    <div class="col-lg-5 col-md-10 col-sm-10 text-center">
+      <%= attachment_image_tag @sell_item.item, :item_image, :fill, 450, 450, format: 'jpeg' %>
+      <div class="comment_like d-flex">
+        <p>
+          コメント：<%= @sell_item.comments.count %>件
+          ｜
+          お気に入り：
+        </p>
+        <div id="likes_buttons_<%= @sell_item.id %>">
+          <%= render 'public/likes/like', sell_item: @sell_item %>
+        </div>
       </div>
-
-      <table class="table table-hover table-inverse">
+    </div>
+    <div class="col-lg-5 col-md-10 col-sm-10">
+      <div class="sell_item_box">
+        <div class="sell_item_name_brand border-bottom">
+          <p class="sell_item_name"><%= @sell_item.name%></p>
+          <p class="sell_item_brand"><%= @sell_item.item.brand.name %></p>
+        </div>
+        <div class="sell_item_price_box d-flex">
+          <p class="mr-5 align-items-center">価格</p>
+          <p><span class="sell_item_price"><%= @sell_item.order_price %></span> yen -</p>
+        </div>
+        <div class="sell_item_btn_box">
+          <div class="user-show-btn-box">
+            <%= link_to '購入', sell_items_order_new_path(@sell_item), class:"btn btn-purchase w-100" if @sell_item.order_status == "on_sell" && @sell_item.seller_id != current_user.id %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+      <div class="sell_item_content py-5">
+        <p>商品説明</p>
+        <p>
+          <%= @sell_item.introduction %>
+        </p>
+      </div>
+      <table class="table table-hover border sell_item_table">
         <tbody>
           <tr>
-            <td>出品者</td>
+            <th>出品者</th>
             <td>
               <%= link_to user_path(@sell_item.seller_id) do %>
                 <%= @sell_item.seller.nickname %>
               <% end %>
             </td>
           </tr>
-          <tr><td>アイテム名</td><td><%= @sell_item.name%></td></tr>
-          <tr><td>価格</td><td><%= @sell_item.order_price %></td></tr>
-          <tr><td>アイテム説明</td><td><%= @sell_item.introduction %></td></tr>
-          <tr><td>カテゴリー</td><td><%= @sell_item.item.category.name%></td></tr>
-          <tr><td>カラー</td><td><%= @sell_item.item.color.name%></td></tr>
-          <tr><td>ブランド</td><td><%= @sell_item.item.brand.name %></td></tr>
-          <tr><td>購入時価格</td><td><%= @sell_item.item.price %>円</td></tr>
-          <tr><td>購入日</td><td><%= @sell_item.item.purchase_date.strftime("%Y年 %m月 %d日") %></td></tr>
-          <tr><td>サイズ</td><td><%= @sell_item.item.size %></td></tr>
-          <tr><td>配送料の負担</td><td><%= @sell_item.delivery_charged_i18n %></td></tr>
-          <tr><td>配送の方法</td><td><%= @sell_item.delivery_way_i18n %></td></tr>
-          <tr><td>発送までの日数</td><td><%= @sell_item.delivery_days_i18n %></td></tr>
+          <tr><th>カテゴリー</th><td><%= @sell_item.item.category.name%></td></tr>
+          <tr><th>カラー</th><td><%= @sell_item.item.color.name%></td></tr>
+          <tr><th>ブランド</th><td><%= @sell_item.item.brand.name %></td></tr>
+          <tr><th>購入時価格</th><td><%= @sell_item.item.price %>円</td></tr>
+          <tr><th>購入日</th><td><%= @sell_item.item.purchase_date.strftime("%Y年 %m月 %d日") %></td></tr>
+          <tr><th>サイズ</th><td><%= @sell_item.item.size %></td></tr>
+          <tr><th>配送料の負担</th><td><%= @sell_item.delivery_charged_i18n %></td></tr>
+          <tr><th>配送の方法</th><td><%= @sell_item.delivery_way_i18n %></td></tr>
+          <tr><th>発送までの日数</th><td><%= @sell_item.delivery_days_i18n %></td></tr>
           <tr>
+            <th>販売状況</th>
             <td>
               <%= @sell_item.order_status_i18n %>
-            </td>
-            <td>
               <% if @sell_item.order_status == "payment_waiting" && @sell_item.buyer_id == current_user.id %>
-               <p>入金してください。</p>
+                入金してください。
               <% end %>
             </td>
           </tr>
@@ -49,7 +73,6 @@
       <div class="btn_box">
         <%= link_to '編集', edit_sell_item_path(@sell_item.id), class: "btn btn-success" if @sell_item.seller_id == current_user.id %>
         <%= link_to '削除', sell_item_path(@sell_item.id), method: :delete, class: "btn btn-danger" if @sell_item.seller_id == current_user.id %>
-        <%= link_to '購入', sell_items_order_new_path(@sell_item), class:"btn btn-secondary" if @sell_item.order_status == "on_sell" && @sell_item.seller_id != current_user.id %>
         <% if @sell_item.order_status == "wait_shipping" && @sell_item.seller_id == current_user.id %>
           <%= link_to '発送', order_status_update_path(@sell_item, order_status: "shipped"), method: :patch, class:"btn" ,data: {confirm: "発送しましたか？"}  %>
         <% end %>
@@ -59,9 +82,7 @@
 
       </div>
 
-
-      <h2>コメント一覧</h2>
-      <div class="comments_index">
+      <div class="comments_index border">
         <div id='comments_area'>
           <%= render partial: 'public/comments/index', locals: { comments: @comments, sell_item: @sell_item } %>
         </div>
@@ -69,23 +90,6 @@
       <% if user_signed_in? %>
         <%= render partial: 'public/comments/form', locals: { comment: @comment, sell_item: @sell_item } %>
       <% end %>
-
     </div>
   </div>
 </div>
-
-
-<div id="star-rate-<%= @sell_item.id %>"></div>
-<script>
-  // 繰り返し処理でもidをidを一意にできるようにnote_idを入れる
-$('#star-rate-<%= @sell_item.id %>').raty({
-  size: 36,
-  starOff:  '<%= asset_path('star-off.png') %>',
-  starOn : '<%= asset_path('star-on.png') %>',
-  starHalf: '<%= asset_path('star-half.png') %>',
-  half: true,
-  // 読み込みだけで入力できない
-  readOnly: true,
-  score: <%= @sell_item.rate %>,
- });
-</script>

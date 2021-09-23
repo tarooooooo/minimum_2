@@ -1,58 +1,47 @@
-<% if flash[:error] %>
-  <div class='alert-danger' >
-   <%= flash[:error]  %>
-  </div>
-<% end %>
-
- <h2>
-  <strong>
-  <%= @another_entry.user.nickname%>さんとのチャット
-  </strong>
-</h2>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th> 送信者 </th>
-            <th>メッセージ</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @room.messages.each do |message| %>
-         <tr>
-             <td>
-                 <%= link_to user_path(message.user) do %>
-                 <%= message.user.nickname %>
-                 <% end %>
-             </td>
-             <td>
-                 <%= message.body %>
-             </td>
-             <td>
-                 <% if message.user == current_user %>
-                     <%= link_to "削除" ,message_path(message),method: :delete, data: { confirm: '本当に削除してもよろしいですか？' }, class: 'btn-sm btn-danger' %>
-                 <% end %>
-             </td>
-         </tr>
-        <% end %>
-    </tbody>
-</table>
-
-<div class="row">
-   <div class="col-md-3">
+<div class="container">
+  <% if flash[:error] %>
+    <div class='alert-danger' >
+     <%= flash[:error]  %>
+    </div>
+  <% end %>
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-8 col-sm-12">
+      <div id="chats">
+        <% @room.messages.each do |message|%>
+          <%if message.user_id==current_user.id %>
+            <div class="mycomment">
+              <p><%= message.body %></p>
+            </div>
+          <%else%>
+            <div class="fukidasi">
+              <div class="faceicon">
+                <%= attachment_image_tag message.user, :icon_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle mb-3" %>
+              </div>
+              <div class="chatting">
+                <div class="says">
+                  <div class ="font-weight-bold d-flex">
+                    <%= message.user.nickname %>
+                  </div>
+                  <p><%= message.body %></p>
+                </div>
+              </div>
+            </div>
+          <%end%>
+        <%end%>
+      </div>
+      <div class="message-form">
         <%= form_with model: @message, url: messages_path, local: true do |f| %>
-        <div class="form-group">
-            <%= f.text_field :body , class: 'form-control'%>
-        </div>
-        <div class="form-group">
-            <%= f.hidden_field :room_id , value: @room.id %>
-        </div>
-        <div class="form-group">
-            <%= f.submit "送信", class: 'btn btn-info btn-block' %>
-        </div>
+          <div class="form-group">
+              <%= f.text_field :body , class: 'form-control w-100'%>
+          </div>
+          <div class="form-group">
+              <%= f.hidden_field :room_id , value: @room.id %>
+          </div>
+          <div class="form-group">
+              <%= f.submit "送信", class: 'btn btn-info btn-block w-100' %>
+          </div>
         <% end %>
-
-   </div>
-
+      </div>
+    </div>
+  </div>
 </div>

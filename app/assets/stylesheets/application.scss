@@ -20,10 +20,21 @@
 body{
   color: #2b2b2b;
   font-weight: 200;
+  font-family: 'Meiryo';
+
 }
 
 a {color: #2f5864;}
 a:hover {color: #2f5864;}
+
+.btn {
+  border-radius: 0;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
 // skipprの記述
 #box{
   height: 800px;
@@ -162,7 +173,7 @@ a:hover {color: #2f5864;}
   padding: 8px;
   max-width: 250px;
   border-radius: 12px;
-  background: #30e852;
+  background: #edf1ee;
   font-size: 15px;
 }
 .mycomment p:after {
@@ -171,7 +182,7 @@ a:hover {color: #2f5864;}
   top: 3px;
   right: -19px;
   border: 8px solid transparent;
-  border-left: 18px solid #30e852;
+  border-left: 18px solid #edf1ee;
   -webkit-transform: rotate(-35deg);
   transform: rotate(-35deg);
 }
@@ -202,11 +213,7 @@ a:hover {color: #2f5864;}
 
 }
 
-
-
-
-
-
+// 検索
 .search{
   position: absolute;
   top: 60%;
@@ -223,3 +230,70 @@ a:hover {color: #2f5864;}
 .user-thin{
   color: #778899;
 }
+
+// 商品詳細
+.sell_item_name{
+  font-size: 30px;
+  line-height: 1.4;
+}
+
+.sell_item_brand{
+  font-size: 16px;
+  color: #2f5864;
+}
+
+.sell_item_price_box{
+  align-items: center;
+  margin: 20px 0;
+}
+.sell_item_price{
+  font-size: 30px;
+}
+
+.btn-purchase{
+  height: 60px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+a.btn-purchase {
+  border-radius: 0;
+  background: #2f5864;;
+  color: white;
+}
+
+a.btn-purchase:hover {
+  opacity: 0.9 ;
+  color: white;
+}
+
+.sell_item_box{
+  margin-left: 50px;
+  width: 100%;
+}
+
+@media (max-width: 1023px){
+  .sell_item_box {
+    margin-left: 0;
+    padding: 25px;
+    box-sizing: border-box;
+  }
+  .comment_like{
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1023px){
+  .comment_like{
+    justify-content: center;
+  }
+}
+
+// 商品詳細テーブル
+.sell_item_table th{
+  width: 39%;
+  text-align: left;
+  font-weight: 400;
+  background: #fafafa;
+}
+
