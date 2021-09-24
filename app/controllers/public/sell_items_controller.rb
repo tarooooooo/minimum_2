@@ -164,7 +164,6 @@ class Public::SellItemsController < ApplicationController
   end
 
   def pay
-    # binding.irb
     @sell_item = SellItem.find(params[:id])
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     charge = Payjp::Charge.create(

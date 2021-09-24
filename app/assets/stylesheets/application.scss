@@ -17,6 +17,13 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+// sign-up
+.image-btn{
+  text-align: center;
+  width: 35%;
+  margin: 10px auto;
+}
+
 body{
   color: #2b2b2b;
   font-weight: 200;
@@ -258,7 +265,7 @@ a:hover {color: #2f5864;}
 
 a.btn-purchase {
   border-radius: 0;
-  background: #2f5864;;
+  background: #2f5864;
   color: white;
 }
 
@@ -297,3 +304,100 @@ a.btn-purchase:hover {
   background: #fafafa;
 }
 
+// 購入後のボタン
+.btn.is-disable {
+  background: #ebebeb;
+  color: #888;
+}
+
+.order-confirm-btn{
+  background: #ebebeb;
+  color: #888;
+}
+
+.order-new-title{
+  color: #778899;
+}
+
+// 注文確定
+.order-finish-table th{
+  background: #ebebeb;
+}
+
+// today-clothe
+.card-img{
+  position: relative;
+}
+
+.card-img span {/*aタグを画像の真ん中に*/
+  background-color: black;
+  opacity: 0.4;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  /*以下装飾*/
+  margin:0;/*余計な隙間を除く*/
+  font-size: 20px;/*文字サイズ*/
+  border: solid white 2px; /*線で囲う*/
+  padding: 7px;/*文字と線の間の余白*/
+  color: white;/*文字色*/
+  text-decoration: none;/*下線を表示させない*/
+  }
+
+.card-img span:hover{/*カーソルを当てたとき*/
+  background: rgba(255, 255, 255, 0.3);/*背景を半透明に*/
+  }
+
+.t-shats-icon{
+  color: white;
+  z-index: 9999;
+}
+
+.category-name{
+  color: #2f5864;
+  display: inline-block;
+  border-bottom: solid 1px #2f5864;
+}
+
+.clothes{
+  background-image: image-url('clothes.png');
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // background-attachment: fixed;
+  height: 400px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.clothes-text{
+  z-index: 9999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  /*以下装飾*/
+  margin:0;/*余計な隙間を除く*/
+  font-size: 20px;/*文字サイズ*/
+  border: solid white 2px; /*線で囲う*/
+  padding: 7px;/*文字と線の間の余白*/
+  color: white;/*文字色*/
+  text-decoration: none;/*下線を表示させない*/
+}
+
+.clothes::before{
+  /* 透過した黒を上から重ねるイメージ */
+  background-color: rgba(0,0,0,0.4);
+  /* 自由に位置指定 */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: ' ';
+}

@@ -1,8 +1,23 @@
-<div class="col">
-  <div class="row">
-    <div class="col">
-      <h3>ご注文が確定しました。</h3>
-      
+<div class="container">
+  <div class="row justify-content-center pt-5">
+    <div class="col-lg-10 col-md-12 col-sm-12">
+      <h3 class="text-center">ご注文が確定しました！</h3>
+      <p class ="text-center py-5">注文詳細情報を登録メールに送信しておりますので、ご確認お願い致します。</p>
+      <table class="table order-finish-table border">
+        <tbody>
+          <tr>
+            <th>商品代金</th>
+            <td><%= @sell_item.order_price %>円</td>
+          </tr>
+          <tr>
+            <th>支払い方法</th>
+            <td><%= @sell_item.payment_method_i18n %></td>
+          </tr>
+          <tr><th>配送料の負担</th><td><%= @sell_item.delivery_charged_i18n %></td></tr>
+          <tr><th>配送の方法</th><td><%= @sell_item.delivery_way_i18n %></td></tr>
+          <tr><th>発送までの日数</th><td><%= @sell_item.delivery_days_i18n %></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

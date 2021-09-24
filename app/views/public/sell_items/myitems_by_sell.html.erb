@@ -1,52 +1,43 @@
-<div class="container">
-  <div class="row">
-    <div class="col"><%= link_to "出品中", myitems_by_order_status_path(order_status: "on_sell") %></div>
-    <div class="col"><%= link_to "取引中", myitems_by_order_status_path(order_status: "now_trading_by_sell") %></div>
-    <div class="col"><%= link_to "売却済", myitems_by_order_status_path(order_status: "close_of_trading_by_sell") %></div>
-  </div>
-</div>
+<div class="container box">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-md-12 col-sm-12">
+      <div class="sell_items_title py-3">
+        <h4 class="text-center">
+          <span class ="user-thin">
+            Sell MyItems
+          </span>
+        </h4>
+        <div class="text-center">
+          <%= link_to "出品中", myitems_by_order_status_path(order_status: "on_sell") %>
+          <%= link_to "取引中", myitems_by_order_status_path(order_status: "now_trading_by_sell") %>
+          <%= link_to "売却済", myitems_by_order_status_path(order_status: "close_of_trading_by_sell") %>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+         <% @sell_items.each do |sell_item| %>
+          <div class="col px-1 flex-grow-0">
+            <div class="card mx-1 my-1 border-0", style="width: 15rem">
+              <%= link_to sell_item_path(sell_item) do %>
+                <%= attachment_image_tag sell_item.item, :item_image, :fill, 400, 400, format: 'jpeg', style: "width: 15rem;" %>
+                <div class="card-body p-1">
 
- <div class="row">
-    <div class="col">
-      <table class ="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th></th>
-            <th>アイテム名</th>
-            <th>ブランド名</th>
-            <th>取引ステータス</th>
-          </tr>
-        </thead>
-  
-        
-        <% @sell_items.each do |sell_item| %>
-        <tbody>
-          <tr>
-  
-           <td>
-             <%=link_to sell_item_path(sell_item.id) do %>
-             <%= attachment_image_tag sell_item, :sell_item_image, format: 'jpeg', fallback: "no_image.jpg" ,size: "40x40"%>
-             <% end %>
-           </td>
-  
-           <td>
-             <%=link_to sell_item_path(sell_item.id) do %>
-             <%= sell_item.name %>
-             <% end %>
-           </td>
-  
-           <td>
-             <%= sell_item.item.brand.name %>
-           </td>
-  
-           <td>
-             <%= sell_item.order_status_i18n %>
-           </td>
-  
-           </tr>
-        </tbody>
+                  <p class="card-text m-0 no-wrap">
+                    <%= sell_item.name %> : <%#= sell_item.item.brand.name %>
+                  </p>
+
+                  <p class ="card-text m-0">
+                    <%= sell_item.order_price %> yen
+                  </p>
+
+                  <p class ="card-text m-0">
+                    <%= sell_item.order_status_i18n %>
+                  </p>
+               </div>
+              <% end %>
+            </div>
+          </div>
         <% end %>
-      </table>
+      </div>
     </div>
   </div>
 </div>

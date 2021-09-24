@@ -6,7 +6,7 @@
       </div>
       <p>
         <% if comment.user == current_user %>
-          <%= link_to "削除", sell_item_comment_path(comment.sell_item.id, comment.id), method: :delete, remote: true %>
+          <%= link_to "削除", sell_item_comment_path(comment.sell_item, comment), method: :delete, remote: true %>
         <% end %>
       </p>
     <%else%>

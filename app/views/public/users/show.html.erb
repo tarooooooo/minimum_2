@@ -116,7 +116,7 @@
 
             <div class="user-sell">
               <div class="user-item-button01">
-                <% if @current_sell_now.present? || @user_sell_now.present? %>
+                <%# if @current_sell_now.present? || @user_sell_now.present? %>
                   <% unless @user.id == current_user.id %>
                     <% if @is_room == true %>
                       <p>
@@ -133,7 +133,7 @@
                       <% end %>
                     <% end %>
                   <% end %>
-                <% end %>
+                <%# end %>
               </div>
               <div class="user-item-button01">
                 <%= link_to "購入した商品", myitems_by_order_path %>

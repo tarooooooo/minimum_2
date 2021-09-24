@@ -1,10 +1,18 @@
 <div class="container">
-  <div class="row mt-5">
-    <div class="col-md-8 offset-md-1">
-      <h5>注文情報入力</h5>
+  <div class="row justify-content-center pt-5">
+    <h4 class="text-center">
+      <span class ="order-new-title border-bottom pb-1">
+         注文情報入力
+      </span>
+    </h4>
+  </div>
+  <div class="row mt-5 justify-content-center">
+    <div class="col-lg-5 col-md-10 col-sm-10 text-center">
+      <%= attachment_image_tag @sell_item.item, :item_image, :fill, 450, 450, format: 'jpeg' %>
+    </div>
+    <div class="col-lg-5 col-md-10 col-sm-10">
       <%= form_with model: @sell_item, url: sell_items_order_confirm_path, method: 'get', local: true do |f| %>
         <div class="col-lg-6 col-md-10 col-sm-10 zoomInText">
-          <%= attachment_image_tag @sell_item, :sell_item_image, :fill, 550, 400, format: 'jpeg' %>
         </div>
         <table class="table table-hover table-inverse">
           <tbody>
@@ -12,24 +20,27 @@
             <tr><td>価格</td><td><%= @sell_item.order_price.to_i %>円</td></tr>
             <tr><td>お届け先</td><td>〒<%= current_user.postal_code %><br><%= current_user.address %></td></tr>
             <tr><td>支払い方法</td>
-            <td>
-            <div>
-              <%= f.radio_button :payment_method, :credit_card %>
-              <%= f.label 'クレジットカード' %>
-            </div>
-            <div>
-              <%= f.radio_button :payment_method, :bank_transfer %>
-              <%= f.label '銀行振り込み' %>
-            </div>
-            </td>
+              <td>
+                <div>
+                  <%= f.radio_button :payment_method, :credit_card %>
+                  <%= f.label 'クレジットカード' %>
+                </div>
+                <div>
+                  <%= f.radio_button :payment_method, :bank_transfer %>
+                  <%= f.label '銀行振り込み' %>
+                </div>
+              </td>
             </tr>
             <%= f.hidden_field :order_status, :value => :wait_shipping %>
-            <tr>
-              <td><%= f.submit "確認へ" %></td>
-            </tr>
+
           </tbody>
-      </table>
-    <% end %>
+        </table>
+        <div class="sell_item_btn_box">
+          <div class="user-show-btn-box order-confirm-btn">
+            <%= f.submit "確認へ", class:"btn btn-purchase w-100" %></td>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

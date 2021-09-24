@@ -1,40 +1,48 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h3>注文確認</h3>
+  <div class="row justify-content-center pt-5">
+    <h4 class="text-center">
+      <span class ="order-new-title border-bottom pb-1">
+         注文確認
+      </span>
+    </h4>
+  </div>
+  <div class="row mt-5 justify-content-center">
+    <div class="col-lg-5 col-md-10 col-sm-10 text-center">
+      <%= attachment_image_tag @sell_item.item, :item_image, :fill, 450, 450, format: 'jpeg' %>
+    </div>
+    <div class="col-lg-5 col-md-10 col-sm-10">
       <%= form_with model: @sell_item, url: sell_items_order_finish_path, local: true do |f| %>
-      <table class="table ">
-       <tbody>
-         <tr>
-           <td>商品代金</td>
-           <td><%= @sell_item.order_price %>円</td>
-         </tr>
-         <tr>
-           <td>支払い方法</td>
-           <td><%= @payment_method %></td>
-         </tr>
-         <% if @payment_method == "クレジットカード" %>
-           <tr>
-             <td>クレジット登録</td>
-             <td>
-               <script
-                  type="text/javascript"
-                  src="https://checkout.pay.jp/"
-                  class="payjp-button"
-                  data-key="<%= ENV['PAYJP_PUBLIC_KEY'] %>"
-                  data-partial="true"
-                ></script>
-             </td>
-           </tr>
-         <% end %>
-         <tr>
-           <td>&nbsp;</td>
-           <td>
-             <%= f.submit '注文確定', class:"btn btn-warning" %>
-           </td>
-         </tr>
-       </tbody>
-      </table>
+        <table class="table ">
+          <tbody>
+            <tr>
+              <td>商品代金</td>
+              <td><%= @sell_item.order_price %>円</td>
+            </tr>
+            <tr>
+              <td>支払い方法</td>
+              <td><%= @payment_method %></td>
+            </tr>
+            <% if @payment_method == "クレジットカード" %>
+              <tr>
+                <td>クレジット登録</td>
+                <td>
+                  <script
+                    type="text/javascript"
+                    src="https://checkout.pay.jp/"
+                    class="payjp-button"
+                    data-key="<%= ENV['PAYJP_PUBLIC_KEY'] %>"
+                    data-partial="true">
+                  </script>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="sell_item_btn_box">
+          <div class="user-show-btn-box order-confirm-btn order-finish-btn">
+            <%= f.submit "注文確定", class:"btn btn-purchase w-100" %></td>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

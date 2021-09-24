@@ -1,50 +1,40 @@
-<div class="container">
-<h2>アイテム</h2>
-<%= link_to "全アイテム",items_path %>
-<%= link_to "所持アイテム", item_status_change_path(item_status: "on_keep") %>
-<%= link_to "廃棄アイテム", item_status_change_path(item_status: "discarded") %>
-<%= link_to "出品中アイテム", item_status_change_path(item_status: "on_sell") %>
-  <div class="row">
-    <div class="col">
-      <table class ="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th></th>
-            <th>アイテム名</th>
-            <th>ブランド名</th>
-            <th>購入日</th>
-          </tr>
-        </thead>
+<div class="container box">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-md-12 col-sm-12">
+      <div class="sell_items_title py-3">
+        <h4 class="text-center">
+          <span class ="user-thin">
+            My Items
+          </span>
+        </h4>
+        <div class="text-center">
+          <%= link_to "全アイテム",items_path %>
+          <%= link_to "所持アイテム", item_status_change_path(item_status: "on_keep") %>
+          <%= link_to "廃棄アイテム", item_status_change_path(item_status: "discarded") %>
+          <%= link_to "出品中", item_status_change_path(item_status: "on_sell") %>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+         <% @items.each do |item| %>
+          <div class="col px-1 flex-grow-0">
+            <div class="card mx-1 my-1 border-0", style="width: 15rem">
+              <%= link_to item_path(item) do %>
+                <%= attachment_image_tag item, :item_image, :fill, 400, 400, format: 'jpeg', style: "width: 15rem;" %>
+                <div class="card-body p-1">
 
-        <% @items.each do|item| %>
-        <tbody>
-          <tr>
+                  <p class="card-text m-0 no-wrap">
+                    <%= item.name %> : <%= item.brand.name %>
+                  </p>
 
-           <td>
-             <%=link_to item_path(item.id) do %>
-             <%= attachment_image_tag item, :item_image, format: 'jpeg', fallback: "no_image.jpg" ,size: "40x40"%>
-             <% end %>
-           </td>
-
-           <td>
-             <%=link_to item_path(item.id) do %>
-             <%= item.name %>
-             <% end %>
-           </td>
-
-           <td>
-             <%= item.brand.name %>
-           </td>
-
-           <td>
-             <%= item.purchase_date.strftime("%Y年 %m月 %d日") %>
-           </td>
-
-           </tr>
-        </tbody>
+                  <p class ="card-text m-0">
+                    <%= item.price %> yen
+                  </p>
+               </div>
+              <% end %>
+            </div>
+          </div>
         <% end %>
-      </table>
-    </div>
-
+      </div>
     </div>
   </div>
+</div>

@@ -26,6 +26,12 @@
         <div class="sell_item_btn_box">
           <div class="user-show-btn-box">
             <%= link_to '購入', sell_items_order_new_path(@sell_item), class:"btn btn-purchase w-100" if @sell_item.order_status == "on_sell" && @sell_item.seller_id != current_user.id %>
+            <% if @sell_item.order_status != "on_sell" %>
+              <div class="btn is-primary is-disable">
+                <span>SOLD OUT</span>
+              </div>
+            <% end %>
+            
           </div>
         </div>
       </div>
