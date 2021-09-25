@@ -1,98 +1,102 @@
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-md-8 offset-md-1">
-      <h2>出品編集</h2>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 p-0">
+
+      <div class="new-item-box">
+        <div class="new-item-text text-center p-2 text-center">
+          <p class="h3 m-0">Edit SellItem</p>
+          <p class="m-0">出品アイテム編集</p>
+        </div>
+        <div class="clothes-img">
+          <div class="new-item-top"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class ="row justify-content-center">
+    <div class="col-lg-6 col-md-10 col-sm-10 item-new-fields">
       <%= form_with model: @sell_item, local:true do |f| %>
 
-        <table  class="table table-borderless">
-          <tbody>
-            <tr>
-              <td>アイテム画像</td>
-              <td><%= f.attachment_field :sell_item_image, class:"form-control-file" %></td>
-            </tr>
-            <tr>
-              <td>アイテム名</td>
-              <td><%= f.text_field :name, placeholder: "アイテムの名前", class:"form-control" %></td>
-            </tr>
-             <tr>
-              <td>説明文</td>
-              <td><%= f.text_area :introduction, placeholder: "アイテムの説明", class:"form-control" %></td>
-            </tr>
-             <tr>
-              <td>出品価格</td>
-              <td><%= f.text_field :order_price, placeholder: "金額を入力", class:"form-control" %></td>
-            </tr>
-            <tr>
-              <td>配送料の負担</td>
-              <td>
-                <div>
-                  <%= f.radio_button :delivery_charged, :shipping_fee_on_shipper %>
-                  <%= f.label '送料込み（出品者負担）' %>
-                </div>
-                <div>
-                  <%= f.radio_button :delivery_charged, :shipping_fee_on_receiver %>
-                  <%= f.label '着払い（購入者負担）' %>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>配送方法の選択</td>
-              <td>
-                <div>
-                  <%= f.radio_button :delivery_way, :kuroneko_yamato %>
-                  <%= f.label 'クロネコヤマト' %>
-                </div>
-                <div>
-                  <%= f.radio_button :delivery_way, :yu_pack %>
-                  <%= f.label 'ゆうパック' %>
-                </div>
-                <div>
-                  <%= f.radio_button :delivery_way, :yu_mail %>
-                  <%= f.label 'ゆうメール' %>
-                </div>
-                <div>
-                  <%= f.radio_button :delivery_way, :letter_pack %>
-                  <%= f.label 'レターパック' %>
-                </div>
-                <div>
-                  <%= f.radio_button :delivery_way, :nomal %>
-                  <%= f.label '普通郵便' %>
-                </div>
-                <div>
-                  <%= f.radio_button :delivery_way, :clickpost %>
-                  <%= f.label 'クリックポスト' %>
-                </div>
-                <div>
-                  <%= f.radio_button :delivery_way, :yu_pack %>
-                  <%= f.label '着払い（購入者負担）' %>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>発送までの日数</td>
-              <td>
-                <div>
-                  <%= f.radio_button :delivery_days, :days1_2 %>
-                  <%= f.label '1日~2日で発送' %>
-                </div>
-                <div>
-                  <%= f.radio_button :delivery_days, :days2_3 %>
-                  <%= f.label '2日~3日で発送' %>
-                </div>
-                <div>
-                  <%= f.radio_button :delivery_days, :days4_7 %>
-                  <%= f.label '4日~7日で発送' %>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>
-                <%= f.submit '登録', class: "btn btn-success" %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="field py-3">
+          <%= f.label :アイテム画像 %><br />
+          <%= attachment_image_tag @item, :item_image, :fill, 400, 300, format: 'jpeg' %>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :アイテム名 %><br />
+          <%= f.text_field :name, placeholder: "アイテムの名前", class:"form-control" %>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :説明文 %><br />
+          <%= f.text_area :introduction, placeholder: "アイテムの説明", class:"form-control" %>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :出品価格 %><br />
+          <%= f.text_field :order_price, placeholder: "金額を入力", class:"form-control" %>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :送料負担%><br />
+          <div>
+            <%= f.radio_button :delivery_charged, :shipping_fee_on_shipper %>
+            <%= f.label '送料込み（出品者負担）' %>
+          </div>
+          <div>
+            <%= f.radio_button :delivery_charged, :shipping_fee_on_receiver %>
+            <%= f.label '着払い（購入者負担）' %>
+          </div>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :配送方法 %><br />
+          <div>
+            <%= f.radio_button :delivery_way, :kuroneko_yamato %>
+            <%= f.label 'クロネコヤマト' %>
+          </div>
+          <div>
+            <%= f.radio_button :delivery_way, :yu_pack %>
+            <%= f.label 'ゆうパック' %>
+          </div>
+          <div>
+            <%= f.radio_button :delivery_way, :yu_mail %>
+            <%= f.label 'ゆうメール' %>
+          </div>
+          <div>
+            <%= f.radio_button :delivery_way, :letter_pack %>
+            <%= f.label 'レターパック' %>
+          </div>
+          <div>
+            <%= f.radio_button :delivery_way, :normal %>
+            <%= f.label '普通郵便' %>
+          </div>
+          <div>
+            <%= f.radio_button :delivery_way, :clickpost %>
+            <%= f.label 'クリックポスト' %>
+          </div>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :配送までの日数 %><br />
+          <div>
+            <%= f.radio_button :delivery_days, :days1_2 %>
+            <%= f.label '1日~2日で発送' %>
+          </div>
+          <div>
+            <%= f.radio_button :delivery_days, :days2_3 %>
+            <%= f.label '2日~3日で発送' %>
+          </div>
+          <div>
+            <%= f.radio_button :delivery_days, :days4_7 %>
+            <%= f.label '4日~7日で発送' %>
+          </div>
+        </div>
+
+        <div class="new-item-btn py-3">
+          <%= f.submit 'Item Save!', class: "btn btn-green w-100 pt-2" %>
+        </div>
 
       <% end %>
     </div>

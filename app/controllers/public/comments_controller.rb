@@ -15,8 +15,8 @@ class Public::CommentsController < ApplicationController
   def destroy
     @comment = Comment.find_by(id: params[:id],sell_item_id: params[:sell_item_id],user_id: current_user.id)
     @sell_item = SellItem.find(params[:sell_item_id])
-    # @comments = @sell_item.comments.order(created_at: :desc)
     if @comment.destroy
+      @comments = @sell_item.comments.order(created_at: :desc)
       render :index
     else
       render 'public/sell_items/show'

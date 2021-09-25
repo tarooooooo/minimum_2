@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_23_020211) do
+ActiveRecord::Schema.define(version: 2021_09_25_080147) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -135,14 +135,12 @@ ActiveRecord::Schema.define(version: 2021_09_23_020211) do
   create_table "notifications", force: :cascade do |t|
     t.integer "visitor_id", null: false
     t.integer "visited_id", null: false
-    t.bigint "sell_item_id"
-    t.bigint "comment_id"
     t.string "action", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["comment_id"], name: "index_notifications_on_comment_id"
-    t.index ["sell_item_id"], name: "index_notifications_on_sell_item_id"
+    t.integer "comment_id"
+    t.bigint "sell_item_id"
   end
 
   create_table "rooms", force: :cascade do |t|

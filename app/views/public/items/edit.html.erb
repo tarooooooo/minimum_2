@@ -1,62 +1,80 @@
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-md-8 offset-md-1">
-      <h2>アイテム編集</h2>
+<div class="container-fulid">
+  <div class="row justify-content-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 p-0">
+
+      <div class="new-item-box">
+        <div class="new-item-text text-center p-2 text-center">
+          <p class="h3 m-0">Edit Item</p>
+          <p class="m-0">アイテム編集</p>
+        </div>
+        <div class="clothes-img">
+          <div class="new-item-top"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class ="row justify-content-center">
+    <div class="col-lg-6 col-md-10 col-sm-10 item-new-fields">
       <%= form_with model: @item, local:true do |f| %>
 
-        <table  class="table table-borderless">
-          <tbody>
-            <tr>
-              <td>アイテム画像</td>
-              <td><%= f.attachment_field :item_image, class:"form-control-file" %></td>
-            </tr>
-            <tr>
-              <td>アイテム名</td>
-              <td><%= f.text_field :name, placeholder: "アイテム名", class:"form-control"%></td>
-            </tr>
-            <tr>
-              <td>カテゴリー</td>
-              <td><%= f.collection_select :category_id, Category.all, :id, :name,{:prompt => true}, {:class => "form-control"} %></td>
-            </tr>
-            <tr>
-              <td>カラー</td>
-              <td><%= f.collection_select :color_id, Color.all, :id, :name,{:prompt => true}, {:class => "form-control"} %></td>
-            </tr>
-            <tr>
-              <td>ブランド</td>
-              <td><%= f.collection_select :brand_id, Brand.all, :id, :name,{:prompt => true}, {:class => "form-control"} %></td>
-            </tr>
-            <tr>
-              <td>購入価格</td>
-              <td class ="text-nowrap"><%= f.text_field :price, placeholder: "1000", class:"form-control mr-1",style:"display: inline" %>円</td>
-            </tr>
-            <tr>
-              <td>購入日</td>
-              <td><%= f.date_field :purchase_date %></td>
-            </tr>
-            <tr>
-              <td>サイズ</td>
-              <td><%= f.text_field :size %></td>
-            </tr>
-            <tr>
-              <td>アイテムステータス</td>
-              <td>
-                <%= f.radio_button :item_status, :on_keep %>
-                <%= f.label :所持, class: "job_type_label" %>
-                <%= f.radio_button :item_status, :discarded %>
-                <%= f.label :廃棄, class: "job_type_label" %>
-                <%= f.radio_button :item_status, :on_sell %>
-                <%= f.label :出品中, class: "job_type_label" %>
-              </td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>
-                <%= f.submit '保存', class: "btn btn-success"  %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="field py-3">
+          <%= f.label :アイテム画像 %><br />
+          <%= f.attachment_field :item_image, class:"form-control-file text-center justify-content-center" %>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :アイテム名 %><br />
+          <%= f.text_field :name, placeholder: "アイテム名", class:"form-control" %>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :カテゴリー %><br />
+          <%= f.collection_select :category_id, Category.all, :id, :name, { include_blank: '選択してください'}, { class: 'form-control' , required: true }  %>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :ブランド %><br />
+          <%= f.collection_select :brand_id, Brand.all, :id, :name, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :カラー %><br />
+          <%= f.collection_select :color_id, Color.all, :id, :name, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :購入価格 %><br />
+          <p class="text-nowrap"><%= f.text_field :price, placeholder: "1000", class:"form-control mr-1",style:"display: inline" %>円</p>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :購入日 %><br />
+          <%= f.date_field :purchase_date %>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :サイズ %><br />
+          <%= f.radio_button :size, :S %>
+          <%= f.label :S, class: "job_type_label" %>
+          <%= f.radio_button :size, :M %>
+          <%= f.label :M, class: "job_type_label" %>
+          <%= f.radio_button :size, :L %>
+          <%= f.label :L, class: "job_type_label" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :アイテムステータス %><br />
+          <%= f.radio_button :item_status, :on_keep %>
+          <%= f.label :所持, class: "job_type_label" %>
+          <%= f.radio_button :item_status, :discarded %>
+          <%= f.label :廃棄, class: "job_type_label" %>
+          <%= f.radio_button :item_status, :on_sell %>
+          <%= f.label :出品中, class: "job_type_label" %>
+        </div>
+
+        <div class="new-item-btn py-3">
+          <%= f.submit 'Item Save!', class: "btn btn-green w-100 pt-2" %>
+        </div>
 
       <% end %>
     </div>
