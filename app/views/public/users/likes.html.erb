@@ -1,13 +1,31 @@
-<div class="container">
-<h2>いいねした商品</h2>
-  <div class="row">
-    <div class="col">
-      <table class ="table table-hover table-inverse">
+<div class="container-fluid">
+
+  <div class="row justify-content-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 p-0">
+      <div class="new-item-box">
+        <div class="favorite-text text-center p-2 text-center">
+          <p class="h3 m-0">Favorite！</p>
+          <p class="m-0">お気に入りアイテム</p>
+        </div>
+        <div class="clothes-img">
+          <div class="favorite-top"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title text-center">
+    <h4 class="text-center my-5 green-title">Favorite Items</h4>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12 p-0">
+      <table class ="table table-hover table-inverse rem-table">
         <thead>
           <tr>
             <th></th>
-            <th>アイテム名</th>
-            <th>ブランド名</th>
+            <th>アイテム</th>
+            <th>ブランド</th>
             <th>価格</th>
           </tr>
         </thead>
@@ -32,7 +50,7 @@
              <%= like.sell_item.item.brand.name %>
            </td>
 
-           <td>
+           <td class="text-nowrap">
              <%= like.sell_item.order_price %>円
            </td>
 
