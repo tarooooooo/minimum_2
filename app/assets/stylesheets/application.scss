@@ -368,7 +368,7 @@ a.btn-purchase:hover {
   background-repeat: no-repeat;
   background-size: cover;
   // background-attachment: fixed;
-  height: 400px;
+  height: 300px;
   width: 100%;
   max-width: 100%;
 }
@@ -384,7 +384,6 @@ a.btn-purchase:hover {
   /*以下装飾*/
   margin:0;/*余計な隙間を除く*/
   font-size: 20px;/*文字サイズ*/
-  border: solid white 2px; /*線で囲う*/
   padding: 7px;/*文字と線の間の余白*/
   color: white;/*文字色*/
   text-decoration: none;/*下線を表示させない*/
@@ -400,4 +399,54 @@ a.btn-purchase:hover {
   bottom: 0;
   left: 0;
   content: ' ';
+}
+
+.new-item-top{
+  background-image: image-url('new-item-top.png');
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // background-attachment: fixed;
+  height: 300px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.new-item-box{
+  position: relative;
+}
+
+.new-item-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  margin:0;
+  padding:0;
+  color: #2f5864;
+}
+
+.item-new-fields{
+  color: #2f5864;
+}
+
+// 緑のボタン
+.btn-green{
+  background-color: #2f5864;
+  color: white;
+}
+
+.btn-green:hover{
+  background-color: #2f5864;
+  color: white;
+  opacity: 0.8;
+}
+
+// 緑のタイトル
+.green-title{
+  color: #2f5864;
+  border-bottom: solid 1px #2f5864;
+  display: inline-block;
 }

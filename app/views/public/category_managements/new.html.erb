@@ -1,32 +1,55 @@
-<div class="container">
- <h3>アイテム制限</h3>
-  <div class="row">
+<div class="container-fluid">
+   <div class="row justify-content-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 p-0">
+      <div class="new-item-box">
+        <div class="new-item-text text-center p-2 text-center">
+          <p class="h3 m-0">Item Managements</p>
+          <p class="m-0">アイテムの所持数を制限しましょう！</p>
+        </div>
+        <div class="clothes-img">
+          <div class="new-item-top"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sub-title text-center">
+    <h4 class="text-center my-5 green-title">Limit</h4>
+  </div>
+  <div class ="row justify-content-center">
 
-    <div class="col col-md-6">
+    <div class="col col-md-4">
+      <%= form_with model: @category_management,url: category_managements_path, local:true do |f| %>
+        <div class="field py-3">
+          <%= f.label :カテゴリー %><br />
+          <p class="text-nowrap"><%= f.collection_select :category_id, Category.all, :id, :name,{:prompt => true}, {:class => "form-control"} %></p>
+        </div>
+
+        <div class="field py-3">
+          <%= f.label :所持可能数 %><br />
+          <p class="text-nowrap"><%= f.select :limit, options_for_select((1..20).to_a), {:prompt => true}, {:class => "form-control"} %></p>
+        </div>
+
+        <div class="new-item-btn py-3">
+          <%= f.submit 'Limit Save!', class: "btn btn-green w-100 pt-2" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-lg-4 col-md-8 col-sm-8 item-new-fields">
+
       <table class="table table-hover table-inverse">
         <tbody>
           <% @category_managements.each do |category_management| %>
             <tr>
               <td><%= category_management.category.name %></td>
               <td><%= category_management.limit %></td>
-              <td><%= link_to "編集", edit_category_management_path(category_management), class:"btn btn-success" %></td>
-              <td><%= link_to "削除", category_management_path(category_management),method: :delete, class:"btn btn-danger" %></td>
+              <td><%= link_to "編集", edit_category_management_path(category_management), class:"btn btn-secondary text-nowrap" %></td>
+              <td><%= link_to "削除", category_management_path(category_management),method: :delete, class:"btn btn-danger text-nowrap" %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
 
-    <div class="col col-md-5">
-      <%= form_with model: @category_management,url: category_managements_path, local:true do |f| %>
-        <table  class="table table-borderless">
-            <tbody>
-              <tr><td><%= f.collection_select :category_id, Category.all, :id, :name,{:prompt => true}, {:class => "form-control"} %></td></tr>
-              <tr><td><%= f.select :limit, options_for_select((1..20).to_a), {:prompt => true}, {:class => "form-control"} %></td></tr>
-              <tr><td><%= f.submit "limit", class:"btn btn-outline-secondary" %></td></tr>
-            </tbody>
-        </table>
-      <% end %>
-    </div>
   </div>
 </div>
