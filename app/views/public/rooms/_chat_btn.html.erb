@@ -1,0 +1,18 @@
+<% if current_sell_now.present? || user_sell_now.present? %>
+  <% unless user.id == current_user.id %>
+    <% if is_room == true %>
+      <p>
+        <%= link_to "チャット", room_path(room_id)%>
+      </p>
+    <% else %>
+      <%= form_with model: room, url: rooms_path, local: true do |f| %>
+        <%= fields_for entry do |e| %>
+          <%= e.hidden_field :user_id, value: user.id %>
+        <% end %>
+        <div class="new-item-btn py-3">
+          <%= f.submit 'チャット', class: "btn btn-green w-100 pt-2" %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

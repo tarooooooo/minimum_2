@@ -1,0 +1,13 @@
+<div id="star-rate-avg"></div>
+<script>
+$('#star-rate-avg').empty();
+$('#star-rate-avg').raty({
+  size: 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  half: true,
+  readOnly: true,
+  score: <%= user_rate_avg %>,
+ });
+</script>

@@ -48,6 +48,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "pry-rails"
+  gem "pry-byebug"
 end
 
 group :test do
@@ -77,6 +79,7 @@ gem 'ancestry'
 gem 'chartkick'
 gem 'dotenv-rails'
 gem 'payjp'
+gem'lazy_high_charts'
 group :production do
   gem 'mysql2'
 end

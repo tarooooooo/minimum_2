@@ -1,20 +1,20 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-lg-8 col-md-8 col-sm-12">
+    <div class="col-lg-8 col-md-8 col-sm-12 detail">
       <div class="back-btn pt-2 pl-2">
         <%= link_to user_path(current_user) do %>
           <div class="Arrow-Left p-1"></div>
         <% end %>
       </div>
       <div class="user-detail-title mt-5">
-      <h4 class ="mb-5 text-center"><%= current_user.last_name %><%= current_user.first_name %>さんの会員詳細</h4>
-      <div class="edit-user-link text-left">
-        <div class="user-edit-button">
-        <%= link_to edit_user_path(current_user) do %>
-          <i class="fas fa-users-cog fa-2x user-edit"></i>
-        <% end %>
+        <h4 class ="mb-5 text-center title"><%= current_user.last_name %><%= current_user.first_name %>さんの詳細</h4>
+        <div class="edit-user-link text-left">
+          <div class="user-edit-button">
+            <%= link_to edit_user_path(current_user) do %>
+              <i class="fas fa-users-cog fa-2x user-edit"></i>
+            <% end %>
+          </div>
         </div>
-      </div>
       </div>
       <table class="table table-hover">
         <tbody>
@@ -30,3 +30,4 @@
       </table>
     </div>
   </div>
+</div>

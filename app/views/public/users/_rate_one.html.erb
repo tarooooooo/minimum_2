@@ -1,0 +1,16 @@
+<div id="star-rate-<%= sell_item.id %>"></div>
+  <script>
+    // 繰り返し処理でもidをidを一意にできるようにnote_idを入れる
+  $('#star-rate-<%= sell_item.id %>').empty();
+  $('#star-rate-<%= sell_item.id %>').raty({
+    size: 10,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    // 読み込みだけで入力できない
+    readOnly: true,
+    score: <%= sell_item.rate %>,
+   });
+  </script>
+</div>

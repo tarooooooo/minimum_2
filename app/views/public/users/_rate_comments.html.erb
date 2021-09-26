@@ -1,0 +1,16 @@
+<div class="fukidasi">
+  <div class="star rate-star-box text-left">
+    <%= render 'public/users/rate_one', sell_item: sell_item %>
+  <div class="faceicon">
+    <%= attachment_image_tag sell_item.buyer, :icon_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle mb-3" %>
+  </div>
+  <div class="chatting">
+    <div class="says">
+      <p class ="font-weight-bold d-flex">
+        <%= sell_item.buyer.nickname %>
+      </p>
+      <p><%= sell_item.rating_comment %></p>
+      <p class ="text-right text-secondary small">商品購入日<%= sell_item.buy_date.strftime("%Y年 %m月 %d日") %></p>
+    </div>
+  </div>
+</div>

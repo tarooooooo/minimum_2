@@ -16,12 +16,12 @@ class Public::CategoryManagementsController < ApplicationController
 
     if category_management.save
       redirect_back(fallback_location: root_path)
-    elsif category_management.blank?
-      flash.now[:danger] = "値を入力してください。"
-      render 'public/category_managements/new'
+    elsif category_management.category.nil?
+      flash[:danger] = "値を入力してください"
+      redirect_back(fallback_location: root_path)
     elsif category_management.present?
-      flash.now[:danger] = "#{category_management.category.name}はすでに登録済みです。"
-      render 'public/category_managements/new'
+      flash[:danger] = "#{category_management.category.name}はすでに登録済みです。"
+      redirect_back(fallback_location: root_path)
     end
   end
 

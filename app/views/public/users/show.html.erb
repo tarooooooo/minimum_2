@@ -1,165 +1,104 @@
 <% if user_signed_in? && current_user.id.to_s == params[:id] %>
 <!--ログインユーザーの詳細画面-->
-  <div class="container">
-    <div class="row  justify-content-center">
-      <div class="col-lg-8 col-md-12 col-sm-12 ">
+<div class="user-image-box row align-items-center justify-content-center">
+  <div class="user-detail-icon_image">
+    <!--アイコン画像-->
+    <div class="icon_image text-center">
+      <%= attachment_image_tag @user, :icon_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
+    </div>
 
-        <div class="users-detail-profile-box">
-          <div class="user-image-box d-flex align-items-center justify-content-center">
-            <div class="user-detail-icon_image">
-              <div class="icon_image text-center">
-                <%= attachment_image_tag @user, :icon_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle mb-3" %>
-              </div>
-              <div class="user-detail-nickname text-center h5"><%= @user.nickname %>さん</div>
+    <!--名前-->
+    <p class="user-detail-nickname text-center">
+      <%= @user.nickname %>さん
+    </p>
 
-              <div class="row">
-                <div id="star-rate-avg"></div>
-                <script>
-                $('#star-rate-avg').empty();
-                $('#star-rate-avg').raty({
-                  size: 36,
-                  starOff:  '<%= asset_path('star-off.png') %>',
-                  starOn : '<%= asset_path('star-on.png') %>',
-                  starHalf: '<%= asset_path('star-half.png') %>',
-                  half: true,
-                  readOnly: true,
-                  score: <%= @user_rate_avg %>,
-                 });
-                </script>
-                 <%= link_to rate_user_path(@user) do %>
-                  <h5>（評価：<%= @user_rate_avg %>）</h5>
-                 <% end %>
-              </div>
+    <!--評価-->
+    <div class="row justify-content-center star">
+      <%= render 'public/users/rate_avg', {user_rate_avg: @user_rate_avg} %>
+      <%= link_to rate_user_path(@user) do %>
+        <% if @user_rate_avg.nan? %>
+          <p>（評価はまだされていません）</p>
+        <% else %>
+          <p>（評価：<%= @user_rate_avg %>）</p>
+        <% end %>
+      <% end %>
+    </div>
 
-            </div>
-          </div>
+  </div>
+</div>
+
+<div class="container-fulid">
+  <div class="row  justify-content-center">
+    <div class="col-lg-6 col-md-10 col-sm-12 user-show-btn-box">
+
+      <div class="user-item-management">
+        <p class="text-center my-3">マネジメント</p>
+        <div class="user-item-button01">
+          <%= link_to "ユーザー詳細", detail_user_path(@user) %>
+        </div>
+        <div class="user-item-button01">
+          <%= link_to "アイテム", items_path %>
+        </div>
+        <div class="user-item-button01">
+          <%= link_to "アイテム廃棄傾向", charts_disposal_path %>
+        </div>
+        <div class="user-item-button01">
+          <%= link_to "アイテム購入履歴", charts_purchase_path %>
+        </div>
+        <div class="user-item-button01">
+          <%= link_to "アイテム制限", new_category_management_path %>
         </div>
 
-          <div class="user-show-btn-box">
-
-            <div class="user-item-management">
-              <h5 class="text-center my-3">マネジメント</h5>
-              <div class="user-item-button01">
-                <%= link_to "ユーザー詳細", detail_user_path(@user) %>
-              </div>
-              <div class="user-item-button01">
-                <%= link_to "アイテム", items_path %>
-              </div>
-              <div class="user-item-button01">
-                <%= link_to "アイテム廃棄傾向", charts_disposal_path %>
-              </div>
-              <div class="user-item-button01">
-                <%= link_to "アイテム購入履歴", charts_purchase_path %>
-              </div>
-              <div class="user-item-button01">
-                <%= link_to "アイテム制限", new_category_management_path %>
-              </div>
-
-            </div>
-
-            <div class="user-sell">
-              <h5 class="text-center my-3">フリマ</h5>
-              <div class="user-item-button01">
-                <%= link_to "出品した商品", myitems_by_sell_path %>
-              </div>
-              <div class="user-item-button01">
-                <%= link_to "購入した商品", myitems_by_order_path %>
-              </div>
-              <div class="user-item-button01">
-                <%= link_to "いいねしたアイテム", likes_user_path(@user) %>
-              </div>
-            </div>
-          </div>
-
       </div>
+
+      <div class="user-sell">
+        <p class="text-center my-3">フリマ</p>
+        <div class="user-item-button01">
+          <%= link_to "出品した商品", myitems_by_sell_path %>
+        </div>
+        <div class="user-item-button01">
+          <%= link_to "購入した商品", myitems_by_order_path %>
+        </div>
+        <div class="user-item-button01">
+          <%= link_to "いいねしたアイテム", likes_user_path(@user) %>
+        </div>
+      </div>
+
     </div>
   </div>
+</div>
 
 <% else %>
 <!--他のユーザーへの表示-->
-  <div class="container-fulid">
-    <div class="row  justify-content-center">
-      <div class="col-lg-8 col-md-12 col-sm-12 ">
-
-        <div class="users-detail-profile-box">
-          <div class="user-image-box d-flex align-items-center justify-content-center">
-            <div class="user-detail-icon_image">
-              <div class="icon_image text-center">
-                <%= attachment_image_tag @user, :icon_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle mb-3" %>
-              </div>
-              <div class="user-detail-nickname text-center h5"><%= @user.nickname %>さん</div>
-
-              <div class="row justify-content-center">
-                <div id="star-rate-avg"></div>
-                <script>
-                $('#star-rate-avg').empty();
-                $('#star-rate-avg').raty({
-                  size: 36,
-                  starOff:  '<%= asset_path('star-off.png') %>',
-                  starOn : '<%= asset_path('star-on.png') %>',
-                  starHalf: '<%= asset_path('star-half.png') %>',
-                  half: true,
-                  readOnly: true,
-                  score: <%= @user_rate_avg %>,
-                 });
-                </script>
-                <%= link_to rate_user_path(@user) do %>
-                  <% if @user_rate_avg.is_a?(Integer) %>
-                    <h5>（評価：<%= @user_rate_avg %>）</h5>
-                  <% else %>
-                    <h5>（評価はまだされていません）</h5>
-                  <% end %>
-                <% end %>
-              </div>
-              <div class="chat-btn-box px-5">
-                <% if @current_sell_now.present? || @user_sell_now.present? %>
-                  <% unless @user.id == current_user.id %>
-                    <% if @is_room == true %>
-                      <p>
-                        <%= link_to "チャット", room_path(@room_id)%>
-                      </p>
-                    <% else %>
-                      <%= form_with model: @room, url: rooms_path, local: true do |f| %>
-                        <%= fields_for @entry do |e| %>
-                          <%= e.hidden_field :user_id, value: @user.id %>
-                        <% end %>
-                        <div class="new-item-btn py-3">
-                          <%= f.submit 'チャット', class: "btn btn-green w-100 pt-2" %>
-                        </div>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="user-image-box row align-items-center justify-content-center">
+    <div class="user-detail-icon_image">
+      <!--アイコン画像-->
+      <div class="icon_image text-center">
+        <%= attachment_image_tag @user, :icon_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle" %>
       </div>
+
+      <!--名前-->
+      <p class="user-detail-nickname text-center">
+        <%= @user.nickname %>さん
+      </p>
+
+      <!--評価-->
+      <div class="row justify-content-center">
+         <%= render 'public/users/rate_avg', {user: @user, user_rate_avg: @user_rate_avg} %>
+      </div>
+
+      <!--チャットボタン-->
+      <div class="btn-box py-2 mt-3 text-center">
+        <%= render 'public/rooms/chat_btn', {current_sell_now: @current_sell_now, user_sell_now: @user_sell_now, is_room: @is_room, room_id: @room_id, room: @room, user: @user, entry: @entry} %>
+      </div>
+
     </div>
   </div>
-  <div class="row justify-content-center">
-    <% @sell_items.each do |sell_item| %>
-      <div class="sell_item_card col px-1 flex-grow-0">
-        <div class="card mx-1 my-1 border-0">
-          <%= link_to sell_item_path(sell_item) do %>
-            <%= attachment_image_tag sell_item.item, :item_image, :fill, 300, 300, format: 'jpeg', class:"img-response"%>
-            <div class="card-body p-1">
-              <p class="card-text m-0">
-                <%= sell_item.name %>
-              </p>
-              <p class ="card-text m-0">
-                <%= sell_item.order_price %> yen
-              </p>
-              <% unless sell_item.order_status == "on_sell" %>
-                <p>売却済み</p>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+
+  <h4 class="text-center h-4 py-5">Items</h4>
+  <!--アイテム一覧-->
+  <div class="gap-card row justify-content-center">
+    <%= render partial: 'public/sell_items/sell_item_card', collection: @sell_items, as: :sell_item %>
   </div>
-
-
 
 <% end %>

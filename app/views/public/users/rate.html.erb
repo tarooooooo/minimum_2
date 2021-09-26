@@ -7,61 +7,16 @@
             <div class="Arrow-Left p-1"></div>
           <% end %>
         </div>
-        <h4 class="text-center py-3">評価一覧</h4>
+        <p class="top-title text-center py-3">評価一覧</p>
         <p class="text-center text-secondary"><%= @user.nickname %>さん<p>
-        <div class="rate-username-rate-avg d-flex justify-content-center">
-          <div id="star-rate-avg"></div>
-          <script>
-          $('#star-rate-avg').empty();
-          $('#star-rate-avg').raty({
-            size: 10,
-            starOff:  '<%= asset_path('star-off.png') %>',
-            starOn : '<%= asset_path('star-on.png') %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            half: true,
-            // 読み込みだけで入力できない
-            readOnly: true,
-            score: <%= @user_rate_avg %>,
-           });
-          </script>
-          <h5>（評価平均：<%= @user_rate_avg %>）</h5>
+        <div class="star rate-username-rate-avg d-flex justify-content-center align-items-center">
+          <%= render 'public/users/rate_avg', {user_rate_avg: @user_rate_avg} %>
+          <p class="m-0">（評価平均：<%= @user_rate_avg %>）</p>
         </div>
       </div>
       <!--評価コメント-->
       <div id="chats">
-         <% @sell_items.each do |sell_item| %>
-            <div class="fukidasi">
-              <div class="rate-star-box text-left">
-                <div id="star-rate-<%= sell_item.id %>"></div>
-                <script>
-                  // 繰り返し処理でもidをidを一意にできるようにnote_idを入れる
-                $('#star-rate-<%= sell_item.id %>').empty();
-                $('#star-rate-<%= sell_item.id %>').raty({
-                  size: 10,
-                  starOff:  '<%= asset_path('star-off.png') %>',
-                  starOn : '<%= asset_path('star-on.png') %>',
-                  starHalf: '<%= asset_path('star-half.png') %>',
-                  half: true,
-                  // 読み込みだけで入力できない
-                  readOnly: true,
-                  score: <%= sell_item.rate %>,
-                 });
-                </script>
-              </div>
-              <div class="faceicon">
-                <%= attachment_image_tag sell_item.buyer, :icon_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class:"rounded-circle mb-3" %>
-              </div>
-              <div class="chatting">
-                <div class="says">
-                  <div class ="font-weight-bold d-flex">
-                    <%= sell_item.buyer.nickname %>
-                  </div>
-                  <p><%= sell_item.rating_comment %></p>
-                  <p class ="text-right text-secondary small">商品購入日<%= sell_item.buy_date.strftime("%Y年 %m月 %d日") %></p>
-                </div>
-              </div>
-            </div>
-        <%end%>
+        <%= render partial: 'public/users/rate_comments', collection: @sell_items, as: :sell_item %>
       </div>
     </div>
   </div>

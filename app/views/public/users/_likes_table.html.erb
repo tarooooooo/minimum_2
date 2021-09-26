@@ -1,0 +1,25 @@
+<tbody>
+  <tr>
+
+    <td>
+      <%=link_to sell_item_path(like.sell_item) do %>
+      <%= attachment_image_tag like.sell_item.item, :item_image, format: 'jpeg', fallback: "no_image.jpg" ,size: "40x40"%>
+      <% end %>
+    </td>
+
+    <td>
+      <%=link_to sell_item_path(like.sell_item) do %>
+      <%= like.sell_item.name %>
+      <% end %>
+    </td>
+
+    <td>
+      <%= like.sell_item.item.brand.name %>
+    </td>
+
+    <td class="text-nowrap">
+      <%= like.sell_item.order_price %>円
+    </td>
+
+  </tr>
+</tbody>

@@ -1,0 +1,12 @@
+<table class ="table table-hover table-inverse rem-table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>アイテム</th>
+      <th>ブランド</th>
+      <th>価格</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <%= render partial: 'public/items/item_tbody', collection: items, as: :item %>
+</table>

@@ -17,6 +17,19 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+// ボタンボックス
+
+.btn-box{
+  background-color: #2f5864;
+  p{
+    margin: 0;
+  }
+  a{
+    color: white;
+  }
+}
+
+
 // sign-up
 .image-btn{
   text-align: center;
@@ -72,16 +85,6 @@ a:hover {color: #2f5864;}
   padding-left: 1rem;
   padding-top: 0rem;
   color: #efa04c;
-}
-
-// ユーザー詳細画面
-.user-image-box{
-  background-image: image-url('background-user.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 400px;
 }
 
 // ユーザー編集ボタン
@@ -200,10 +203,10 @@ a:hover {color: #2f5864;}
 
 // 戻るボタン
 .Arrow-Left {
-  border-bottom: solid 4px #333333;
-  border-left: solid 4px #333333;
-  width: 24px;
-  height: 24px;
+  border-bottom: solid 2px #333333;
+  border-left: solid 2px #333333;
+  width: 2px;
+  height: 2px;
   transform: rotate(45deg);
 }
 
@@ -478,28 +481,6 @@ a.btn-purchase:hover {
 }
 
 // いいね一覧
-.favorite-top{
-  background-image: image-url('favorite-top.png');
-  background-position: center 20%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  // background-attachment: fixed;
-  height: 300px;
-  width: 100%;
-  max-width: 100%;
-}
-
-.favorite-text{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%,-50%);
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
-  margin:0;
-  padding:0;
-  color: #CD821F;
-}
 
 // 出品商品
 .sell-item-top{
@@ -523,4 +504,51 @@ a.btn-purchase:hover {
   margin:0;
   padding:0;
   color: #2f5864;;
+}
+
+// タイトル
+.top-title{
+  font-size: 15px;
+
+  @media (min-width: 426px){
+    font-size: 20px;
+  }
+  @media(min-width: 1025px){
+    font-size: 25px;
+  }
+}
+
+.sub-title{
+  font-size: 15px;
+  color: #2f5864;
+  @media (min-width: 426px){
+    color: #2f5864;
+    font-size: 20px;
+  }
+  @media(min-width: 1025px){
+    color: #2f5864;
+    font-size: 20px;
+  }
+}
+
+.sub-title a:link{
+  font-size: 10px;
+
+  @media (min-width: 426px){
+    font-size: 15px;
+  }
+  @media(min-width: 1025px){
+    font-size: 15px;
+  }
+}
+
+td{
+  font-size: 10px;
+
+  @media (min-width: 426px){
+    font-size: 15px;
+  }
+  @media(min-width: 1025px){
+    font-size: 15px;
+  }
 }

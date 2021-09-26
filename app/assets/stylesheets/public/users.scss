@@ -2,10 +2,413 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// myitems_by_order
+
+.myitems_by_order{
+  .top-box{
+    position: relative;
+
+    .top-text{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%,-50%);
+      -webkit-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+      margin:0;
+      padding:0;
+      color: #2f5864;
+      font-size: 15px;
+
+      @media (min-width: 426px){
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        margin:0;
+        padding:0;
+        color: #2f5864;
+        font-size: 20px;
+      }
+      @media(min-width: 1025px){
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        margin:0;
+        padding:0;
+        color: #2f5864;
+        font-size: 25px;
+      }
+    }
+
+    .top-image{
+      background-image: image-url('favorite-top.png');
+      background-position: center 20%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      // background-attachment: fixed;
+      height: 150px;
+      width: 100%;
+      max-width: 100%;
+
+      @media (min-width: 426px){
+        background-image: image-url('favorite-top.png');
+        background-position: center 20%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        // background-attachment: fixed;
+        height: 250px;
+        width: 100%;
+        max-width: 100%;
+      }
+      @media(min-width: 1025px){
+        background-image: image-url('favorite-top.png');
+        background-position: center 20%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        // background-attachment: fixed;
+        height: 300px;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+
+// myitems_by_sell
+.myitems_by_sell{
+  .top-box{
+    position: relative;
+
+    .top-text{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%,-50%);
+      -webkit-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+      margin:0;
+      padding:0;
+      color: #2f5864;
+      font-size: 15px;
+
+      @media (min-width: 426px){
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        margin:0;
+        padding:0;
+        color: #2f5864;
+        font-size: 20px;
+      }
+      @media(min-width: 1025px){
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        margin:0;
+        padding:0;
+        color: #2f5864;
+        font-size: 25px;
+      }
+    }
+
+    .top-image{
+      background-image: image-url('favorite-top.png');
+      background-position: center 20%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      // background-attachment: fixed;
+      height: 150px;
+      width: 100%;
+      max-width: 100%;
+
+      @media (min-width: 426px){
+        background-image: image-url('favorite-top.png');
+        background-position: center 20%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        // background-attachment: fixed;
+        height: 250px;
+        width: 100%;
+        max-width: 100%;
+      }
+      @media(min-width: 1025px){
+        background-image: image-url('favorite-top.png');
+        background-position: center 20%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        // background-attachment: fixed;
+        height: 300px;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+// likes
+
+// サブヘッダー
+.favorite{
+  .top-box{
+    position: relative;
+
+    .top-text{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%,-50%);
+      -webkit-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+      margin:0;
+      padding:0;
+      color: #CD821F;
+      font-size: 15px;
+
+      @media (min-width: 426px){
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        margin:0;
+        padding:0;
+        color: #CD821F;
+        font-size: 20px;
+      }
+      @media(min-width: 1025px){
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        margin:0;
+        padding:0;
+        color: #CD821F;
+        font-size: 25px;
+      }
+    }
+
+    .top-image{
+      background-image: image-url('favorite-top.png');
+      background-position: center 20%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      // background-attachment: fixed;
+      height: 150px;
+      width: 100%;
+      max-width: 100%;
+
+      @media (min-width: 426px){
+        background-image: image-url('favorite-top.png');
+        background-position: center 20%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        // background-attachment: fixed;
+        height: 250px;
+        width: 100%;
+        max-width: 100%;
+      }
+      @media(min-width: 1025px){
+        background-image: image-url('favorite-top.png');
+        background-position: center 20%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        // background-attachment: fixed;
+        height: 300px;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+
+// rate
+.chatting{
+  font-size: 10px;
+
+  @media (min-width: 426px){
+    font-size: 15px;
+  }
+  @media(min-width: 1025px){
+    font-size: 20px;
+  }
+}
+// User Edit
+
+table th {
+  font-size: 10px;
+
+  @media (min-width: 426px){
+    font-size: 15px;
+  }
+  @media(min-width: 1025px){
+    font-size: 20px;
+  }
+}
+// User_detail
+.title{
+  font-size: 15px;
+
+  @media (min-width: 426px){
+    font-size: 20px;
+  }
+  @media(min-width: 1025px){
+    font-size: 25px;
+  }
+}
+.detail{
+  font-size: 10px;
+
+  @media (min-width: 426px){
+    font-size: 15px;
+  }
+  @media(min-width: 1025px){
+    font-size: 20px;
+  }
+}
+
+// UserShow
+
+// 各種ボタン
+.user-show-btn-box a:link{
+  font-size: 10px;
+
+  @media (min-width: 426px){
+    font-size: 15px;
+  }
+  @media(min-width: 1025px){
+    font-size: 20px;
+  }
+}
+
+.user-show-btn-box{
+  font-size: 10px;
+
+  @media (min-width: 426px){
+    font-size: 15px;
+  }
+  @media(min-width: 1025px){
+    font-size: 20px;
+  }
+}
+// 星画像
+.star img{
+  width: 15px;
+
+  @media (min-width: 426px){
+    width: 20px;
+  }
+  @media(min-width: 1025px){
+    width: 30px;
+  }
+}
+
+.star p{
+  font-size: 10px;
+
+  @media (min-width: 426px){
+    font-size: 15px;
+  }
+  @media(min-width: 1025px){
+    font-size: 20px;
+  }
+}
+
+// 背景画像
+.user-image-box{
+  background-image: image-url('background-user.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 230px;
+  @media (min-width: 426px){
+     height: 280px;
+    }
+    @media(min-width: 1025px){
+     height: 380px;
+     width: 100%;
+    }
+}
+
+// アイコン画像
+.icon_image img{
+    width: 70px;
+
+    @media (min-width: 426px){
+      width: 120px;
+    }
+    @media(min-width: 1025px){
+      width: 170px;
+    }
+  }
+
+
+// ユーザートップ
+.user-image-box{
+  font-size: 10px;
+
+  @media (min-width: 426px){
+    font-size: 15px;
+  }
+  @media(min-width: 1025px){
+    font-size: 20px;
+  }
+}
+
+// カードのフォントサイズ
+
+.card-body{
+  font-size: 10px;
+
+  @media (min-width: 426px){
+    font-size: 12px;
+  }
+  @media(min-width: 1025px){
+    font-size: 15px;
+  }
+}
+
+// アイテムカード
+
+.gap-card{
+  gap: 10px 10px;
+
+  @media (min-width: 426px){
+    gap: 15px 15px;
+  }
+  @media(min-width: 1025px){
+    gap: 20px 20px;
+  }
+}
+
+
+// 画像のレスポンシブ
+
 .img-response{
-  width: 110px;
+  width: 90px;
 
   @media (min-width: 426px){
     width: 214px;
   }
+  @media(min-width: 1025px){
+    width: 300px;
+  }
 }
+

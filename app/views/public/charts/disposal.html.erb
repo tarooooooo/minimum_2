@@ -1,31 +1,45 @@
-<h1 class="text-center">廃棄アイテム傾向分析</h1>
-<div class="container">
-      <h2 class="text-center">アイテム全体</h2>
+<div class="container-fluid disposal">
+  <div class="row justify-content-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 p-0">
+      <div class="top-box">
+        <div class="top-text text-center text-center">
+          <p class="m-0">Disposed Chart</p>
+          <p class="m-0">処分傾向</p>
+        </div>
+        <div class="top-image"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title text-center my-5">
+    <p>All Items</p>
+  </div>
   <div class="row">
-    <div class="col-4">
-      <%= render "disposal_graph", chartkick_items: @chartkick_items, color_codes: @color_codes ,class:"flex"%>
+    <div class="col-4 pie_chart">
+      <%= high_chart("colors", @chartkick_items) %>
     </div>
     <div class="col-4">
-      <%= render "disposal_graph", chartkick_items: @chartkick_brands_items, color_codes: "" %>
+      <%= high_chart("brands", @chartkick_brands_items) %>
     </div>
     <div class="col-4">
-      <%= render "disposal_graph", chartkick_items: @chartkick_items_by_price, color_codes: "" %>
+      <%= high_chart("price", @chartkick_items_by_price) %>
     </div>
   </div>
   <% @category_index.each do |category| %>
+    <div class="sub-title text-center py-5">
+      <p><%= category.name %></p>
+    </div>
     <div class="row">
       <div class="col-4">
-     　　<h2 class="text-center"><%= category.name %></h2>
-        <%= render "disposal_graph", chartkick_items: @chartkick_category_items[category.id], color_codes: @category_color_codes[category.id] %>
+        <%= high_chart("#{category.id}-color", @chartkick_category_items[category.id]) %>
       </div>
       <div class="col-4">
-        <h2 class="text-center"><%= category.name %></h2>
-        <%= render "disposal_graph", chartkick_items: @chartkick_brand_items[category.id], color_codes: "" %>
+        <%= high_chart("#{category.id}-branch", @chartkick_brand_items[category.id]) %>
       </div>
       <div class="col-4">
-        <h2 class="text-center"><%= category.name %></h2>
-        <%= render "disposal_graph", chartkick_items: @chartkick_category_items_by_price[category.id], color_codes: "" %>
+        <%= high_chart("#{category.id}-price",@chartkick_category_items_by_price[category.id]) %>
       </div>
     </div>
   <% end %>
+  </div>
 </div>
