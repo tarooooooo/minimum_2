@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 2021_09_26_144542) do
     t.string "price", null: false
     t.string "item_image_id", null: false
     t.datetime "discard_date"
-    t.integer "item_status"
+    t.integer "item_status", null: false
     t.datetime "purchase_date", null: false
     t.integer "size", null: false
     t.string "name", null: false
@@ -157,8 +157,8 @@ ActiveRecord::Schema.define(version: 2021_09_26_144542) do
   end
 
   create_table "sell_items", force: :cascade do |t|
-    t.string "name"
-    t.string "sell_item_image_id"
+    t.string "name", null: false
+    t.string "sell_item_image_id", null: false
     t.integer "buyer_id"
     t.integer "seller_id", null: false
     t.integer "item_id", null: false
@@ -166,12 +166,12 @@ ActiveRecord::Schema.define(version: 2021_09_26_144542) do
     t.integer "payment_method", default: 0, null: false
     t.integer "order_status", default: 0, null: false
     t.datetime "buy_date"
-    t.text "introduction"
+    t.text "introduction", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "delivery_charged"
-    t.integer "delivery_days"
-    t.integer "delivery_way"
+    t.integer "delivery_charged", default: 0, null: false
+    t.integer "delivery_days", default: 0, null: false
+    t.integer "delivery_way", default: 0, null: false
     t.float "rate", default: 0.0
     t.string "rating_comment"
     t.index ["item_id"], name: "index_sell_items_on_item_id"
