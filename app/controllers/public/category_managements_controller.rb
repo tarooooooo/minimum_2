@@ -1,4 +1,6 @@
 class Public::CategoryManagementsController < ApplicationController
+   before_action :authenticate_user!
+  
   def new
     @category_management = CategoryManagement.new
     @category_managements = CategoryManagement.where(user_id: current_user.id)

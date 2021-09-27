@@ -1,4 +1,5 @@
 class Public::SellItemsController < ApplicationController
+   before_action :authenticate_user!
 
   def shop_top
      @sell_items = SellItem.where(order_status: "on_sell").order(created_at: :desc)

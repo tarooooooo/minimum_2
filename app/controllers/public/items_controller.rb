@@ -1,4 +1,5 @@
 class Public::ItemsController < ApplicationController
+   before_action :authenticate_user!
 
   def new
    #セレクトボックスの初期値設定
@@ -39,6 +40,8 @@ class Public::ItemsController < ApplicationController
       if items_count < limit
         if @item.save
           redirect_to item_path(@item)
+        else
+          render 'public/items/new'
         end
       else
         flash.now[:danger] = "#{@item.category.name}が制限に達しました。（#{@item.category.name}の設定数：#{limit}個）"
@@ -95,7 +98,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def get_category_children
-    respond_to do |format| 
+    respond_to do |format|
       format.html
       format.json do
         @children = Category.find(params[:parent_id], ancestry: nil).children
@@ -103,14 +106,14 @@ class Public::ItemsController < ApplicationController
     end
   end
   def get_category_grandchildren
-    respond_to do |format| 
+    respond_to do |format|
       format.html
       format.json do
         @grandchildren = Category.find("#{params[:child_id]}").children
       end
     end
   end
-  
+
   private
 
   def item_params

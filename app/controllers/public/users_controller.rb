@@ -1,10 +1,11 @@
 class Public::UsersController < ApplicationController
+   before_action :authenticate_user!
+
   def show
     @user = User.find(params[:id])
     @sell_items = SellItem.where(seller_id: @user.id, order_status: "on_sell")
     @current_sell_now = SellItem.where(seller_id: @user.id, buyer_id: current_user.id ).where( order_status: ['payment_waiting','wait_shipping','shipped'])
     @user_sell_now = SellItem.where(seller_id: current_user.id, buyer_id: @user.id ).where( order_status: ['payment_waiting','wait_shipping','shipped'])
-    # byebug
     # チャット機能
     # Entryモデルからログインユーザーのレコードを抽出
     @current_entry = Entry.where(user_id: current_user.id)
@@ -78,7 +79,6 @@ class Public::UsersController < ApplicationController
       :postal_code,
       :address,
       :phone_number,
-      :age,
       :icon_image,
       :is_deleted
       )

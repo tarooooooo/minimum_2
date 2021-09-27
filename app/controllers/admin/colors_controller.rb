@@ -1,4 +1,6 @@
 class Admin::ColorsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @color = Color.new
     @colors = Color.all

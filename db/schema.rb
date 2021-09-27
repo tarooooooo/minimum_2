@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_25_080147) do
+ActiveRecord::Schema.define(version: 2021_09_26_144542) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -92,10 +92,10 @@ ActiveRecord::Schema.define(version: 2021_09_25_080147) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "color_id", null: false
-    t.integer "brand_id", null: false
-    t.integer "category_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "color_id", null: false
+    t.bigint "brand_id", null: false
+    t.bigint "category_id", null: false
     t.string "price", null: false
     t.string "item_image_id", null: false
     t.datetime "discard_date"
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 2021_09_25_080147) do
     t.integer "buyer_id"
     t.integer "seller_id", null: false
     t.integer "item_id", null: false
+    t.string "order_price", null: false
     t.integer "payment_method", default: 0, null: false
     t.integer "order_status", default: 0, null: false
     t.datetime "buy_date"
@@ -171,7 +172,6 @@ ActiveRecord::Schema.define(version: 2021_09_25_080147) do
     t.integer "delivery_charged"
     t.integer "delivery_days"
     t.integer "delivery_way"
-    t.string "order_price"
     t.float "rate", default: 0.0
     t.string "rating_comment"
     t.index ["item_id"], name: "index_sell_items_on_item_id"
@@ -191,7 +191,6 @@ ActiveRecord::Schema.define(version: 2021_09_25_080147) do
     t.string "postal_code", null: false
     t.string "address", null: false
     t.string "phone_number", null: false
-    t.string "age", null: false
     t.string "icon_image_id"
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false

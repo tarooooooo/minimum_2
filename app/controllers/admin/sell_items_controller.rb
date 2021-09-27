@@ -1,4 +1,6 @@
 class Admin::SellItemsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @sell_items = SellItem.all
   end
@@ -16,5 +18,5 @@ class Admin::SellItemsController < ApplicationController
       redirect_back(fallback_location)
     end
   end
-  
+
 end

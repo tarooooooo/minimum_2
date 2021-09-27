@@ -8,7 +8,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string :price, null: false
       t.string :item_image_id, null: false
       t.datetime :discard_date
-      t.integer :item_status
+      t.integer :item_status, null: false
       t.datetime :purchase_date, null: false
       t.integer :size, null: false
       t.string :name, null: false

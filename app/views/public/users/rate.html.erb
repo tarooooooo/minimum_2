@@ -11,7 +11,13 @@
         <p class="text-center text-secondary"><%= @user.nickname %>さん<p>
         <div class="star rate-username-rate-avg d-flex justify-content-center align-items-center">
           <%= render 'public/users/rate_avg', {user_rate_avg: @user_rate_avg} %>
-          <p class="m-0">（評価平均：<%= @user_rate_avg %>）</p>
+          <p class="m-0">
+            <% if @user_rate_avg.nan? %>
+              <p>（評価はまだされていません）</p>
+            <% else %>
+              <p>（評価：<%= @user_rate_avg %>）</p>
+            <% end %>
+          </p>
         </div>
       </div>
       <!--評価コメント-->

@@ -1,5 +1,5 @@
 <div class="product-title">
-  <h2 class ="mb-5">商品詳細</h2>
+  <p class ="my-5 text-center title-L">Item Detail</p>
 </div>
 <div class="container pb-5">
   <div class="row mt-5">
@@ -19,13 +19,11 @@
           <tr><td>廃棄日</td><td><%= @item.discard_date.strftime("%Y年 %m月 %d日") unless @item.discard_date.blank? %></td></tr>
           <tr><td>サイズ</td><td><%= @item.size %></td></tr>
           <tr><td>アイテムステータス</td><td><%= @item.item_status_i18n %></td></tr>
-          <tr>
-            <td><%= link_to '編集', edit_item_path(@item.id), class: "btn btn-success" %></td>
-            <td><%= link_to '削除', item_path(@item.id), method: :delete, class: "btn btn-danger" %></td>
-            <td><%= link_to '出品', item_sell_item_new_path(@item.id) %></td>
-          </tr>
         </tbody>
       </table>
+      <%= link_to '出品', item_sell_item_new_path(@item.id), class: "btn btn-secondary m-3" if @item.item_status == "on_keep" %>
+      <%= link_to '編集', edit_item_path(@item.id), class: "btn btn-success m-3" %>
+      <%= link_to '削除', item_path(@item.id), method: :delete, class: "btn btn-danger m-3" %>
     </div>
   </div>
 </div>

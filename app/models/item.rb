@@ -14,6 +14,15 @@ class Item < ApplicationRecord
   scope :purchase_date_11month_ago, -> { where(purchase_date: 11.month.ago.all_month) } # 11月前
 
 
+  with_options presence: true do
+    validates :name, length: { minimum: 1, maximum: 20 }
+  end
+  validates :price,
+    numericality: {
+      greater_than_or_equal_to: 100,
+      less_than: 1000000
+    }
+
   attachment :item_image
   belongs_to :user
   belongs_to :color

@@ -9,8 +9,14 @@ class SellItem < ApplicationRecord
 
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
-
-  # Item.first.id == item_id
+validates :name, presence: true
+  with_options presence: true do
+    validates :name, length: { minimum: 1, maximum: 30 }
+    validates :introduction, length: { minimum: 1, maximum: 1000 }
+    validates :delivery_charged
+    validates :delivery_days
+    validates :delivery_way
+  end
 
   validates :rate, presence: true
   validates :rate, numericality: {
@@ -106,7 +112,7 @@ class SellItem < ApplicationRecord
       )
       notification.save if notification.valid?
   end
-  
+
   # 評価の平均
    def avg_rate
     unless self.reviews.empty?

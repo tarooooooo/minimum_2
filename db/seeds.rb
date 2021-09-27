@@ -5,14 +5,27 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-#親カテゴリ
-lady = Category.create(name: "レディース")
 
-#子カテゴリー
-lady_1 = lady.children.create(name: "トップス")
+Admin.create!(
+   email: 'minimum@gmail.com',
+   password: 'minimum',
+)
 
-#孫カテゴリー
-lady_1.children.create([{name: "Tシャツ/カットソー(半袖/袖なし)"},{name: "Tシャツ/カットソー(七分/長袖)"},{name: "シャツ/ブラウス(半袖/袖なし)"},{name: "シャツ/ブラウス(七分/長袖)"},{name: "ポロシャツ"},{name: "キャミソール"},{name: "タンクトップ"},{name: "ホルターネック"},{name: "ニット/セーター"},{name: "チュニック"},{name: "カーディガン/ボレロ"},{name: "アンサンブル"},{name: "ベスト/ジレ"},{name: "パーカー"},{name: "トレーナー/スウェット"},{name: "ベアトップ/チューブトップ"},{name: "ジャージ"},{name: "その他"}])
+Category.create!(name: "Tシャツ（半袖）")
+Category.create!(name: "Tシャツ（長袖）")
+Category.create!(name: "ボトムス")
+Category.create!(name: "アウター（春、秋）")
+Category.create!(name: "アウター（冬）")
 
+Brand.create!(name: "JieDa")
+Brand.create!(name: "Allege")
+Brand.create!(name: "COMME des GARCONS")
+Brand.create!(name: " YOHJIYAMAMOTO")
+Brand.create!(name: " ISSEY MIYAKE")
 
-
+Color.create!(name: "赤系", color_code: "#ff7f50")
+Color.create!(name: "青系", color_code: "#4682b4")
+Color.create!(name: "黄系", color_code: "#ffd700")
+Color.create!(name: "ベージュ系", color_code: "#d2b48c")
+Color.create!(name: "白", color_code: "#f8f8ff")
+Color.create!(name: "黒", color_code: "#ffffff")

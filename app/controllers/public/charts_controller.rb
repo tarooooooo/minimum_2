@@ -1,4 +1,6 @@
 class Public::ChartsController < ApplicationController
+   before_action :authenticate_user!
+
   def purchase
     @items = current_user.items
     @categories = current_user.categories.group(:id)

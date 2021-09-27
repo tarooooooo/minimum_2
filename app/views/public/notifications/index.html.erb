@@ -1,11 +1,23 @@
-<h3 class="text-center">通知</h3>
-<%= link_to "通知削除", notification_path(@notifications), method: :delete ,class: "fas fa-trash" %>
-<% if @notifications.exists? %>
-  <% @notifications.each do |notification| %>
-    <div class="notification-index">
-      <%= render "public/notifications/notification", notification: notification %>
+<div class="container-fluid disposal">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12 p-0">
+    <p class="sub-title py-5 text-center">通知</p>
+     <div class="notification-destroy-btn text-center">
+      <%= link_to "通知削除", notification_path(@notifications), method: :delete ,class: "fas fa-trash text-center" %>
     </div>
-  <% end %>
-<% else %>
-  <p>通知はありません</p>
-<% end %>
+    <% if @notifications.exists? %>
+        <div class="notification-index">
+          <table class="mx-auto">
+            <tbody>
+              <% @notifications.each do |notification| %>
+                <tr><td> <%= render "public/notifications/notification", notification: notification %><tr></td>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+    <% else %>
+      <p class ="text-center">通知はありません</p>
+    <% end %>
+    </div>
+  </div>
+</div>

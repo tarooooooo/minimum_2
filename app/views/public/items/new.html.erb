@@ -14,6 +14,8 @@
     </div>
   </div>
 
+  <%= render 'error', item: @item %>
+
   <div class ="row justify-content-center">
     <div class="col-lg-6 col-md-10 col-sm-10 item-new-fields">
       <%= form_with model: @item, local:true do |f| %>

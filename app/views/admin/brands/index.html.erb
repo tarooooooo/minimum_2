@@ -3,7 +3,7 @@
     <div class="col">
       <h2>ブランド一覧・追加</h2>
       <div class="create_brand">
-        <%= form_with model: [:admin, @brand], local:true do |f| %>
+        <%= form_with model: @brand, url: admin_brands_path, method: :post, local:true do |f| %>
           <div class="form-group">
             <label for="brand_name">ブランド名</label>
             <%= f.text_field :name %>

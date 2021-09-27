@@ -1,14 +1,31 @@
-<h4>月間購入数</h4>
+<div class="container-fluid disposal">
+  <div class="row justify-content-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 p-0">
+      <div class="top-box">
+        <div class="top-text text-center text-center">
+          <p class="m-0">Purchase Chart</p>
+          <p class="m-0">購入履歴</p>
+        </div>
+        <div class="top-image"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col">
-      <h4>全アイテム</h4>
+      <div class="sub-title text-center my-5">
+        <p>All Items</p>
+      </div>
       <%= render "purchase_date_table", items: @items %>
       <%= render "purchase_date_graph", items: @items, target: "all" %>
     </div>
   </div>
   <% @categories.each do |category| %>
-    <h4><%= category.name %></h4>
+    <div class="sub-title text-center my-5">
+      <p><%= category.name %></p>
+    </div>
     <div class="row">
         <div class="col">
           <%= render "purchase_date_graph", items: current_user.items.where(category_id: category.id), target: category.id %>

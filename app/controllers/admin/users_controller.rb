@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @users = User.all
   end
@@ -10,16 +12,16 @@ class Admin::UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
   end
-  
+
   def update
     user = User.find(params[:id])
     if user.update(user_params)
       redirect_to admin_user_path(user.id)
     end
   end
-  
+
   private
-  
+
   def user_params
     params.require(:user).permit(
       :nickname,
@@ -27,7 +29,6 @@ class Admin::UsersController < ApplicationController
       :first_name,
       :last_name_kana,
       :first_name_kana,
-      :age,
       :postal_code,
       :address,
       :phone_number,

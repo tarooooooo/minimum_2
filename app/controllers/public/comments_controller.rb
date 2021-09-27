@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+   before_action :authenticate_user!
+
   def create
     @sell_item = SellItem.find(params[:sell_item_id])
     if @comment = Comment.create(comment_params)
