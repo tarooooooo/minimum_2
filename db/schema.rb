@@ -158,7 +158,6 @@ ActiveRecord::Schema.define(version: 2021_09_26_144542) do
 
   create_table "sell_items", force: :cascade do |t|
     t.string "name", null: false
-    t.string "sell_item_image_id", null: false
     t.integer "buyer_id"
     t.integer "seller_id", null: false
     t.integer "item_id", null: false

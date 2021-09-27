@@ -52,11 +52,13 @@ class Public::SellItemsController < ApplicationController
     sell_item = SellItem.new(sell_item_params)
     sell_item.seller_id = current_user.id
 
-    if sell_item.save(validate: false)
+    if sell_item.save
       item = sell_item.item
       item.item_status = "on_sell"
       item.save
       redirect_to sell_items_path
+    else
+      render 'new'
     end
   end
 
