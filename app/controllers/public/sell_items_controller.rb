@@ -70,7 +70,7 @@ class Public::SellItemsController < ApplicationController
 
   def update
     @sell_item = SellItem.find(params[:id])
-    if @sell_item.update!(sell_item_params)
+    if @sell_item.update(sell_item_params)
       flash[:success] = "編集が完了しました。"
       redirect_to sell_item_path(@sell_item.id)
     else
