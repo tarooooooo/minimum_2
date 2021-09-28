@@ -23,9 +23,6 @@
 //= require jquery_ujs
 //= require jquery.raty.js
 //= require_tree .
-//= require highcharts/highcharts
-//= require highcharts/highcharts-more
-//= require highcharts/highstock
 
 
 // カテゴリー多階層
