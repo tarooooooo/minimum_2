@@ -49,16 +49,18 @@ class Public::SellItemsController < ApplicationController
   end
 
   def create
-    sell_item = SellItem.new(sell_item_params)
-    sell_item.seller_id = current_user.id
+    @sell_item = SellItem.new(sell_item_params)
+    @sell_item.seller_id = current_user.id
 
-    if sell_item.save
-      item = sell_item.item
-      item.item_status = "on_sell"
-      item.save
+    if @sell_item.save
+      @item = @sell_item.item
+      @item.item_status = "on_sell"
+      @item.save
+      flash[:success] = "出品が完了しました。"
       redirect_to sell_items_path
     else
-      render 'new'
+      flash[:danger] = "登録ができませんでした。"
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -67,9 +69,13 @@ class Public::SellItemsController < ApplicationController
   end
 
   def update
-    sell_item = SellItem.find(params[:id])
-    if sell_item.update!(sell_item_params)
-      redirect_to sell_item_path(sell_item.id)
+    @sell_item = SellItem.find(params[:id])
+    if @sell_item.update!(sell_item_params)
+      flash[:success] = "編集が完了しました。"
+      redirect_to sell_item_path(@sell_item.id)
+    else
+      flash.now[:danger] = "編集できませんでした。"
+      render 'edit'
     end
   end
 
@@ -96,8 +102,6 @@ class Public::SellItemsController < ApplicationController
     cookies[:payment_method] = params[:sell_item][:payment_method]
     @payment_method = I18n.t('enums.sell_item.payment_method')[params[:sell_item][:payment_method].to_sym]
   end
-
-  # def order_confirm_error;end
 
   def order_finish
     @sell_item = SellItem.find(params[:id])

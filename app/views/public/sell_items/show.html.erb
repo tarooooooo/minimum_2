@@ -25,8 +25,8 @@
         </div>
         <div class="sell_item_btn_box">
           <div class="user-show-btn-box">
-            <%= link_to '編集', edit_sell_item_path(@sell_item.id), class: "btn btn-success" if @sell_item.seller_id == current_user.id %>
-            <%= link_to '削除', sell_item_path(@sell_item.id), method: :delete, class: "btn btn-danger" if @sell_item.seller_id == current_user.id %>
+            <%= link_to '編集', edit_sell_item_path(@sell_item.id), class: "btn btn-success" if @sell_item.seller_id == current_user.id && @sell_item.order_status == "on_sell" %>
+            <%= link_to '削除', sell_item_path(@sell_item.id), method: :delete, class: "btn btn-danger" if @sell_item.seller_id == current_user.id  && @sell_item.order_status == "on_sell" %>
             <%= link_to '購入', sell_items_order_new_path(@sell_item), class:"btn btn-purchase w-100" if @sell_item.order_status == "on_sell" && @sell_item.seller_id != current_user.id %>
             <% if @sell_item.order_status != "on_sell" %>
               <div class="btn is-primary is-disable">
@@ -80,7 +80,7 @@
       </table>
       <div class="btn_box">
         <% if @sell_item.order_status == "wait_shipping" && @sell_item.seller_id == current_user.id %>
-          <%= link_to '発送', order_status_update_path(@sell_item, order_status: "shipped"), method: :patch, class:"btn" ,data: {confirm: "発送しましたか？"}  %>
+          <%= link_to '発送', order_status_update_path(@sell_item, order_status: "shipped"), method: :patch, class:"btn btn-secondary mb-3" ,data: {confirm: "発送しましたか？"}  %>
         <% end %>
         <% if @sell_item.order_status == "shipped" && @sell_item.buyer_id == current_user.id %>
           <%= link_to '受け取り完了', sell_items_order_rate_path(@sell_item), class:"btn btn-success" %>

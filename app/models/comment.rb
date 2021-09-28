@@ -4,4 +4,5 @@ class Comment < ApplicationRecord
   has_many :notifications
 
   validates :text, presence: true
+  validates :text, length: { minimum: 1, maximum: 100 }
 end

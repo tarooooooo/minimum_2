@@ -14,16 +14,23 @@ class Admin::BrandsController < ApplicationController
     @brands = Brand.all
     @brand = Brand.new(brand_params)
     if @brand.save
+      flash[:success] = "登録が完了しました。"
       redirect_back(fallback_location: root_path)
     else
+      @brands = Brand.all
+      flash.now[:danger] = "登録ができませんでした。"
       render 'admin/brands/index'
     end
   end
 
   def update
-    brand = Brand.find(params[:id])
-    if brand.update(brand_params)
+    @brand = Brand.find(params[:id])
+    if @brand.update(brand_params)
+      flash[:success] = "編集が完了しました。"
       redirect_to admin_brands_path
+    else
+      flash.now[:danger] = "編集ができませんでした。"
+      render 'edit'
     end
   end
 

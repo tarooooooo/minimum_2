@@ -7,12 +7,14 @@ class Admin::SellItemsController < ApplicationController
 
   def show
     @sell_item = SellItem.find(params[:id])
+     @comments = @sell_item.comments.order(created_at: :desc)
   end
 
   def update
     @sell_item = SellItem.find(params[:id])
     if @sell_item.update(order_status: "wait_shipping")
-       redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path)
+      flash[:success] = "入金を確認しました。"
     else
       flash[:danger] = "不正な処理が行われました。"
       redirect_back(fallback_location)

@@ -4,7 +4,7 @@ class Category < ApplicationRecord
   has_many :items
 
   with_options presence: true do
-    validates :name
+    validates :name, uniqueness: true
   end
 
   def self.category_parent_array_create

@@ -9,8 +9,8 @@
         <%= fields_for entry do |e| %>
           <%= e.hidden_field :user_id, value: user.id %>
         <% end %>
-        <div class="new-item-btn py-3">
-          <%= f.submit 'チャット', class: "btn btn-green w-100 pt-2" %>
+        <div class="new-item-btn">
+          <%= f.submit 'チャット', class: "btn btn-green w-100" %>
         </div>
       <% end %>
     <% end %>

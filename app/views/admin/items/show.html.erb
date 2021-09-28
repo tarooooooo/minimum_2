@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      
+
       <h2><%= @item.name %>の詳細</h2>
       <table class="table table-hover table-borderless">
         <tr><th>アイテム画像</th><th><%= attachment_image_tag @item, :item_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></th></tr>
@@ -12,14 +12,14 @@
         <tr><th>カラー</th><th><%= @item.color.name %>歳</th></tr>
         <tr><th>購入価格</th></th><th><%= @item.price %>円</th></tr>
         <tr><th>サイズ</th><th><%= @item.size %></th></tr>
-        <tr><th>購入日</th><th><%= @item.purchase_date %></th></tr>
+        <tr><th>購入日</th><th><%= @item.purchase_date.strftime("%Y年 %m月 %d日") %></th></tr>
         <tr><th>削除日</th><th><%= @item.discard_date %></th></tr>
         <tr><th>アイテムステータス</th>
         <div>
         <% if @item.item_status_before_type_cast == 0 %>
-          <th class="text-success"><%= @item.item_status %></th>
+          <th class="text-success"><%= @item.item_status_i18n %></th>
         <% else %>
-          <th class="text-muted"><%= @item.item_status %></th>
+          <th class="text-muted"><%= @item.item_status_i18n %></th>
         <% end %>
         </div>
         </tr>

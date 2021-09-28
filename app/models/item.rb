@@ -16,6 +16,10 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :name, length: { minimum: 1, maximum: 20 }
+    validates :size
+    validates :item_status
+    validates :purchase_date
+    validates :wear_count
   end
   validates :price,
     numericality: {

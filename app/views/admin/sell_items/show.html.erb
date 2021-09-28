@@ -1,40 +1,58 @@
 <div class="product-title">
   <h2 class ="mb-5">商品詳細</h2>
 </div>
-<div class="container pb-5">
-  <div class="row mt-5">
-    <div class="col-lg-6 col-md-10 col-sm-10 zoomInText">
+<div class="container-fluid pb-5">
+  <div class="row mt-5 justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-10">
       <%= attachment_image_tag @sell_item.item, :item_image, :fill, 550, 400, format: 'jpeg' %>
       <p>いいね件数: <%= @sell_item.likes.count %>　コメント件数：<%= @sell_item.comments.count %></p>
 
       <table class="table table-hover table-inverse">
         <tbody>
-          <tr><td>アイテム名</td><td><%= @sell_item.name%></td></tr>
-          <tr><td>価格</td><td><%= @sell_item.order_price %></td></tr>
-          <tr><td>アイテム説明</td><td><%= @sell_item.introduction %></td></tr>
-          <tr><td>カテゴリー</td><td><%= @sell_item.item.category.name%></td></tr>
-          <tr><td>カラー</td><td><%= @sell_item.item.color.name%></td></tr>
-          <tr><td>ブランド</td><td><%= @sell_item.item.brand.name %></td></tr>
-          <tr><td>購入時価格</td><td><%= @sell_item.item.price %>円</td></tr>
-          <tr><td>購入日</td><td><%= @sell_item.item.purchase_date.strftime("%Y年 %m月 %d日") %></td></tr>
-          <tr><td>サイズ</td><td><%= @sell_item.item.size %></td></tr>
-          <tr><td>配送料の負担</td><td><%= @sell_item.delivery_charged_i18n %></td></tr>
-          <tr><td>配送の方法</td><td><%= @sell_item.delivery_way_i18n %></td></tr>
-          <tr><td>発送までの日数</td><td><%= @sell_item.delivery_days_i18n %></td></tr>
-          <tr><td><%= @sell_item.order_status_i18n %></td></tr>
+          <tr><th class="text-nowrap">アイテム名</th><td><%= @sell_item.name%></td></tr>
+          <tr><th class="text-nowrap">価格</th><td><%= @sell_item.order_price %></td></tr>
+          <tr><th class="text-nowrap">アイテム説明</th><td><%= @sell_item.introduction %></td></tr>
+          <tr><th class="text-nowrap">カテゴリー</th><td><%= @sell_item.item.category.name%></td></tr>
+          <tr><th class="text-nowrap">カラー</th><td><%= @sell_item.item.color.name%></td></tr>
+          <tr><th class="text-nowrap">ブランド</th><td><%= @sell_item.item.brand.name %></td></tr>
+          <tr><th class="text-nowrap">購入時価格</th><td><%= @sell_item.item.price %>円</td></tr>
+          <tr><th class="text-nowrap">購入日</th><td><%= @sell_item.item.purchase_date.strftime("%Y年 %m月 %d日") %></td></tr>
+          <tr><th class="text-nowrap">サイズ</th><td><%= @sell_item.item.size %></td></tr>
+          <tr><th class="text-nowrap">配送料の負担</th><td><%= @sell_item.delivery_charged_i18n %></td></tr>
+          <tr><th class="text-nowrap">配送の方法</th><td><%= @sell_item.delivery_way_i18n %></td></tr>
+          <tr><th class="text-nowrap">発送までの日数</th><td><%= @sell_item.delivery_days_i18n %></td></tr>
+          <tr><th class="text-nowrap"><%= @sell_item.order_status_i18n %></th></tr>
 
         </tbody>
       </table>
       <p>入金が確認後、「確認完了」を押してください。</p>
       <%= link_to "確認完了", admin_sell_item_path(@sell_item), method: :put %>
       <div class="comment_box border">
-        <% @sell_item.comments.each do |comment| %>
-          <p><%= attachment_image_tag comment.user, :icon_image, :fill, 100, 100, format: 'jpeg' %></p>
-          <p><%= comment.user.nickname %></p>
-          <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
-          <p><%= comment.text %></p>
-        <% end %>
+        <div id="chats">
+        <% @comments.each do |comment|%>
+          <%if comment.user_id == @sell_item.seller.id %>
+            <div class="mycomment">
+              <p><%= comment.text %></p>
+            </div>
+          <%else%>
+            <div class="fukidasi">
+              <div class="faceicon">
+                <%= attachment_image_tag comment.user, :icon_image, :fill, 100, 100, format: 'jpeg' %>
+              </div>
+              <div class="chatting">
+                <div class="says">
+                  <div class ="font-weight-bold d-flex">
+                    <%= comment.user.nickname %>
+                  </div>
+                  <p><%= comment.text %></p>
+                </div>
+              </div>
+            </div>
+          <%end%>
+        <%end%>
+       </div>
       </div>
+
     </div>
   </div>
 </div>

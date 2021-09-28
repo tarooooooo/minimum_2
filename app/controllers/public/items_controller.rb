@@ -30,7 +30,7 @@ class Public::ItemsController < ApplicationController
 
     if category.category_managements.find_by(user_id: current_user.id) == nil
        flash.now[:danger] = "#{@item.category.name}の、制限が設定されていません"
-      render 'public/items/new'
+       render 'public/items/new'
     else
       # 登録しようとしているitemのlimit
       limit = category.category_managements.find_by(user_id: current_user.id).limit.to_i
@@ -39,8 +39,10 @@ class Public::ItemsController < ApplicationController
 
       if items_count < limit
         if @item.save
+          flash[:success] = "登録が完了しました。"
           redirect_to item_path(@item)
         else
+          flash.now[:danger] = "登録ができませんでした。"
           render 'public/items/new'
         end
       else
@@ -51,13 +53,15 @@ class Public::ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
+    @item = Item.find(params[:id])
 
     if item_params[:item_status] == "discarded"
-      item.discard_date = Date.today.to_time
+      @item.discard_date = Date.today.to_time
     end
-    if item.update(item_params)
-      redirect_to item_path(item)
+    if @item.update(item_params)
+      redirect_to item_path(@item)
+    else
+      render 'edit'
     end
   end
 

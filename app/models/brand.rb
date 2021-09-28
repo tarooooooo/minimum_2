@@ -2,6 +2,6 @@ class Brand < ApplicationRecord
   has_many :items
 
   with_options presence: true do
-    validates :name, length: { minimum: 1, maximum: 30 }
+    validates :name, length: { minimum: 1, maximum: 30 }, uniqueness: true
   end
 end
