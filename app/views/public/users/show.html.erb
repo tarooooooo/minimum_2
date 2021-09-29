@@ -85,6 +85,13 @@
       <!--評価-->
       <div class="row justify-content-center">
          <%= render 'public/users/rate_avg', {user: @user, user_rate_avg: @user_rate_avg} %>
+         <%= link_to rate_user_path(@user) do %>
+           <% if @user_rate_avg.nan? %>
+             <p>（評価はまだされていません）</p>
+           <% else %>
+             <p>（評価：<%= @user_rate_avg %>）</p>
+           <% end %>
+         <% end %>
       </div>
 
       <!--チャットボタン-->
