@@ -1,13 +1,14 @@
 <div id="box">
   <div class="box-text">
     <h1 class = "welcome-coment">
-      <%= link_to image_tag("minimum.png", width: 200), "/" %>
+      <%= link_to image_tag("logo-minimum.png", width: 700), "/" %>
     </h1>
   </div>
   <div id="images">
     <div class="image1"></div>
     <div class="image2"></div>
     <div class="image3"></div>
+    <div class="image4"></div>
   </div>
 </div>
 <script>
@@ -16,7 +17,7 @@
     // スライドショーの変化 ("fade" or "slide")
     transition : 'fade',
     // 変化に係る時間(ミリ秒)
-    speed : 1500,
+    speed : 2600,
     // easingの種類
     easing : 'easeOutQuart',
     // ナビゲーションの形("block" or "bubble")
@@ -28,7 +29,7 @@
     // スライドショーの自動再生(falseで自動再生なし)
     autoPlay : true,
     // 自動再生時のスライド切替間隔(ミリ秒)
-    autoPlayDuration : 2800,
+    autoPlayDuration : 4800,
     // キーボードの矢印キーによるスライド送りの設定(trueで有効)
     keyboardOnAlways : false,
     // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)

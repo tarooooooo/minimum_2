@@ -3,10 +3,27 @@
 </div>
 <div class="container-fluid pb-5">
   <div class="row mt-5 justify-content-center">
-    <div class="col-lg-8 col-md-10 col-sm-10">
+    <div class="col-lg-5 col-md-10 col-sm-10">
       <%= attachment_image_tag @sell_item.item, :item_image, :fill, 550, 400, format: 'jpeg' %>
       <p>いいね件数: <%= @sell_item.likes.count %>　コメント件数：<%= @sell_item.comments.count %></p>
+    </div>
 
+    <div class="col-lg-5">
+      <div class="create_category">
+        <p>入金が確認後、「確認完了」を押してください。</p>
+        <%= form_with model: [:admin, @sell_item], local:true do |f| %>
+          <div class="form-group">
+            <label>入金確認</label>
+            <%= f.select :order_status, SellItem.order_statuses.keys.map {|k| [I18n.t("enums.sell_item.order_status.#{k}"), k]} %>
+            <%= f.submit "変更", class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-10">
       <table class="table table-hover table-inverse">
         <tbody>
           <tr><th class="text-nowrap">アイテム名</th><td><%= @sell_item.name%></td></tr>
@@ -25,8 +42,7 @@
 
         </tbody>
       </table>
-      <p>入金が確認後、「確認完了」を押してください。</p>
-      <%= link_to "確認完了", admin_sell_item_path(@sell_item), method: :put %>
+
       <div class="comment_box border">
         <div id="chats">
         <% @comments.each do |comment|%>
@@ -52,7 +68,6 @@
         <%end%>
        </div>
       </div>
-
     </div>
   </div>
 </div>

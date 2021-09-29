@@ -42,7 +42,7 @@
           <% @category_managements.each do |category_management| %>
             <tr>
               <td><%= category_management.category.name %></td>
-              <td><%= category_management.limit %></td>
+              <td>所有制限：<%= category_management.limit %></td>
               <td><%= link_to "編集", edit_category_management_path(category_management), class:"btn btn-secondary text-nowrap" %></td>
               <td><%= link_to "削除", category_management_path(category_management),method: :delete, class:"btn btn-danger text-nowrap" %></td>
             </tr>

@@ -29,3 +29,16 @@ Color.create!(name: "黄系", color_code: "#ffd700")
 Color.create!(name: "ベージュ系", color_code: "#d2b48c")
 Color.create!(name: "白", color_code: "#f8f8ff")
 Color.create!(name: "黒", color_code: "#ffffff")
+
+User.create!(
+    email: 'minimum@gmail.com',
+    password: 'minimum',
+    nickname: 'テストユーザー',
+    last_name: '名字',
+    first_name: '名前',
+    last_name_kana: 'ミョウジ',
+    first_name_kana: 'ナマエ',
+    postal_code: '0000000',
+    address: '東京都0-0-0',
+    phone_number: '12345678909'
+)

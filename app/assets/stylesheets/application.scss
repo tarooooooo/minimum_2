@@ -72,24 +72,26 @@ a:hover {color: #2f5864;}
   color: white;
   .box-text{
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    padding: 5px;
-    background-color: white;
+    padding: 15px;
     z-index: 9999;
   }
 }
 .image1 {
-  background-image: image-url("image1.png");
+  background-image: image-url("clothes1.jpg");
 }
 .image2 {
-  background-image: image-url("image2.png");
+  background-image: image-url("clothes2.jpg");
 }
 .image3 {
-  background-image: image-url("image3.png");
+  background-image: image-url("clothes3.jpg");
+}
+.image4{
+  background-image: image-url("clothes4.jpg");
 }
 
 .left-message{
