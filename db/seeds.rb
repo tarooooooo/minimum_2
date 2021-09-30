@@ -11,11 +11,9 @@ Admin.create!(
    password: 'minimum',
 )
 
-Category.create!(name: "Tシャツ（半袖）")
-Category.create!(name: "Tシャツ（長袖）")
+Category.create!(name: "インナー")
+Category.create!(name: "アウター")
 Category.create!(name: "ボトムス")
-Category.create!(name: "アウター（春、秋）")
-Category.create!(name: "アウター（冬）")
 
 Brand.create!(name: "JieDa")
 Brand.create!(name: "Allege")

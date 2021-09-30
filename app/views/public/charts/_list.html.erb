@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row  justify-content-center">
+    <div class="col col-lg-10 col-md-10 col-sm-12">
+      <div class="purchase_date_graph">
+        <%= render "purchase_date_graph", items: items, target: target %>
+      </div>
+    </div>
+  </div>
+  <div class="row  justify-content-center">
+    <div class="col-lg-10 col-md-10 col-sm-12 ">
+      <div class="sub-title text-center my-5">
+        <p>月間別購入アイテム</p>
+      </div>
+      <%= render "purchase_date_table", items: items %>
+      <%= render 'public/items/btn_by_month', target: target %>
+    </div>
+  </div>
+</div>

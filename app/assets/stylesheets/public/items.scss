@@ -79,3 +79,18 @@
     }
   }
 }
+
+
+.by_months{
+  background-color: #f8f8ff;
+  .img-response{
+  width: 104px;
+
+  @media (min-width: 426px){
+    width: 190px;
+  }
+  @media(min-width: 1025px){
+    width: 238px;
+  }
+}
+}

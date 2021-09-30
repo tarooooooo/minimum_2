@@ -3,6 +3,82 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // disposal_graph
+.purchase{
+  position: relative;
+
+  .top-box{
+    .top-text{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%,-50%);
+      -webkit-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+      margin:0;
+      padding:0;
+      color: #2f5864;
+      font-size: 15px;
+
+      @media (min-width: 426px){
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        margin:0;
+        padding:0;
+        color: #2f5864;
+        font-size: 20px;
+      }
+      @media(min-width: 1025px){
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        margin:0;
+        padding:0;
+        color: #2f5864;
+        font-size: 25px;
+      }
+    }
+
+    .top-image{
+      background-image: image-url('favorite-top.png');
+      background-position: center 20%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      // background-attachment: fixed;
+      height: 150px;
+      width: 100%;
+      max-width: 100%;
+
+      @media (min-width: 426px){
+        background-image: image-url('favorite-top.png');
+        background-position: center 20%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        // background-attachment: fixed;
+        height: 250px;
+        width: 100%;
+        max-width: 100%;
+      }
+      @media(min-width: 1025px){
+        background-image: image-url('favorite-top.png');
+        background-position: center 20%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        // background-attachment: fixed;
+        height: 300px;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
 .disposal{
   .top-box{
     position: relative;
@@ -78,3 +154,60 @@
     }
   }
 }
+
+table{
+    width: 100%;
+    table-layout: fixed;
+  }
+
+.purchase_date_graph{
+    height: 300px;
+    @media (min-width: 426px){
+    height: 300px;
+    }
+    @media(min-width: 1025px){
+     height: 500px;
+    }
+  }
+
+  .tabplist{
+    margin: none;
+  }
+
+  .tab {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  border-left: solid 1px #CCC;
+  border-bottom: solid 1px #CCC;
+}
+.tab:first-child {
+  border-left: none;
+}
+// タブがactiveのときのデザイン
+.tab-active {
+  color: #FFF;
+  background: #2f5864;
+  transition: all 0.2s ease-in-out;
+}
+// タブの中身、最初は非表示
+.tabbox {
+  display: none;
+  padding: 15px;
+}
+// box-showクラスのものだけ表示
+.box-show {
+  display: block;
+}
+// hover時のアクション
+.tab:hover{
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.ul-align-center{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+  }

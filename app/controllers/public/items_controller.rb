@@ -118,6 +118,57 @@ class Public::ItemsController < ApplicationController
     end
   end
 
+  def by_months
+    @categories = []
+    case params[:date]
+      when "current_month"
+        @items = current_user.items.purchase_date_thismonth
+      when "one_month_ago"
+        @items = current_user.items.purchase_date_1month_ago
+      when "two_month_ago"
+        @items = current_user.items.purchase_date_2month_ago
+      when "three_month_ago"
+        @items = current_user.items.purchase_date_3month_ago
+      when "four_month_ago"
+        @items = current_user.items.purchase_date_4month_ago
+      when "five_month_ago"
+        @items = current_user.items.purchase_date_5month_ago
+      when "six_month_ago"
+        @items = current_user.items.purchase_date_6month_ago
+      when "seven_month_ago"
+        @items = current_user.items.purchase_date_7month_ago
+      when "eight_month_ago"
+        @items = current_user.items.purchase_date_8month_ago
+      when "nine_month_ago"
+        @items = current_user.items.purchase_date_9month_ago
+      when "ten_month_ago"
+        @items = current_user.items.purchase_date_10month_ago
+      when "eleven_month_ago"
+        @items = current_user.items.purchase_date_11month_ago
+    end
+
+    target = params[:target]
+    
+    if target.present?
+      if target == "inner"
+        @items = @items.where(category_id: 1)
+      elsif target == "outer"
+        @items = @items.where(category_id: 2)
+      elsif target == "bottoms"
+        @items = @items.where(category_id: 3)
+      end
+    end
+
+    @items.each do |item|
+      @categories << item.category
+    end
+    @categories.uniq!
+  end
+
+  def by_months_category
+
+  end
+
   private
 
   def item_params

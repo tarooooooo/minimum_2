@@ -4,6 +4,10 @@ class Public::ChartsController < ApplicationController
   def purchase
     @items = current_user.items
     @categories = current_user.categories.group(:id)
+
+    @inner_items = current_user.items.where(category_id: 1)
+    @outer_items = current_user.items.where(category_id: 2)
+    @bottoms_items = current_user.items.where(category_id: 3)
   end
 
   def disposal

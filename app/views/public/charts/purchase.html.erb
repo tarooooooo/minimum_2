@@ -1,35 +1,45 @@
-<div class="container-fluid disposal">
-  <div class="row justify-content-center">
-    <div class="col-lg-12 col-md-12 col-sm-12 p-0">
-      <div class="top-box">
-        <div class="top-text text-center text-center">
-          <p class="m-0">Purchase Chart</p>
-          <p class="m-0">購入履歴</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="ul-align-center">
+        <ul class="tab-list list-unstyled">
+          <li class="tab tab-active d-inline">
+            全アイテム
+          </li>
+          <li class="tab d-inline">
+            インナー
+          </li>
+          <li class="tab d-inline">
+            アウター
+          </li>
+          <li class="tab d-inline">
+            ボトムス
+          </li>
+        </ul>
+      </div>
+      <div class="tabbox-contents">
+        <div class="tabbox box-show">
+          <div class="purchase_date_graph">
+            <%= render "list", items: @items, target: "all" unless @items == nil %>
+          </div>
         </div>
-        <div class="top-image"></div>
+        <div class="tabbox">
+          <div class="purchase_date_graph">
+            <%= render 'list', items: @inner_items, target: "inner" unless @inner_items == nil %>
+          </div>
+        </div>
+        <div class="tabbox">
+          <div class="purchase_date_graph">
+            <%= render "list", items: @outer_items, target: "outer" unless @outer_items == nil%>
+          </div>
+        </div>
+        <div class="tabbox">
+          <div class="purchase_date_graph">
+            <%= render "list", items: @bottoms_items, target: "bottoms" unless @nottoms_items == nil %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="sub-title text-center my-5">
-        <p>All Items</p>
-      </div>
-      <%= render "purchase_date_table", items: @items %>
-      <%= render "purchase_date_graph", items: @items, target: "all" %>
-    </div>
-  </div>
-  <% @categories.each do |category| %>
-    <div class="sub-title text-center my-5">
-      <p><%= category.name %></p>
-    </div>
-    <div class="row">
-        <div class="col">
-          <%= render "purchase_date_graph", items: current_user.items.where(category_id: category.id), target: category.id %>
-      </div>
-    </div>
-  <% end %>
-</div>

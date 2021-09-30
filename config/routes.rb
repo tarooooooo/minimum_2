@@ -65,7 +65,7 @@ Rails.application.routes.draw do
     end
     collection do
       get 'wear_today_new'
-
+      get 'by_months'
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
     end

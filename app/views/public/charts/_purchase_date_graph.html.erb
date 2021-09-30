@@ -21,23 +21,35 @@
         datasets: [
           {
             label: '購入アイテム数',
-            data: [<%= items.purchase_date_11month_ago.count %>,<%= items.purchase_date_10month_ago.count %>,<%= items.purchase_date_9month_ago.count %>, <%= items.purchase_date_8month_ago.count %>, <%= items.purchase_date_7month_ago.count %>, <%= items.purchase_date_6month_ago.count %>, <%= items.purchase_date_5month_ago.count %>, <%= items.purchase_date_4month_ago.count %>, <%= items.purchase_date_3month_ago.count %>, <%= items.purchase_date_2month_ago.count %>, <%= items.purchase_date_1month_ago.count %>, <%= items.purchase_date_thismonth.count %>],
-            borderColor: "rgba(0,0,255,1)",
+            data: [<%= items.purchase_date_11month_ago.count %>,
+                   <%= items.purchase_date_10month_ago.count %>,
+                   <%= items.purchase_date_9month_ago.count %>,
+                   <%= items.purchase_date_8month_ago.count %>,
+                   <%= items.purchase_date_7month_ago.count %>,
+                   <%= items.purchase_date_6month_ago.count %>,
+                   <%= items.purchase_date_5month_ago.count %>,
+                   <%= items.purchase_date_4month_ago.count %>,
+                   <%= items.purchase_date_3month_ago.count %>,
+                   <%= items.purchase_date_2month_ago.count %>,
+                   <%= items.purchase_date_1month_ago.count %>,
+                   <%= items.purchase_date_thismonth.count %>],
+            borderColor: "#2f5864",
             backgroundColor: "rgba(0,0,0,0)"
           }
         ],
       },
       options: {
-        title: {
-          display: true,
-          text: '購入アイテム数'
-        },
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
           yAxes: [{
+            scaleLabel: {   // 軸ラベル
+              fontsize: 10,
+                    },
             ticks: {
-              suggestedMax: <%= items.count + 2 %>,
+              suggestedMax: 20,
               suggestedMin: 0,
-              stepSize: 1,
+              stepSize: 5,
               callback: function(value, index, values){
                 return  value
               }
