@@ -1,0 +1,6 @@
+<% @colors.each do |color| %>
+  <%= form_with url: "/items/disposal", method: :get, local: true do |f| %>
+    <%= f.hidden_field :color, value: color.name %>
+    <%= f.submit color.name, class: "tbox-style border btn btn-light btn-lg btn-block" %>
+  <% end %>
+<% end %>

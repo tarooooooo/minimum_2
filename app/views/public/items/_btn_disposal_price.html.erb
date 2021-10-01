@@ -1,0 +1,6 @@
+<% @prices.each do |price| %>
+  <%= form_with url: "/items/disposal", method: :get, local: true do |f| %>
+    <%= f.hidden_field :price, value: price %>
+    <%= f.submit price, class: "tbox-style border btn btn-light btn-lg btn-block" %>
+  <% end %>
+<% end %>

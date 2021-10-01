@@ -148,7 +148,7 @@ class Public::ItemsController < ApplicationController
     end
 
     target = params[:target]
-    
+
     if target.present?
       if target == "inner"
         @items = @items.where(category_id: 1)
@@ -165,8 +165,51 @@ class Public::ItemsController < ApplicationController
     @categories.uniq!
   end
 
-  def by_months_category
-
+  def disposal
+    if params[:color].present?
+      @color = Color.find_by(name: params[:color])
+      @items = current_user.items.where(item_status: "discarded", color_id: @color.id)
+    elsif params[:brand].present?
+      @brand = Brand.find_by(name: params[:brand])
+      @items = current_user.items.where(item_status: "discarded", brand_id: @brand.id)
+    elsif params[:price].present?
+      @price = params[:price]
+      @items = current_user.items.where(item_status: "discarded")
+      
+      from_0_to_1000      = []
+      from_1001_to_3000   = []
+      from_3001_to_5000   = []
+      from_5001_to_10000  = []
+      from_10001_to_20000 = []
+      from_20001_to_30000 = []
+      over_30001          = []
+      @items.each do |item|
+        from_0_to_1000      << item if (0..1_000).cover?(item.price.to_i)
+        from_1001_to_3000   << item if (1_001..3_000).cover?(item.price.to_i)
+        from_3001_to_5000   << item if (3_001..5_000).cover?(item.price.to_i)
+        from_5001_to_10000  << item if (5_001..10_000).cover?(item.price.to_i)
+        from_10001_to_20000 << item if (10_001..20_000).cover?(item.price.to_i)
+        from_20001_to_30000 << item if (20_001..30_000).cover?(item.price.to_i)
+        over_30001          << item if (30_001..).cover?(item.price.to_i)
+      end
+      
+      case params[:price]
+        when "0~1000円"
+          @items = from_0_to_1000
+        when "1001~3000円"
+          @items = from_1001_to_3000
+        when "3001~5000円"
+          @items = from_3001_to_5000
+        when "5001~10000円"
+          @items = from_5001_to_10000
+        when "10001~20000円"
+          @items = from_10001_to_20000
+        when "20001~30000円"
+          @items = from_20001_to_30000
+        when "30000円~"
+          @items = over_30001
+      end
+    end
   end
 
   private
@@ -185,4 +228,5 @@ class Public::ItemsController < ApplicationController
       :wear_count
       )
   end
+
 end

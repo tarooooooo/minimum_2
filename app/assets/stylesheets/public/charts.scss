@@ -211,3 +211,40 @@ table{
     flex-direction: column;
     margin-top: 50px;
   }
+
+
+.button01{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 1em 2em;
+  width: 100%;
+  color: #333;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: whitesmoke;
+  transition: 0.3s;
+}
+
+.button01:after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid #333333;
+  border-right: 3px solid #333333;
+  transform: rotate(45deg);
+}
+
+.button01:hover {
+  text-decoration: none;
+  background-color: #bbbbbb;
+}
+
+.tbox-style {
+  padding-top   : 4px;
+  padding-right : 4px;
+  padding-bottom: 2px;
+  text-align    : right;
+  font-weight   : bold;
+}

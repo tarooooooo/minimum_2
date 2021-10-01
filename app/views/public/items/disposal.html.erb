@@ -1,0 +1,14 @@
+<div class="container-fluid by_months">
+  <div class="row justify-content-center">
+    <div class="col-10 p-0">
+        <div class="p-3 bg-secondary text-white">
+          <%= @color.name if @color.present? %>
+          <%= @brand.name if @brand.present? %>
+          <%= @price if @price.present? %>
+        </div>
+        <div class="row m-1 row-gap">
+          <%= render partial: 'index', collection: @items, as: :item %>
+        </div>
+    </div>
+  </div>
+</div>

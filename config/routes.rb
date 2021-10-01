@@ -66,6 +66,8 @@ Rails.application.routes.draw do
     collection do
       get 'wear_today_new'
       get 'by_months'
+      get 'disposal'
+      # get 'disposal_by_color'
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
     end
