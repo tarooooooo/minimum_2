@@ -1,3 +1,53 @@
+ <style>
+      html,
+      body {
+        position: relative;
+        height: 100%;
+      }
+
+      body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      /*.swiper-slide {*/
+      /*  text-align: center;*/
+      /*  font-size: 18px;*/
+      /*  background: #fff;*/
+
+        /* Center slide text vertically */
+      /*  display: -webkit-box;*/
+      /*  display: -ms-flexbox;*/
+      /*  display: -webkit-flex;*/
+      /*  display: flex;*/
+      /*  -webkit-box-pack: center;*/
+      /*  -ms-flex-pack: center;*/
+      /*  -webkit-justify-content: center;*/
+      /*  justify-content: center;*/
+      /*  -webkit-box-align: center;*/
+      /*  -ms-flex-align: center;*/
+      /*  -webkit-align-items: center;*/
+      /*  align-items: center;*/
+      /*}*/
+
+      /*.swiper-slide img {*/
+      /*  display: block;*/
+      /*  width: 100%;*/
+      /*  height: 100%;*/
+      /*  object-fit: cover;*/
+      /*}*/
+    </style>
+
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-10">
@@ -17,71 +67,30 @@
           </li>
         </ul>
       </div>
+    </div>
+  </div>
+  <div class="row">
+
+        <div class="col-lg-1 col-md-1 col-sm-1 align-items-center target_back_button">
+      <%= render 'chart_back_btn', genre: @genre %>
+    </div>
+    <div class="col-lg-8">
       <div class="tabbox-contents">
         <div class="tabbox box-show">
-          <div class="purchase_date_graph">
-            <%= render 'disposal_graph' , high_chart_by_color: @high_chart_by_color,
-                                          high_chart_by_brand: @high_chart_by_brand,
-                                          high_chart_by_price: @high_chart_by_price,
-                                          color: "color",
-                                          brand: "brand",
-                                          price: "price"
-                                          %>
+          <div id="high_chart">
+      		  <%#= high_chart("color", @high_chart_by_color) %>
+      		  <%#= render 'public/items/btn_disposal', target: @colors %>
+      		  <%= render 'disposal_graph', target: @target , high_chart: @high_chart, targets: @targets %>
+
           </div>
         </div>
-        <% @categories.each do |category| %>
-        <div class="tabbox">
-          <div class="purchase_date_graph">
-            <%= render 'disposal_graph' , high_chart_by_color: @high_chart_by_category_color[category.id],
-                                          high_chart_by_brand: @high_chart_by_category_brand[category.id],
-                                          high_chart_by_price: @high_chart_by_category_price[category.id],
-                                          color:               "#{category.id}-color",
-                                          brand:               "#{category.id}-brand",
-                                          price:               "#{category.id}-price"
-                                          %>
-          </div>
-        </div>
-        <% end %>
       </div>
     </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 align-items-center target_button">
+      <%= render 'chart_btn', genre: @genre %>
+      
+    </div>
+
   </div>
 </div>
 
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script>
-   var mySwiper = new Swiper('.swiper-container', {
-  	loop: true,
-  	loopPreventsSlide: true,
-  	loopAdditionalSlides: 0,
-  	preloadImages: true,
-  	updateOnImagesReady: true,
-  	preventIntercationOnTransition: true,
-  	resistance: false,
-  	followFinger: false,
-  	passiveListeners: false,
-  	observer: true,
-  	spaceBetween: 50,
-  	effect: 'slide',
-  	navigation: {
-  		nextEl: '.swiper-button-next',
-  		prevEl: '.swiper-button-prev'
-  	},
-  	pagination: {
-  		el: '.swiper-pagination',
-  		type: 'bullets',
-  		clickable: true
-  	}
-  });
-
-  var mySwiper2 = new Swiper('.swiper2', {
-	slideToClickedSlide: true,
-	controller: {
-		control: mySwiper1,
-		inverse: false,
-		by: 'slide'
-  	},
-  	spaceBetween: 10,
-  	slideToClickedSlide: true
-  });
-  mySwiper1.controller.control = mySwiper2;
-</script>

@@ -1,0 +1,4 @@
+$('.target_button').html("<%= j(render partial: 'public/charts/chart_btn', locals: {genre: @genre}) %>");
+$('.target_back_button').html("<%= j(render partial: 'public/charts/chart_back_btn', locals: {genre: @genre}) %>");
+$('#high_chart').html("<%= j(render partial: 'public/charts/disposal_graph', locals: { target: @genre , high_chart: @high_chart, targets: @targets, brands: @brands, prices: @prices}) %>");
+

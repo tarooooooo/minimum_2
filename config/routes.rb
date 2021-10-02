@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   get      'homes/about', to: 'public/homes#about'
   get 'charts/purchase',  to: 'public/charts#purchase'
   get 'charts/disposal',  to: 'public/charts#disposal'
-  get 'charts/disposal',  to: 'public/charts#index'
+  get 'charts/next', to: 'public/charts#next'
+  get 'charts/back', to: 'public/charts#back'
 
   get 'sell_items/:id/order_new', to: 'public/sell_items#order_new', as: 'sell_items_order_new'
   get 'sell_items/:id/order_confirm', to: 'public/sell_items#order_confirm', as: 'sell_items_order_confirm'
@@ -67,7 +68,6 @@ Rails.application.routes.draw do
       get 'wear_today_new'
       get 'by_months'
       get 'disposal'
-      # get 'disposal_by_color'
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
     end

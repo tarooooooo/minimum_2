@@ -1,18 +1,26 @@
-<div class="swiper-container swiper1">
-	<div class="swiper-wrapper">
-		<div class="swiper-slide">
-		  <%= high_chart(color, high_chart_by_color) %>
-		  <%= render 'public/items/btn_disposal', colors: @colors %>
-		</div>
-		<div class="swiper-slide">
-			<%= high_chart(brand, high_chart_by_brand) %>
-			<%= render 'public/items/btn_disposal_brand', brands: @brands %>
-		</div>
-		<div class="swiper-slide">
-			<%= high_chart(price, high_chart_by_price) %>
-			<%= render 'public/items/btn_disposal_price', prices: @prices %>
-		</div>
-	</div>
-	<div class="swiper-button-prev prev1"></div>
-	<div class="swiper-button-next next1"></div>
-</div>
+<%= high_chart(target, high_chart) %>
+
+
+<% if target == "color" %>
+  <% targets.each do |color| %>
+    <%= form_with url: "/items/disposal", method: :get, local: true do |f| %>
+      <%= f.hidden_field :color, value: color.name %>
+      <%= f.submit color.name, class: "tbox-style border btn btn-light btn-lg btn-block" %>
+    <% end %>
+  <% end %>
+<% elsif target == "brand" %>
+
+  <% brands.each do |brand| %>
+    <%= form_with url: "/items/disposal", method: :get, local: true do |f| %>
+      <%= f.hidden_field :brand, value: brand.name %>
+      <%= f.submit brand.name, class: "tbox-style border btn btn-light btn-lg btn-block" %>
+    <% end %>
+  <% end %>
+<% elsif target == "price" %>
+  <% prices.each do |price| %>
+    <%= form_with url: "/items/disposal", method: :get, local: true do |f| %>
+      <%= f.hidden_field :price, value: price %>
+      <%= f.submit price, class: "tbox-style border btn btn-light btn-lg btn-block" %>
+    <% end %>
+  <% end %>
+<% end %>
