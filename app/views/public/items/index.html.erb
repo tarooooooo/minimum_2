@@ -1,29 +1,57 @@
-<div class="container-fluid items">
-
-  <div class="row justify-content-center">
-    <div class="col-lg-12 col-md-12 col-sm-12 p-0">
-      <div class="top-box">
-        <div class="top-text text-center text-center">
-          <p class="m-0">My Items</p>
-          <p class="m-0">マイアイテム</p>
-        </div>
-        <div class="top-image"></div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="ul-align-center">
+        <ul class="tab-list list-unstyled">
+          <li class="tab tab-active d-inline">
+            全アイテム
+          </li>
+          <li class="tab d-inline">
+            インナー
+          </li>
+          <li class="tab d-inline">
+            アウター
+          </li>
+          <li class="tab d-inline">
+            ボトムス
+          </li>
+        </ul>
       </div>
-    </div>
-  </div>
-
-  <div class="sub-title text-center my-5">
-    <div class="text-center">
-      <%= link_to "全アイテム",items_path %>
-      <%= link_to "所持アイテム", item_status_change_path(item_status: "on_keep") %>
-      <%= link_to "廃棄アイテム", item_status_change_path(item_status: "discarded") %>
-      <%= link_to "出品中", item_status_change_path(item_status: "on_sell") %>
-    </div>
-  </div>
-
-  <div class="row justify-content-center">
-    <div class="col-lg-8 col-md-10 col-sm-12 p-0">
-      <%= render 'public/items/item_table', items: @items %>
+      <div class="plus-btn text-right">
+        <%= link_to new_item_path do %>
+          <i class="far fa-plus-square  fa-3x pb-2"></i>
+        <% end %>
+      </div>
+      <div class="tabbox-contents">
+        <div class="tabbox box-show p-0">
+          <% @categories.each do |category| %>
+            <div class="p-3 bg-secondary text-white">
+              <%= category.name %>
+            </div>
+            <div class="row m-1 row-gap">
+              <%= render partial: 'index', collection: @items.where(category_id: category.id), as: :item %>
+            </div>
+          <% end %>
+        </div>
+        <div class="tabbox p-0">
+          <div class="p-3 bg-secondary text-white">インナー</div>
+          <div class="row m-1 row-gap">
+            <%= render partial: 'index', collection: @items.where(category_id: 1), as: :item %>
+          </div>
+        </div>
+        <div class="tabbox p-0">
+          <div class="p-3 bg-secondary text-white">アウター</div>
+          <div class="row m-1 row-gap">
+            <%= render partial: 'index', collection: @items.where(category_id: 2), as: :item %>
+          </div>
+        </div>
+        <div class="tabbox p-0">
+          <div class="p-3 bg-secondary text-white">ボトムス</div>
+          <div class="row m-1 row-gap">
+            <%= render partial: 'index', collection: @items.where(category_id: 3), as: :item %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

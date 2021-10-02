@@ -47,17 +47,20 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
    var mySwiper = new Swiper('.swiper-container', {
   	loop: true,
+  	loopPreventsSlide: true,
+  	loopAdditionalSlides: 0,
+  	preloadImages: true,
+  	updateOnImagesReady: true,
+  	preventIntercationOnTransition: true,
+  	resistance: false,
+  	followFinger: false,
+  	passiveListeners: false,
+  	observer: true,
+  	spaceBetween: 50,
   	effect: 'slide',
   	navigation: {
   		nextEl: '.swiper-button-next',

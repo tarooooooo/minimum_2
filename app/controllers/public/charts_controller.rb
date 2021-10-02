@@ -32,15 +32,17 @@ class Public::ChartsController < ApplicationController
     # カテゴリー別のアイテムの空の配列
     @category_color_codes = []
 
+    @colors = @items.joins(:color).group('colors.name').count
+    @colors = @colors.sort_by{|key,val| -val}.to_h
+    @color_names = @colors.keys.first(10)
     @colors = []
-    @items.each do |item|
-      @colors << item.color
+    @color_names.each do |name|
+      @colors << Color.find_by(name: name)
     end
-    @colors.uniq!
 
     @brands = @items.joins(:brand).group('brands.name').count
     @brands = @brands.sort_by{|key,val| -val}.to_h
-    @brand_names = @brands.keys.first(5)
+    @brand_names = @brands.keys.first(10)
     @brands = []
     @brand_names.each do |name|
       @brands << Brand.find_by(name: name)

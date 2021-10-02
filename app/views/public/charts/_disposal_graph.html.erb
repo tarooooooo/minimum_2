@@ -2,26 +2,17 @@
 	<div class="swiper-wrapper">
 		<div class="swiper-slide">
 		  <%= high_chart(color, high_chart_by_color) %>
+		  <%= render 'public/items/btn_disposal', colors: @colors %>
 		</div>
-		<div class="swiper-slide"><%= high_chart(brand, high_chart_by_brand) %></div>
-		<div class="swiper-slide"><%= high_chart(price, high_chart_by_price) %></div>
+		<div class="swiper-slide">
+			<%= high_chart(brand, high_chart_by_brand) %>
+			<%= render 'public/items/btn_disposal_brand', brands: @brands %>
+		</div>
+		<div class="swiper-slide">
+			<%= high_chart(price, high_chart_by_price) %>
+			<%= render 'public/items/btn_disposal_price', prices: @prices %>
+		</div>
 	</div>
 	<div class="swiper-button-prev prev1"></div>
 	<div class="swiper-button-next next1"></div>
 </div>
-
-<div class="swiper-container swiper2">
-		<!-- メイン表示部分 -->
-		<div class="swiper-wrapper">
-			<!-- 各スライド -->
-			<div class="swiper-slide">
-				<%= render 'public/items/btn_disposal', colors: @colors %>
-			</div>
-			<div class="swiper-slide">
-				<%= render 'public/items/btn_disposal_brand', brands: @brands %>
-			</div>
-			<div class="swiper-slide">
-				<%= render 'public/items/btn_disposal_price', prices: @prices %>
-			</div>
-		</div>
-	</div>
