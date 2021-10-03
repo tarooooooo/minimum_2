@@ -53,44 +53,54 @@
     <div class="col-10">
       <div class="ul-align-center">
         <ul class="tab-list list-unstyled">
-          <li class="tab tab-active d-inline">
+
+          <li class="tab d-inline <%if @category == nil%>tab-active<%end%>">
             全アイテム
           </li>
-          <li class="tab d-inline">
+
+          <li class="tab d-inline <%if @category == "1"%>tab-active<%end%>">
             インナー
           </li>
-          <li class="tab d-inline">
+
+          <li class="tab d-inline <%if @category == "2"%>tab-active<%end%>">
             アウター
           </li>
-          <li class="tab d-inline">
+
+          <li class="tab d-inline <%if @category == "3"%>tab-active<%end%>">
             ボトムス
           </li>
+
         </ul>
       </div>
     </div>
   </div>
+
   <div class="row">
 
-        <div class="col-lg-1 col-md-1 col-sm-1 align-items-center target_back_button">
+    <div class="col-lg-1 col-md-1 col-sm-1 align-items-center target_back_button px-0 pt-5 text-right">
       <%= render 'chart_back_btn', genre: @genre %>
     </div>
-    <div class="col-lg-8">
-      <div class="tabbox-contents">
-        <div class="tabbox box-show">
-          <div id="high_chart">
-      		  <%#= high_chart("color", @high_chart_by_color) %>
-      		  <%#= render 'public/items/btn_disposal', target: @colors %>
-      		  <%= render 'disposal_graph', target: @target , high_chart: @high_chart, targets: @targets %>
 
+    <div class="col-lg-8 col-md-8 col-sm-8 p-0">
+      <div class="tabbox-contents">
+        <div class="tabbox <%if @category == nil%>box-show<%end%>">
+          <div id="high_chart">
+      		  <%= render 'disposal_graph', target: @genre , high_chart: @high_chart, targets: @targets, target_id: 0 %>
           </div>
         </div>
+        <% @categories.each do |category| %>
+          <div class="tabbox <%if @category == category.id.to_s%>box-show<%end%>" id="category_<%=category.id%>" >
+            <%= category.name %>
+            <div id="high_chart<%= category.id %>">
+               <%= render 'disposal_graph' ,targets: @targets, target: @genre, high_chart: get_category_data(category.id, params[:genre] ? params[:genre] : "color"), target_id: category.id %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
-        <div class="col-lg-1 col-md-1 col-sm-1 align-items-center target_button">
+    <div class="col-lg-1 col-md-1 col-sm-1 align-items-center target_button pt-5 px-0">
       <%= render 'chart_btn', genre: @genre %>
-      
     </div>
-
   </div>
 </div>
 
