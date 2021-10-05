@@ -75,12 +75,10 @@
     </div>
   </div>
 
-  <div class="row">
-
-    <div class="col-lg-1 col-md-1 col-sm-1 align-items-center target_back_button px-0 pt-5 text-right">
-      <%= render 'chart_back_btn', genre: @genre %>
-    </div>
-
+  <div class="chart_btn_box text-center pt-2 color-green">
+    <%= render 'chart_btn', genre: @genre %>
+  </div>
+  <div class="row justify-content-center">
     <div class="col-lg-8 col-md-8 col-sm-8 p-0">
       <div class="tabbox-contents">
         <div class="tabbox <%if @category == nil%>box-show<%end%>">
@@ -90,16 +88,12 @@
         </div>
         <% @categories.each do |category| %>
           <div class="tabbox <%if @category == category.id.to_s%>box-show<%end%>" id="category_<%=category.id%>" >
-            <%= category.name %>
             <div id="high_chart<%= category.id %>">
                <%= render 'disposal_graph' ,targets: @targets, target: @genre, high_chart: get_category_data(category.id, params[:genre] ? params[:genre] : "color"), target_id: category.id %>
             </div>
           </div>
         <% end %>
       </div>
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-1 align-items-center target_button pt-5 px-0">
-      <%= render 'chart_btn', genre: @genre %>
     </div>
   </div>
 </div>

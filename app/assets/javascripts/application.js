@@ -46,7 +46,3 @@ $(document).on('turbolinks:load', function() {
     });
   });
 });
-
-// スワイプ
-var mySwiper = new Swiper('.swiper-container', {
-});

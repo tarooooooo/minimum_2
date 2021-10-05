@@ -3,19 +3,13 @@ module ApplicationHelper
   def get_category_data(category_id, genre)
       category = Category.find(category_id)
     if genre == "color"
-      color_items = current_user.items.where(category_id: category_id).joins(:color).order('count_all desc').group('colors.name').count.to_a
-      high_chart = LazyHighCharts::HighChart.new('graph') do |f|
-        f.title(text: 'カラー別')
-        f.series(name: "個数" ,data: color_items, type: 'pie')
-      end
-    elsif genre == "brand"
       brand_items = current_user.items.where(category_id: category_id).joins(:brand).order('count_all desc').group('brands.name').count.to_a
       high_chart = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(text: 'ブランド別')
         f.series(name: "個数" ,data: brand_items, type: 'pie')
       end
-    elsif genre == "price"
-      #price用のhigh_chartの記述
+    elsif genre == "brand"
+
       from_0_to_1000      = []
       from_1001_to_3000   = []
       from_3001_to_5000   = []
@@ -53,6 +47,14 @@ module ApplicationHelper
         f.title(text: '価格別')
         f.series(name: "個数", data: price_items, type: 'pie')
       end
+
+    elsif genre == "price"
+      color_items = current_user.items.where(category_id: category_id).joins(:color).order('count_all desc').group('colors.name').count.to_a
+      high_chart = LazyHighCharts::HighChart.new('graph') do |f|
+        f.title(text: 'カラー別')
+        f.series(name: "個数" ,data: color_items, type: 'pie')
+      end
+
     end
 
     return high_chart

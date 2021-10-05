@@ -166,16 +166,34 @@ class Public::ItemsController < ApplicationController
   end
 
   def disposal
+    category_id = params[:category_id]
+
     if params[:color].present?
+
       @color = Color.find_by(name: params[:color])
-      @items = current_user.items.where(item_status: "discarded", color_id: @color.id)
+      if category_id == "0"
+        @items = current_user.items.where(item_status: "discarded", color_id: @color.id)
+      else
+        @items = current_user.items.where(item_status: "discarded", color_id: @color.id, category_id: category_id)
+      end
+
     elsif params[:brand].present?
+
       @brand = Brand.find_by(name: params[:brand])
-      @items = current_user.items.where(item_status: "discarded", brand_id: @brand.id)
+      if category_id == "0"
+        @items = current_user.items.where(item_status: "discarded", brand_id: @brand.id)
+      else
+        @items = current_user.items.where(item_status: "discarded", brand_id: @brand.id, category_id: category_id)
+      end
+
     elsif params[:price].present?
       @price = params[:price]
-      @items = current_user.items.where(item_status: "discarded")
-      
+      if category_id == "0"
+        @items = current_user.items.where(item_status: "discarded")
+      else
+        @items = current_user.items.where(item_status: "discarded", category_id: params[:target])
+      end
+
       from_0_to_1000      = []
       from_1001_to_3000   = []
       from_3001_to_5000   = []
@@ -192,7 +210,7 @@ class Public::ItemsController < ApplicationController
         from_20001_to_30000 << item if (20_001..30_000).cover?(item.price.to_i)
         over_30001          << item if (30_001..).cover?(item.price.to_i)
       end
-      
+
       case params[:price]
         when "0~1000円"
           @items = from_0_to_1000
