@@ -11,7 +11,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.where(user_id: current_user.id)
+    @items = Item.where(user_id: current_user.id, item_status: "on_keep" )
     @categories = Category.all
   end
 
@@ -59,28 +59,26 @@ class Public::ItemsController < ApplicationController
       @item.discard_date = Date.today.to_time
     end
     if @item.update(item_params)
+      flash[:success] = "編集が完了しました。"
       redirect_to item_path(@item)
     else
+       flash.now[:danger] = "編集内容が登録できませんでした。"
       render 'edit'
     end
   end
 
-  def destroy
-    item = Item.find(params[:id])
-    if item.destroy
-      redirect_to items_path
-    end
-  end
+  def status_discarded
+    @item = Item.find(params[:item_id])
+    @item.item_status = "discarded"
+    @item.discard_date = Date.today.to_time
+    if @item.save
+       flash[:success] = "アイテムを破棄しました。"
+       redirect_to item_path(@item)
+    else
+      flash[:danger] = "正常に廃棄処理がされませんでした。"
+      redirect_back(fallback_location: root_path)
 
-  def item_status_change
-    @items = if params[:item_status] == "on_keep"
-               current_user.items.on_keep
-             elsif params[:item_status] == "discarded"
-               current_user.items.discarded
-             elsif params[:item_status] == "on_sell"
-               current_user.items.on_sell
-             end
-    render 'public/items/index'
+    end
   end
 
   def wear_today_new
@@ -166,6 +164,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def disposal
+    # cateogry_id(0) = 全アイテム
     category_id = params[:category_id]
 
     if params[:color].present?

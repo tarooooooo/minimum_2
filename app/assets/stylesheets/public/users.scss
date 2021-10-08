@@ -489,3 +489,28 @@ table th {
 }
 
 
+.user-edit{
+  input[type="text"] [type="file"] {
+    height: 30px;
+      @media (min-width: 426px){
+        height: 40px;
+      }
+      @media(min-width: 1025px){
+        height: 40px;
+      }
+  }
+
+  label{
+    font-size: 12px;
+      @media (min-width: 426px){
+        font-size: 15px;
+    }
+      @media(min-width: 1025px){
+        font-size: 15px;
+    }
+  }
+
+  input{
+    width: 100%;
+  }
+}

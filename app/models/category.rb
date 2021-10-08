@@ -14,4 +14,7 @@ class Category < ApplicationRecord
     end
     return category_parent_array
   end
+  
+  
+  
 end

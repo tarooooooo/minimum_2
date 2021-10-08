@@ -6,15 +6,11 @@
           <li class="tab tab-active d-inline">
             全アイテム
           </li>
-          <li class="tab d-inline">
-            インナー
-          </li>
-          <li class="tab d-inline">
-            アウター
-          </li>
-          <li class="tab d-inline">
-            ボトムス
-          </li>
+          <% @categories.each do |category| %>
+            <li class="tab d-inline">
+              <%= category.name %>
+            </li>
+          <% end %>
         </ul>
       </div>
       <div class="plus-btn text-right">
@@ -25,32 +21,26 @@
       <div class="tabbox-contents">
         <div class="tabbox box-show p-0">
           <% @categories.each do |category| %>
+            <% if @items.where(category_id: category.id).present? %>
+              <div class="p-3 bg-secondary text-white">
+                <%= category.name %>
+              </div>
+            <% end %>
+            <div class="row m-1 row-gap">
+              <%= render partial: 'index', collection: @items.where(category_id: category.id), as: :item %>
+            </div>
+          <% end %>
+        </div>
+        <% @categories.each do |category| %>
+          <div class="tabbox p-0">
             <div class="p-3 bg-secondary text-white">
               <%= category.name %>
             </div>
             <div class="row m-1 row-gap">
               <%= render partial: 'index', collection: @items.where(category_id: category.id), as: :item %>
             </div>
-          <% end %>
-        </div>
-        <div class="tabbox p-0">
-          <div class="p-3 bg-secondary text-white">インナー</div>
-          <div class="row m-1 row-gap">
-            <%= render partial: 'index', collection: @items.where(category_id: 1), as: :item %>
           </div>
-        </div>
-        <div class="tabbox p-0">
-          <div class="p-3 bg-secondary text-white">アウター</div>
-          <div class="row m-1 row-gap">
-            <%= render partial: 'index', collection: @items.where(category_id: 2), as: :item %>
-          </div>
-        </div>
-        <div class="tabbox p-0">
-          <div class="p-3 bg-secondary text-white">ボトムス</div>
-          <div class="row m-1 row-gap">
-            <%= render partial: 'index', collection: @items.where(category_id: 3), as: :item %>
-          </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

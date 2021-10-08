@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container user-edit">
   <div class="row justify-content-center">
     <div class="col-lg-8 col-md-8 col-sm-12 ">
       <div class="back-btn pt-2 pl-2">
@@ -8,68 +8,59 @@
       </div>
       <h4 class ="title text-center py-5"><%= @user.last_name %><%= @user.first_name %>さんの編集画面</h4>
       <%= form_with model: @user, method: :put, local: true do |f| %>
-        <table class="table">
 
-            <div class="field">
-              <%= f.attachment_field :icon_image, class:"form-control-file" %>
-            </div>
+        <div class="field ">
+          <%= f.label :アイコン画像 %><br />
+          <%= f.attachment_field :icon_image, class:"form-control-file" %>
+        </div>
 
-            <div class="form-group">
-              <tr>
-                <th class="flex-nowrap">ニックネーム</th>
-                <th><%= f.text_field :nickname, class: "form-control response" %></th>
-              </tr>
-            </div>
+        <div class="field ">
+          <%= f.label :ニックネーム %><br />
+          <%= f.text_field :nickname, class: "form-control response" %>
+        </div>
 
-            <div class="form-group">
-              <tr>
-                <th>氏名</th>
-                <th><%= f.text_field :last_name, class: "form-control" %></th>
-                <th><%= f.text_field :first_name, class: "form-control" %></th>
-              </tr>
-            </div>
+        <div class="field ">
+          <%= f.label :氏名 %>
+          <div class="form-inline">
+            <%= f.text_field :last_name, class: "form-control mr-3" %>
+            <%= f.text_field :first_name, class: "form-control" %>
+          </div>
+        </div>
 
-            <div class="form-group">
-              <tr>
-                <th>フリガナ</th>
-                <th><%= f.text_field :last_name_kana, class: "form-control" %></th>
-                <th><%= f.text_field :first_name_kana, class: "form-control" %></th>
-              </tr>
-            </div>
+         <div class="field">
+          <%= f.label :フリガナ %>
+          <div class="form-inline">
+            <%= f.text_field :last_name_kana, class: "form-control mr-3" %>
+            <%= f.text_field :first_name_kana, class: "form-control" %>
+          </div>
+        </div>
 
-            <div class="form-group">
-              <tr>
-                <th>郵便番号</th>
-                <th><%= f.text_field :postal_code, class: "form-control" %></th>
-              </tr>
-            </div>
+        <div class="field ">
+          <%= f.label :郵便番号 %><br/>
+          <%= f.text_field :postal_code, class: "form-control" %>
+        </div>
 
-            <div class="form-group">
-              <tr>
-                <th>住所</th>
-                <th><%= f.text_field :address, class: "form-control" %></th>
-              </tr>
-            </div>
+        <div class="field ">
+          <%= f.label :住所 %><br/>
+          <%= f.text_field :address, class: "form-control" %>
+        </div>
 
-            <div class="form-group">
-              <tr>
-                <th>電話番号</th>
-                <th><%= f.text_field :phone_number, class: "form-control" %></th>
-              </tr>
-            </div>
+        <div class="field ">
+          <%= f.label :電話番号 %><br/>
+          <%= f.text_field :phone_number, class: "form-control" %>
+        </div>
 
-            <div class="form-group">
-              <tr>
-                <th>メールアドレス</th>
-                <th><%= f.text_field :email, class: "form-control" %></th>
-              </tr>
-            </div>
+        <div class="field ">
+          <%= f.label :メールアドレス %><br/>
+          <%= f.text_field :email, class: "form-control" %>
+        </div>
 
-        </table>
-        <div class="form-group">
+        <div class="form-group pt-2">
           <%= f.submit "変更を保存", class: "btn btn-success" %>
         </div>
+
       <% end %>
+      <%= link_to "退会する", withdraw_users_path ,method: :patch, class: "btn btn-secondary" %>
     </div>
   </div>
 </div>

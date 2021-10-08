@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  enum is_deleted: { consent: false, nonconsent: true }
+
   validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'に全角文字を使用してください'}
   validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'に全角文字を使用してください' }
   validates :last_name_kana, format: { with: /[\p{katakana} ー－]+/, message: 'はカタカナで入力して下さい。'}
@@ -8,7 +10,6 @@ class User < ApplicationRecord
   validates :address, presence: true
   validates :phone_number, format: { with: /\A\d{10,11}\z/}
   validates :nickname, presence: true
-  validates :is_deleted, presence: true
   attachment :icon_image
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -42,14 +43,16 @@ class User < ApplicationRecord
 
   has_one :card, dependent: :destroy
 
-  enum is_deleted: { consent: false, nonconsent: true }
-
   def already_liked?(sell_item)
     self.likes.exists?(sell_item_id: sell_item.id)
   end
 
   def sold_by?(user)
     sell_items.find_by(buyer_id: user.id).present?
+  end
+
+  def active_for_authentication?
+    super && (is_deleted == "consent")
   end
 
 end

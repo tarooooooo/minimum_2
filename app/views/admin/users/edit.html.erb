@@ -5,14 +5,14 @@
       <%= form_with model: [:admin, @user], local: true do |f| %>
       <table class="table">
         <tr><th>ユーザーID</th><th><%= @user.id %></th></tr>
-        
+
           <div class="form-group">
             <tr>
               <th>ニックネーム</th>
               <th><%= f.text_field :nickname, class: "form-control" %></th>
             </tr>
           </div>
-        
+
           <div class="form-group">
             <tr>
               <th>氏名</th>
@@ -27,8 +27,8 @@
               <th><%= f.text_field :last_name_kana, class: "form-control" %></th>
               <th><%= f.text_field :first_name_kana, class: "form-control" %></th>
             </tr>
-          </div> 
-          
+          </div>
+
           <div class="form-group">
             <tr>
               <th>郵便番号</th>

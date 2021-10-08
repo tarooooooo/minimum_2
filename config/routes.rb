@@ -57,7 +57,8 @@ Rails.application.routes.draw do
 
   end
   get 'items/item_status_change', to: 'public/items#item_status_change', as: 'item_status_change'
-  resources :items, module: :public do
+  resources :items, module: :public, except: [:destroy] do
+    patch 'status_discarded'
     get 'sell_item/new', to: 'sell_items#new'
     member do
       patch 'wear_today_update'
@@ -72,11 +73,14 @@ Rails.application.routes.draw do
       get 'get_category_grandchildren', defaults: { format: 'json' }
     end
   end
-  resources :users, module: :public, only: [:edit,:show,:index,:update,:unsubscribe,:withdraw] do
+  resources :users, module: :public, only: [:edit,:show,:index,:update] do
     member do
       get :rate
       get :likes
       get :detail
+    end
+    collection do
+      patch :withdraw
     end
   end
   resources :category_managements, module: :public, only: [:new, :edit, :create, :update, :destroy]

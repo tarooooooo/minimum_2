@@ -52,7 +52,7 @@ body{
   color: #2b2b2b;
   font-weight: 200;
   font-family: 'Meiryo';
-
+  background: #eee;
 }
 
 a {color: #2f5864;}
@@ -598,7 +598,7 @@ body{
   padding-bottom: 120px;/*←footerの高さ*/
   box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
 }
-
+// フッター
 footer {
   width: 100%;
   height: 120px;
@@ -620,4 +620,14 @@ footer {
     color: #6c6b6b;
     font-size: 15px;
   }
+}
+
+.about{
+  background-image: image-url('jeans.jpg');
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // background-attachment: fixed;
+  height: 1000px;
+  width: 100%;
 }

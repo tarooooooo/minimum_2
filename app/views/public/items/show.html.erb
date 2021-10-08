@@ -21,9 +21,9 @@
           <tr><td>アイテムステータス</td><td><%= @item.item_status_i18n %></td></tr>
         </tbody>
       </table>
-      <%= link_to '出品', item_sell_item_new_path(@item.id), class: "btn btn-secondary m-3" if @item.item_status == "on_keep" %>
-      <%= link_to '編集', edit_item_path(@item.id), class: "btn btn-success m-3" %>
-      <%= link_to '削除', item_path(@item.id), method: :delete, class: "btn btn-danger m-3" %>
+      <%= link_to '出品', item_sell_item_new_path(@item), class: "btn btn-secondary m-3" if @item.item_status == "on_keep" %>
+      <%= link_to '編集', edit_item_path(@item), class: "btn btn-success m-3" %>
+      <%= link_to '廃棄',  item_status_discarded_path(@item), method: :patch, class: "btn btn-danger m-3" if @item.item_status == "on_keep"  %>
     </div>
   </div>
 </div>
