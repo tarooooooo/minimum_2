@@ -12,11 +12,17 @@ class Public::ItemsController < ApplicationController
 
   def index
     @items = Item.where(user_id: current_user.id, item_status: "on_keep" )
+    # @items_image_url = []
+    # @items.each do |item|
+    #   @items_image_url << "https://mypfbucket-resize.s3-ap-northeast-1.amazonaws.com/store/" + item.item_image_id + "-thumbnail."
+    # end
     @categories = Category.all
   end
 
   def show
     @item = Item.find(params[:id])
+     # 参照先のS3オブジェクトURLを作成
+    @item_image_url = "https://mypfbucket-resize.s3-ap-northeast-1.amazonaws.com/store/" + @item.item_image_id + "-thumbnail."
   end
 
   def edit
@@ -59,6 +65,7 @@ class Public::ItemsController < ApplicationController
       @item.discard_date = Date.today.to_time
     end
     if @item.update(item_params)
+      sleep(3) # S3への画像反映のタイムラグを考慮して3秒待機
       flash[:success] = "編集が完了しました。"
       redirect_to item_path(@item)
     else
