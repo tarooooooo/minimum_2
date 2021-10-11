@@ -13,20 +13,13 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require chartkick
-//= require Chart.bundle
 //
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require jquery
-//= require jquery_ujs
 //= require jquery.raty.js
 //= require select2
 //= require_tree .
-//= require highcharts/highcharts
-//= require highcharts/highcharts-more
-//= require highcharts/highstock
 //= require_self
 
 // select2の記述
