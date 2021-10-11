@@ -4,7 +4,7 @@
       <div class="top-box">
         <div class="top-text text-center text-center">
           <p class="h3 m-0">Today's Coordination！</p>
-          <p class="m-0">今日のコーディネートを記録しましょう</p>
+          <p class="m-0">コーデ記録</p>
         </div>
         <div class ="black-opacity-img">
           <div class="top-image"></div>
@@ -12,59 +12,6 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col top-item-box">
-      <p class="text-center p-3 m-0">TOP3</p>
-      <div class="row justify-content-center">
-        <% @top_items.each do |top_item| %>
-          <div class="col px-1 flex-grow-0">
-            <div class="card mx-1 my-1 border-0", style="width: 8rem">
-              <%= link_to item_path(top_item) do %>
-                <%= attachment_image_tag top_item, :item_image, :fill, 400, 400, format: 'jpeg', style: "width: 8rem;" %>
-                <div class="card-body p-1">
-
-                  <p class="card-text m-0">
-                    <%= top_item.name %>
-                  </p>
-
-                  <p>
-                    着用回数:<%= top_item.wear_count %>
-                  </p>
-
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="col top-item-box">
-      <p class ="text-center p-3 m-0">WORST3</p>
-      <div class="row justify-content-center">
-        <% @worst_items.each do |worst_item| %>
-          <div class="col px-1 flex-grow-0">
-            <div class="card mx-1 my-1 border-0", style="width: 8rem">
-              <%= link_to item_path(worst_item) do %>
-                <%= attachment_image_tag worst_item, :item_image, :fill, 400, 400, format: 'jpeg', style: "width: 8rem;" %>
-                <div class="card-body p-1">
-
-                  <p class="card-text m-0">
-                    <%= worst_item.name %>
-                  </p>
-
-                  <p>
-                    着用回数:<%= worst_item.wear_count %>
-                  </p>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
   <div class="row justify-content-center">
     <div class="col-lg-10 col-md-12 col-sm-12">
       <% @categories.each do |category| %>

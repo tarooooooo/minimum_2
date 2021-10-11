@@ -37,12 +37,12 @@
 
         <div class="field py-3">
           <%= f.label :ブランド %><br />
-          <%= f.collection_select :brand_id, Brand.all, :id, :name, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+          <%= f.collection_select :brand_id, Brand.all, :id, :name, { include_blank: '選択してください'}, { class: 'form-control selectable' , required: true } %>
         </div>
 
         <div class="field py-3">
           <%= f.label :カラー %><br />
-          <%= f.collection_select :color_id, Color.all, :id, :name, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+          <%= f.collection_select :color_id, Color.all, :id, :name, { include_blank: '選択してください'}, { class: 'form-control selectable' , required: true } %>
         </div>
 
         <div class="field py-3">
@@ -77,3 +77,4 @@
     </div>
   </div>
 </div>
+
