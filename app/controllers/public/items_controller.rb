@@ -197,7 +197,7 @@ class Public::ItemsController < ApplicationController
       if category_id == "0"
         @items = current_user.items.where(item_status: "discarded")
       else
-        @items = current_user.items.where(item_status: "discarded", category_id: params[:target])
+        @items = current_user.items.where(item_status: "discarded", category_id: category_id)
       end
 
       from_0_to_1000      = []

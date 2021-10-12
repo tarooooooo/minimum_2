@@ -24,7 +24,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #6c6b6b;
+  // color: #6c6b6b;
 }
 
 p{
@@ -54,7 +54,7 @@ body{
   color: #2b2b2b;
   font-weight: 200;
   font-family: 'Meiryo';
-  background: #eee;
+  // background: #eee;
 }
 
 a {color: #2f5864;}
@@ -624,14 +624,106 @@ footer {
   }
 }
 
-.about{
-  background-image: image-url('jeans.jpg');
-  background-position: center 20%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  // background-attachment: fixed;
-  height: 1000px;
-  width: 100%;
+// アバウトページ
+section{
+  margin-bottom: 200px;
+}
+
+.about-box{
+   height: 600px; /*heightの指定は必須*/
+  .about-img{
+     position: relative;
+    .about{
+      background-image: image-url('logo-minimum-gray');
+      background-position: center 20%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: absolute;  /*要素を浮かす*/
+      /*relativeを指定した親要素を支点とした位置をすべて0に指定↓*/
+      top: 7%; /*親要素を起点に上から50%*/
+      height: 600px;
+      width: 600px; /*widthの指定は必須*/
+    }
+  }
+    .about-text-box{
+     position: relative;
+    .about-text{
+      background-position: center 20%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: absolute;  /*要素を浮かす*/
+      /*relativeを指定した親要素を支点とした位置をすべて0に指定↓*/
+      top: 45%; /*親要素を起点に上から50%*/
+    }
+  }
+
+}
+.about-text-box{
+   position: relative;
+  .about-text{
+    background-position: center 20%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;  /*要素を浮かす*/
+    /*relativeを指定した親要素を支点とした位置をすべて0に指定↓*/
+    top: 50%; /*親要素を起点に上から50%*/
+  }
+}
+
+.concept-img{
+   background-image: image-url('about-content') ;
+   background-size:contain;
+   height: 600px;
+
+   background-repeat:no-repeat;
+
+}
+
+.app-img{
+   background-image: image-url('app') ;
+   background-size:contain;
+   height: 600px;
+
+   background-repeat:no-repeat;
+
+}
+
+.chart-img{
+   background-image: image-url('chart') ;
+   background-size:contain;
+   height: 600px;
+
+   background-repeat:no-repeat;
+
+}
+
+.management-img{
+   background-image: image-url('management') ;
+   background-size:contain;
+   height: 600px;
+
+   background-repeat:no-repeat;
+
+}
+
+.fleemarket-img{
+   background-image: image-url('fleemarket') ;
+   background-size:contain;
+   height: 600px;
+
+   background-repeat:no-repeat;
+
+}
+
+.circle-icon{
+  margin-top: 30px;
+  border: 4px;
+  width: 50px;
+  height: 50px;
+}
+
+.scroll-icon{
+  margin-bottom: 200px;
 }
 
 .item_card{
