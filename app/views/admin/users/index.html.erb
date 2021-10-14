@@ -1,30 +1,31 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2>ユーザー一覧</h2>
-      <table class="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th>会員ID</th>
-            <th>氏名</th>
-            <th>メールアドレス</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td><%= user.id %></td>
-              <td><%= link_to admin_user_path(user.id) do %>
-                <%= user.last_name %><%= user.first_name %>
-                <% end %>
-              </td>
-              <td><%= user.email %></td>
-              <td><%= user.is_deleted_i18n %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <h2 class ="text-center my-5">ユーザー一覧</h2>
+      <div class="ul-align-center">
+        <ul class="tab-list list-unstyled">
+          <li class="tab tab-active d-inline">
+            全ユーザー
+          </li>
+          <li class="tab d-inline">
+            有効
+          </li>
+          <li class="tab d-inline">
+            退会
+          </li>
+        </ul>
+      </div>
+      <div class="tabbox-contents">
+        <div class="tabbox box-show">
+          <%= render 'user_table', users: @users %>
+        </div>
+        <div class="tabbox">
+          <%= render 'user_table', users: @users.where(is_deleted: "consent") %>
+        </div>
+        <div class="tabbox">
+          <%= render 'user_table', users: @users.where(is_deleted: "nonconsent") %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

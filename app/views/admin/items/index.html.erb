@@ -1,27 +1,39 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2>アイテム一覧</h2>
-      <table class="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th>アイテムID</th>
-            <th>アイテム名</th>
-            <th>カテゴリー</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @items.each do |item| %>
-            <tr>
-              <td><%= item.id %></td>
-              <td><%= link_to item.name, admin_item_path(item.id) %></td>
-              <td><%= item.category.name %></td>
-              <td><%= item.item_status_i18n %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <h2 class ="text-center my-5">アイテム一覧</h2>
+      <div class="ul-align-center">
+        <ul class="tab-list list-unstyled">
+          <li class="tab tab-active d-inline">
+            全アイテム
+          </li>
+          <li class="tab d-inline">
+            所持中
+          </li>
+          <li class="tab d-inline">
+            廃棄済み
+          </li>
+          <li class="tab d-inline">
+            出品中
+          </li>
+        </ul>
+      </div>
+
+      <div class="tabbox-contents">
+        <div class="tabbox box-show">
+          <%= render 'item_table', items: @items %>
+        </div>
+        <div class="tabbox">
+          <%= render 'item_table', items: @items.where(item_status: "on_keep") %>
+        </div>
+        <div class="tabbox">
+          <%= render 'item_table', items: @items.where(item_status: "discarded") %>
+        </div>
+        <div class="tabbox">
+          <%= render 'item_table', items: @items.where(item_status: "on_sell") %>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

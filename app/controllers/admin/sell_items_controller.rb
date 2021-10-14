@@ -20,7 +20,11 @@ class Admin::SellItemsController < ApplicationController
       redirect_back(fallback_location)
     end
   end
-
+  
+  def status_change
+    
+  end
+  
   def sell_item_params
     params.require(:sell_item).permit(
       :name,

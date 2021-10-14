@@ -1,29 +1,51 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2>注文一覧</h2>
-      <table class="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th>注文商品ID</th>
-            <th>注文商品名</th>
-            <th>購入者</th>
-            <th>出品者</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @sell_items.each do |sell_item| %>
-            <tr>
-              <td><%= sell_item.id %></td>
-              <td><%= link_to sell_item.name, admin_sell_item_path(sell_item.id) %></td>
-              <td><%#= sell_item.seller.nickname %></td>
-              <td><%#= sell_item.buyer.nickname %></td>
-              <td><%= sell_item.order_status_i18n %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <h2 class ="text-center my-5">注文一覧</h2>
+      <div class="ul-align-center">
+        <ul class="tab-list list-unstyled">
+          <li class="tab tab-active d-inline">
+            全アイテム
+          </li>
+          <li class="tab d-inline">
+            出品中
+          </li>
+          <li class="tab d-inline">
+            入金待ち
+          </li>
+          <li class="tab d-inline">
+            発送待ち
+          </li>
+          <li class="tab d-inline">
+            発送済み
+          </li>
+          <li class="tab d-inline">
+            取引終了
+          </li>
+        </ul>
+      </div>
+
+      <div class="tabbox-contents">
+        <div class="tabbox box-show">
+          <%= render 'sell_item_table', sell_items: @sell_items %>
+        </div>
+        <div class="tabbox">
+          <%= render 'sell_item_table', sell_items: @sell_items.where(order_status: "on_sell") %>
+        </div>
+        <div class="tabbox">
+          <%= render 'sell_item_table', sell_items: @sell_items.where(order_status: "payment_waiting") %>
+        </div>
+        <div class="tabbox">
+          <%= render 'sell_item_table', sell_items: @sell_items.where(order_status: "wait_shipping") %>
+        </div>
+        <div class="tabbox">
+          <%= render 'sell_item_table', sell_items: @sell_items.where(order_status: "shipped") %>
+        </div>
+        <div class="tabbox">
+          <%= render 'sell_item_table', sell_items: @sell_items.where(order_status: "close_of_trading") %>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

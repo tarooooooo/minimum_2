@@ -9,7 +9,6 @@ class SellItem < ApplicationRecord
 
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
-  
   with_options presence: true do
     validates :name, length: { minimum: 1, maximum: 30 }
     validates :introduction, length: { minimum: 1, maximum: 1000 }

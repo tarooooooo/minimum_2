@@ -1,0 +1,22 @@
+<table class="table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th>注文商品ID</th>
+      <th>注文商品名</th>
+      <th>出品者</th>
+      <th>購入者</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% sell_items.each do |sell_item| %>
+      <tr>
+        <td><%= sell_item.id %></td>
+        <td><%= link_to sell_item.name, admin_sell_item_path(sell_item.id) %></td>
+        <td><%= sell_item.seller.nickname %></td>
+        <td><%= sell_item.buyer.nickname unless sell_item.buyer == nil %></td>
+        <td><%= sell_item.order_status_i18n %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

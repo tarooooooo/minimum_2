@@ -55,8 +55,8 @@ class Public::UsersController < ApplicationController
 
   def rate
     @user = User.find(params[:id])
-    @sell_items = SellItem.where(seller_id: @user.id, order_status: "close_of_trading").sort.reverse
-    @user_rate = SellItem.where(seller_id: @user.id, order_status: "close_of_trading" ).pluck(:rate)
+    @sell_items = SellItem.where(seller_id: @user.id, order_status: :close_of_trading).sort.reverse
+    @user_rate = SellItem.where(seller_id: @user.id, order_status: :close_of_trading ).pluck(:rate)
     @user_rate_avg = @user_rate.sum.fdiv(@user_rate.length).round(1)
 
   end
