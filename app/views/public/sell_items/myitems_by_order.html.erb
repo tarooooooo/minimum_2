@@ -3,7 +3,8 @@
   <div class="sub-title text-center py-3">
     <p class="text-center green-title">Items</p>
     <div class="text-center">
-     
+      <%= link_to "取引中", myitems_by_order_status_path(order_status: "now_trading_by_order") %>
+      <%= link_to "購入済", myitems_by_order_status_path(order_status: "close_of_trading_by_order") %>
     </div>
   </div>
 
