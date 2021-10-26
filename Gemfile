@@ -83,6 +83,7 @@ gem 'ancestry'
 gem 'chartkick'
 gem 'dotenv-rails'
 gem 'payjp'
+gem'lazy_high_charts'
 gem 'select2-rails'
 # gem 'uglifier' ,"1.3.0"
 group :production do
