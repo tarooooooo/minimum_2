@@ -1,9 +1,6 @@
 # minimum
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=tarooooooo&show_icons=true&theme=radical)
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
-
+https://github.com/tarooooooo/minimum/issues/1#issue-1035856665
 
 
 ## サイト概要
