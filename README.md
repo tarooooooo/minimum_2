@@ -7,8 +7,7 @@
 - 登録できるアイテムの制限が設けられており、新たに商品を購入する場合は手放すアイテムを選ばなければならないようになっています。
 - 手放したアイテムのブランドやデザインから傾向を分析し、手放したアイテムの特徴を可視化します。
 - アイテムを、購入日ごとにグラフ化し、購入履歴を管理します。
-
-不要な衣類を、直接2次流通に流すことができるように、フリーマーケット機能も実装を予定しています。
+- 不要な衣類を、直接2次流通に流すことができます。
 
 ### サイトテーマ
 衣類の管理アプリ
@@ -27,6 +26,17 @@
 衣類の管理がしたいとき
 購入履歴を確認したいとき
 捨てている服の傾向が知りたい方
+
+##使用技術
+・MySQL
+・nginx,puma
+・Javascript・jQuery
+・Ruby 2.6.6, Rails 6.0.3.2
+・RSpec（テストフレームワーク）
+・AWS/本番環境（EC2, RDS, VPC, EIP,ALB, IAM, S3）
+・Amazon Linux
+
+![AWS Design (updated)](https://user-images.githubusercontent.com/75834810/138829354-66ab7e26-4516-4401-8798-4b61d724f464.png)
 
 ## 設計
 - ER図　：https://drive.google.com/file/d/1Qsgk4gDvy_zIwHW_ovvRhD8Gf5bMJDP9/view?usp=sharing
