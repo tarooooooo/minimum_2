@@ -22,15 +22,16 @@ class Public::ChartsController < ApplicationController
     
     genre = params[:genre]
     @genres = []
-    if genre.nil? || genre ==  "color"
+    if genre.nil? || genre == "color"
       @genre = "brand"
       # genres_create
       @genres = Brand.genres_create(@items)
-      
-      @brands_items = @items.joins(:brand).order('count_all desc').group('brands.name').count.to_a
+
+      brands_items = @items.joins(:brand).order('count_all desc').group('brands.name').count.to_a
+
       @high_chart = LazyHighCharts::HighChart.new('graph') do |f|
-         f.title(text: 'ブランド別')
-         f.series(name: "個数", data: @brands_items, type: 'pie')
+        f.title(text: 'ブランド別')
+        f.series(name: "個数", data: brands_items, type: 'pie')
       end
 
     elsif genre == "brand"
@@ -53,10 +54,10 @@ class Public::ChartsController < ApplicationController
       # genres_create
       @genres = Color.genres_create(@items)
       # high_chart_create
-      @color_items = @items.joins(:color).order('count_all desc').group('colors.name').count.to_a
+      color_items = @items.joins(:color).order('count_all desc').group('colors.name').count.to_a
       @high_chart = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(text: 'カラー別')
-        f.series(name: "個数" ,data: @color_items, type: 'pie')
+        f.series(name: "個数" ,data: color_items, type: 'pie')
       end
     end
     @category = params[:category]
