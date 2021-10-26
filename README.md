@@ -1,6 +1,6 @@
 # minimum
 
-https://github.com/tarooooooo/minimum/issues/1#issue-1035856665
+https://user-images.githubusercontent.com/75834810/138815210-80682b3d-12b3-45d6-ab6f-f4ecbf53c44e.gif
 
 ## サイト概要
 衣類の所持管理、購入履歴を確認できるアプリです。以下のような機能を追加し、必ず検討してから購入することを習慣化させ、所持している衣類を大切にできるアプリとなっています。
