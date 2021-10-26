@@ -28,13 +28,13 @@
 捨てている服の傾向が知りたい方
 
 ## 使用技術
-- ・MySQL
-- ・nginx,puma
-- ・Javascript・jQuery
-- ・Ruby 2.6.6, Rails 6.0.3.2
-- ・RSpec（テストフレームワーク）
-- ・AWS/本番環境（EC2, RDS, VPC, EIP,ALB, IAM, S3）
-- ・Amazon Linux
+- MySQL
+- nginx,puma
+- Javascript・jQuery
+- Ruby 2.6.6, Rails 6.0.3.2
+- RSpec（テストフレームワーク）
+- AWS/本番環境（EC2, RDS, VPC, EIP,ALB, IAM, S3）
+- Amazon Linux
 
 ![AWS Design (updated)](https://user-images.githubusercontent.com/75834810/138829354-66ab7e26-4516-4401-8798-4b61d724f464.png)
 
