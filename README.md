@@ -1,6 +1,6 @@
 # minimum
 
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=tarooooooo)](https://github.com/anuraghazra/github-readme-stats)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=tarooooooo&show_icons=true&theme=radical)
 
 
 ## サイト概要
