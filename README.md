@@ -1,5 +1,8 @@
 # minimum
 
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+
 ## サイト概要
 衣類の所持管理、購入履歴を確認できるアプリです。以下のような機能を追加し、必ず検討してから購入することを習慣化させ、所持している衣類を大切にできるアプリとなっています。
 - 登録できるアイテムの制限が設けられており、新たに商品を購入する場合は手放すアイテムを選ばなければならないようになっています。
