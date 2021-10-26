@@ -3,11 +3,15 @@
 ![4e34f128847d5f6efa3753c2c3eb55c7](https://user-images.githubusercontent.com/75834810/138815210-80682b3d-12b3-45d6-ab6f-f4ecbf53c44e.gif)
 
 ## サイト概要
-衣類の所持管理、購入履歴を確認できるアプリです。以下のような機能を追加し、必ず検討してから購入することを習慣化させ、所持している衣類を大切にできるアプリとなっています。
+
+### ファッションの多様化による課題を解決に導くアプリ
+以下のような機能を追加し、必ず検討してから購入することを習慣化させ、所持している衣類を大切にするサポートができるなっています。
 - 登録できるアイテムの制限が設けられており、新たに商品を購入する場合は手放すアイテムを選ばなければならないようになっています。
 - 手放したアイテムのブランドやデザインから傾向を分析し、手放したアイテムの特徴を可視化します。
 - アイテムを、購入日ごとにグラフ化し、購入履歴を管理します。
 - 不要な衣類を、直接2次流通に流すことができます。
+
+## 
 
 ### サイトテーマ
 衣類の管理アプリ
@@ -43,6 +47,7 @@
 - UIflow図：https://drive.google.com/file/d/18xzQLs_24_bOgloQOgd88HdEnisPUKw2/view?usp=sharing
 - アプリケーション詳細設計：https://docs.google.com/spreadsheets/d/1wZsuUOcoYXWnVzIyFpHCI_mLCK-xkDG5BhRWULqONtA/edit?usp=sharing
 - テーブル定義書：https://docs.google.com/spreadsheets/d/1oA_e2LWHEavEOhOcD7i2UBWq1LV1Nrba/edit?usp=sharing&ouid=112847534265417995265&rtpof=true&sd=true
+- スライドショー（ポートフォリオ紹介用）:https://docs.google.com/presentation/d/1Mww5t5GJJnSaletl7Y4iSXXVVAcrks5EFuLElRPEQYc/edit?usp=sharing
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/16KIZUU0Obm4Hcp7GI9WP4_nhBXJKlH2hCMwC64ua2w8/edit?usp=sharing
