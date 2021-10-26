@@ -71,3 +71,16 @@ User.create!(
     address: '東京都0-0-0',
     phone_number: '12345678909'
 )
+
+User.create!(
+    email: 'test@gmail.com',
+    password: 'password',
+    nickname: 'テストユーザー2',
+    last_name: '名字',
+    first_name: '名前',
+    last_name_kana: 'ミョウジ',
+    first_name_kana: 'ナマエ',
+    postal_code: '0000000',
+    address: '東京都0-0-0',
+    phone_number: '12345678909'
+)

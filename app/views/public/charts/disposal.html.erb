@@ -3,23 +3,17 @@
     <div class="col-10">
       <div class="ul-align-center">
         <ul class="tab-list list-unstyled">
-
+          
           <li class="tab d-inline <%if @category == nil%>tab-active<%end%>">
             全アイテム
           </li>
-
-          <li class="tab d-inline <%if @category == "1"%>tab-active<%end%>">
-            インナー
-          </li>
-
-          <li class="tab d-inline <%if @category == "2"%>tab-active<%end%>">
-            アウター
-          </li>
-
-          <li class="tab d-inline <%if @category == "3"%>tab-active<%end%>">
-            ボトムス
-          </li>
-
+          
+          <% @categories.each do |category| %>
+            <li class="tab d-inline <%if @category == category.id.to_s%>tab-active<%end%>">
+              <%= category.name %>
+            </li>
+          <% end %>
+          
         </ul>
       </div>
     </div>
