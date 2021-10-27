@@ -32,7 +32,7 @@
 - MySQL
 - nginx,puma
 - Javascript・jQuery
-- Ruby 2.6.6, Rails 6.0.3.2
+- Ruby 2.6.3, Rails 5.2.6
 - RSpec（テストフレームワーク）
 - AWS/本番環境（EC2, RDS, VPC, EIP,ALB, IAM, S3）
 - Amazon Linux
