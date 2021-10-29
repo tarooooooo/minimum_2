@@ -20,7 +20,7 @@ class Item < ApplicationRecord
     validates :item_status
     validates :purchase_date
     validates :wear_count
-    validates :item_image_id
+    validates :item_image
   end
   validates :price,
     numericality: {
