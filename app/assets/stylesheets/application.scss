@@ -24,11 +24,20 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  // color: #6c6b6b;
+
 }
 
 p{
   margin: 0;
+  font-size: 10px;
+    @media (min-width: 426px){
+      margin: 0;
+      font-size: 10px;
+    }
+    @media(min-width: 1025px){
+     margin: 0;
+     font-size: 12px;
+    }
 }
 // ボタンボックス
 
