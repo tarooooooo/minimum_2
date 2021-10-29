@@ -1,5 +1,5 @@
 class SellItem < ApplicationRecord
-  attachment :sell_item_image
+
   belongs_to :item
   has_many :likes
   has_many :liked_users, through: :likes, source: :user

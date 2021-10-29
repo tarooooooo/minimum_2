@@ -82,7 +82,11 @@ class Public::SellItemsController < ApplicationController
   def destroy
     sell_item = SellItem.find(params[:id])
     if sell_item.destroy
-      redirect_to items_path
+      flash[:danger] = "削除が完了しました。"
+      redirect_to shop_top_sell_items_path
+    else
+      flash[:danger] = "削除に失敗しました。"
+      redirect_back(fallback_location: root_path)
     end
   end
 
