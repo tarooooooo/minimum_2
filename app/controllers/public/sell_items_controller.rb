@@ -102,28 +102,30 @@ class Public::SellItemsController < ApplicationController
 
   def order_finish
     @sell_item = SellItem.find(params[:id])
-    if params["payjp-token"].present?
-      pay
-    
-      if cookies[:payment_method].present?
-        @sell_item.update(buy_item_params)
-        cookies.delete :payment_method
-        item = @sell_item.item
-        item.item_status = "discarded"
-        item.save
-        # 通知機能の記述
-        @sell_item.create_notification_buy!(current_user)
-        NotificationMailer.send_mail(@sell_item.buyer, @sell_item).deliver_now
-        NotificationMailer.seller_send_mail(@sell_item.seller, @sell_item).deliver_now
-        redirect_to sell_items_order_complete_path(params[:id])
-      else
-        redirect_to root_path, notice: '不正な遷移は許可されていません'
-      end
-      
-    else
-       flash[:danger] = "クレジット情報を入力してください"
+
+    if cookies[:payment_method] == "credit_card" && params["payjp-token"].blank?
+
+      flash[:danger] = "クレジット情報を入力してください"
       redirect_back(fallback_location: root_path)
+
+    elsif cookies[:payment_method].present?
+
+      pay if cookies[:payment_method] == "credit_card"
+
+      @sell_item.update(buy_item_params)
+      cookies.delete :payment_method
+      item = @sell_item.item
+      item.item_status = "discarded"
+      item.save
+      # 通知機能の記述
+      @sell_item.create_notification_buy!(current_user)
+      NotificationMailer.send_mail(@sell_item.buyer, @sell_item).deliver_now
+      NotificationMailer.seller_send_mail(@sell_item.seller, @sell_item).deliver_now
+      redirect_to sell_items_order_complete_path(params[:id])
+    else
+      redirect_to root_path, notice: '不正な遷移は許可されていません'
     end
+
   end
 
   def order_complete

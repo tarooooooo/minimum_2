@@ -6,6 +6,15 @@ class ApplicationController < ActionController::Base
   def if_not_admin
     redirect_to root_path unless current_user.admin?
   end
+  
+  def after_sign_in_path_for(resource)
+    if current_user.category_managements.blank?
+      flash[:success] = "まずは、アイテム制限を設定し、サステナブルへの一歩を踏み出しましょう！（以下のフォームから、アウター、インナー、ボトムスの所持できる数を設定してください）"
+      new_category_management_path
+    else
+      root_path
+    end
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [

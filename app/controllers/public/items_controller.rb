@@ -35,7 +35,7 @@ class Public::ItemsController < ApplicationController
     category = @item.category
 
     if category.category_managements.find_by(user_id: current_user.id) == nil
-       flash.now[:danger] = "#{@item.category.name}の、制限が設定されていません"
+       flash.now[:danger] = "#{@item.category.name}の、所持数が設定されていません。（マイページ → アイテム制限 から設定してください）"
        render 'public/items/new'
     else
       # 登録しようとしているitemのlimit
@@ -47,6 +47,7 @@ class Public::ItemsController < ApplicationController
         if @item.save
           flash[:success] = "登録が完了しました。"
           redirect_to item_path(@item)
+          
         else
           flash.now[:danger] = "登録ができませんでした。"
           render 'public/items/new'
