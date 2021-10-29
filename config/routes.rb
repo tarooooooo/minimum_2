@@ -62,15 +62,11 @@ Rails.application.routes.draw do
     get 'sell_item/new', to: 'sell_items#new'
     member do
       patch 'wear_today_update'
-      get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
     end
     collection do
       get 'wear_today_new'
       get 'by_months'
       get 'disposal'
-      get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
     end
   end
   resources :users, module: :public, only: [:edit,:show,:index,:update] do

@@ -106,23 +106,6 @@ class Public::ItemsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def get_category_children
-    respond_to do |format|
-      format.html
-      format.json do
-        @children = Category.find(params[:parent_id], ancestry: nil).children
-      end
-    end
-  end
-  def get_category_grandchildren
-    respond_to do |format|
-      format.html
-      format.json do
-        @grandchildren = Category.find("#{params[:child_id]}").children
-      end
-    end
-  end
-
   def by_months
     @categories = []
     case params[:date]
