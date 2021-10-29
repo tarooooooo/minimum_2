@@ -32,7 +32,7 @@
 - MySQL
 - nginx,puma
 - Javascript・jQuery
-- Ruby 2.6.6, Rails 6.0.3.2
+- Ruby 2.6.3, Rails 5.2.6
 - RSpec（テストフレームワーク）
 - AWS/本番環境（EC2, RDS, VPC, EIP,ALB, IAM, S3）
 - Amazon Linux
@@ -41,7 +41,8 @@
 
 ## 設計
 - ER図　：https://drive.google.com/file/d/1Qsgk4gDvy_zIwHW_ovvRhD8Gf5bMJDP9/view?usp=sharing
-- UIflow図：https://drive.google.com/file/d/18xzQLs_24_bOgloQOgd88HdEnisPUKw2/view?usp=sharing
+- UIflow図（ユーザー側）：https://cacoo.com/diagrams/7cIAbyv0oaMHbJsK/7E90A
+- UIflow図（管理者側）https://cacoo.com/diagrams/7cIAbyv0oaMHbJsK/58B1B
 - アプリケーション詳細設計：https://docs.google.com/spreadsheets/d/1wZsuUOcoYXWnVzIyFpHCI_mLCK-xkDG5BhRWULqONtA/edit?usp=sharing
 - テーブル定義書：https://docs.google.com/spreadsheets/d/1oA_e2LWHEavEOhOcD7i2UBWq1LV1Nrba/edit?usp=sharing&ouid=112847534265417995265&rtpof=true&sd=true
 - スライドショー（ポートフォリオ紹介用）:https://docs.google.com/presentation/d/1Mww5t5GJJnSaletl7Y4iSXXVVAcrks5EFuLElRPEQYc/edit?usp=sharing
