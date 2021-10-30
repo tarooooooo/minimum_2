@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid item-new">
   <div class="row justify-content-center">
     <div class="col-lg-12 col-md-12 col-sm-12 p-0">
 
@@ -8,9 +8,9 @@
           <p class="m-0">アイテムを登録しましょう！</p>
         </div>
         <div class="caution">
-          <p>※所持可能数が設定されていないと登録できません。</p>
+          <p class="small-font">※所持可能数が設定されていないと登録できません。</p>
           <% (1..3).each do |i| %>
-            <p>
+            <p class="small-font">
               <%= Category.find(i).name %> の所持可能数：
               <% if current_user.category_managements.find_by(category_id: i).present? %>
                 <%= current_user.category_managements.find_by(category_id: i).limit %>個
@@ -27,7 +27,7 @@
     </div>
   </div>
   
-  <p class="text-right">
+  <p class="text-right small-font">
     <%= link_to "アイテム制限の設定 >>",new_category_management_path %>
   </p>
   <%= render 'error', item: @item %>
