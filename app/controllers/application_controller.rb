@@ -8,12 +8,19 @@ class ApplicationController < ActionController::Base
   end
   
   def after_sign_in_path_for(resource)
-    if current_user.category_managements.blank?
-      flash[:success] = "まずは、アイテム制限を設定し、サステナブルへの一歩を踏み出しましょう！（以下のフォームから、アウター、インナー、ボトムスの所持できる数を設定してください）"
-      new_category_management_path
-    else
-      root_path
+    
+    case resource
+    when Admin
+      admin_users_path
+    when User
+      if current_user.category_managements.blank? 
+        flash[:success] = "まずは、アイテム制限を設定し、サステナブルへの一歩を踏み出しましょう！（以下のフォームから、アウター、インナー、ボトムスの所持できる数を設定してください）"
+        new_category_management_path
+      else
+        root_path
+      end
     end
+    
   end
 
   def configure_permitted_parameters
