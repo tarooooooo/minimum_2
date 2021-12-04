@@ -86,6 +86,7 @@ gem 'payjp'
 gem'lazy_high_charts'
 gem 'select2-rails'
 # gem 'uglifier' ,"1.3.0"
+gem "pundit"
 group :production do
   gem 'mysql2'
 end

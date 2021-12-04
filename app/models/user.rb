@@ -11,8 +11,6 @@ class User < ApplicationRecord
   validates :phone_number, format: { with: /\A\d{10,11}\z/}
   validates :nickname, presence: true
   attachment :icon_image
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
