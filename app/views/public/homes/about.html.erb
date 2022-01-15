@@ -126,4 +126,31 @@
     </div>
 
   </section>
+  <section class='sell_items_slider'>
+    <div class="on_sell_text justify-content-center d-flex">
+      <%= image_tag 'public/about_page/sell_item.png' %>
+    </div>
+    <div id="about_images">
+      <% @sell_items.each do |sell_item| %>
+        <div class="about_image">
+          <%= attachment_image_tag sell_item.item, :item_image, :fill, 300, 300, format: 'jpeg', style: "width: 15rem;" %>
+        </div>
+      <% end %>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+        $(document).on('turbolinks:load', function () {
+            $('#about_images').slick({
+                autoplay: true, //自動でスクロール
+                autoplaySpeed: 0, //自動再生のスライド切り替えまでの時間を設定
+                speed: 5000, //スライドが流れる速度を設定
+                cssEase: "linear", //スライドの流れ方を等速に設定
+                slidesToShow: 4, //表示するスライドの数
+                swipe: false, // 操作による切り替えはさせない
+                arrows: false, //矢印非表示
+                pauseOnFocus: false, //スライダーをフォーカスした時にスライドを停止させるか
+                pauseOnHover: false, //スライダーにマウスホバーした時にスライドを停止させるか
+            });
+        });
+    </script>
+  </section>
 </div>
